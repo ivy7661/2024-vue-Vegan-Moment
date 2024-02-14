@@ -83,8 +83,6 @@ const { VITE_API_URL, VITE_API_PATH } = import.meta.env
 export default {
   data () {
     return {
-      site: 'https://ec-course-api.hexschool.io/v2',
-      api_path: 'js23',
       products: [],
       tempProduct: {}
     }
