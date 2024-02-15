@@ -110,8 +110,9 @@ export default {
           this.getData()
         })
         .catch((err) => {
-          alert(err.response.data.message)
-          window.location = 'login.html'
+          console.log(err.response.data.message)
+          // alert(err.response.data.message)
+          // window.location = 'login.html'
         })
     },
     // 參數預設值：沒帶入參數時，預設值是1

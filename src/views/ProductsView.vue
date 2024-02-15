@@ -10,7 +10,6 @@
                   <th width="150">產品名稱</th>
                   <th width="120">原價</th>
                   <th width="120">售價</th>
-                  <th width="150">是否啟用</th>
                   <th width="120">查看細節</th>
                 </tr>
               </thead>
@@ -19,12 +18,6 @@
                   <td width="150">{{item.title }}</td>
                   <td width="120">{{item.origin_price }}</td>
                   <td width="120">{{item.price }}</td>
-                  <td width="150">
-                    <span class="text-success" v-if="item.is_enabled"
-                      >啟用</span
-                    >
-                    <span v-else>未啟用</span>
-                  </td>
                   <td width="120">
                     <button
                       type="button"
@@ -89,7 +82,7 @@ export default {
   },
   methods: {
     getProducts () {
-      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/products`
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/products`
       axios
         .get(url)
         .then((response) => {
