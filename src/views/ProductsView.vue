@@ -88,18 +88,6 @@ export default {
     }
   },
   methods: {
-    checkLogin () {
-      const url = `${VITE_API_URL}/api/user/check`
-      axios
-        .post(url)
-        .then(() => {
-          this.getProducts()
-        })
-        .catch((err) => {
-          alert(err.response.data.message)
-          window.location = 'login.html'
-        })
-    },
     getProducts () {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/products`
       axios
@@ -125,7 +113,6 @@ export default {
     // console.log(token);
     // 進行全域性 token 預設
     axios.defaults.headers.common.Authorization = token
-    this.checkLogin()
   }
 }
 </script>
