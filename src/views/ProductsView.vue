@@ -113,6 +113,7 @@ export default {
     // console.log(token);
     // 進行全域性 token 預設
     axios.defaults.headers.common.Authorization = token
+    this.getProducts()
   }
 }
 </script>
