@@ -61,14 +61,6 @@ export default {
     }
   },
   mounted () {
-    // 取出先前存在cookie內的token，參數內的名稱要跟剛才在login.js設的相同(hexVueToken)
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)hexVueToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    )
-    // console.log(token);
-    // 進行全域性 token 預設
-    axios.defaults.headers.common.Authorization = token
     this.getProducts()
   }
 }

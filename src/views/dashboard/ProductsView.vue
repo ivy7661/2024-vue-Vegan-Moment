@@ -82,8 +82,6 @@ const { VITE_API_URL, VITE_API_PATH } = import.meta.env
 export default {
   data () {
     return {
-      site: 'https://vue3-course-api.hexschool.io/v2',
-      apiPath: 'js23',
       products: [],
       tempProduct: {
         imagesUrl: []
@@ -95,29 +93,9 @@ export default {
     }
   },
   mounted () {
-    // 取出 Token
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)hexVueToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    )
-    axios.defaults.headers.common.Authorization = token
-
-    this.checkAdmin()
+    this.getData()
   },
   methods: {
-    checkAdmin () {
-      const url = `${VITE_API_URL}/api/user/check`
-      axios
-        .post(url)
-        .then(() => {
-          this.getData()
-        })
-        .catch((err) => {
-          console.log(err.response.data.message)
-          // alert(err.response.data.message)
-          // window.location = 'login.html'
-        })
-    },
     // 參數預設值：沒帶入參數時，預設值是1
     getData (page = 1) {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/products?page=${page}`

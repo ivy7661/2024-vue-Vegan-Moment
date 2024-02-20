@@ -46,6 +46,16 @@ const routes = [
         component: () => import('../views/dashboard/OrderView.vue')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/front/NotFound.vue')
+  },
+  {
+    path: '/products/:pathMatch(.*)*',
+    redirect: {
+      name: 'Home'
+    }
   }
 ]
 

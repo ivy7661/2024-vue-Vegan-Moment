@@ -5,7 +5,7 @@
     <RouterLink to="/admin/order">訂單列表</RouterLink> |
     <RouterLink to="/">回到前台</RouterLink> |
   </nav>
-  <routerView></routerView>
+  <routerView v-if="checkSuccess"></routerView>
 </template>
 
 <script>
@@ -18,7 +18,8 @@ export default {
       site: 'https://ec-course-api.hexschool.io/v2',
       api_path: 'js23',
       products: [],
-      tempProduct: {}
+      tempProduct: {},
+      checkSuccess: false
     }
   },
   methods: {
@@ -28,6 +29,7 @@ export default {
         .post(url)
         .then((res) => {
           console.log('驗證成功：', res.data.success)
+          this.checkSuccess = true
         })
         .catch((err) => {
           alert(err.response.data.message)
