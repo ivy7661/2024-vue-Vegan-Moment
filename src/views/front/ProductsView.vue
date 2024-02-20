@@ -3,7 +3,6 @@
   <div class="container">
         <div class="row py-3">
           <div class="col-md-6">
-            <h2>產品列表</h2>
             <table class="table table-hover mt-4">
               <thead>
                 <tr>
@@ -18,53 +17,17 @@
                   <td width="150">{{item.title }}</td>
                   <td width="120">{{item.origin_price }}</td>
                   <td width="120">{{item.price }}</td>
-                  <td width="120">
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      v-on:click="productInfo(item)"
-                    >
-                      查看細節
-                    </button>
+                  <td>
+                    <div>
+                      <RouterLink class="btn btn-success me-2" :to="`/products/${item.id}`"
+                        >查看</RouterLink
+                      >
+                    </div>
                   </td>
                 </tr>
               </tbody>
             </table>
             <p>目前有 <span>{{Object.keys(products).length }}</span> 項產品</p>
-          </div>
-          <!-- 查看商品細節 -->
-          <div class="col-md-6">
-            <h2>單一產品細節</h2>
-            <template v-if="tempProduct.title">
-              <div class="card mb-3">
-                <img
-                  v-bind:src="tempProduct.imageUrl"
-                  class="card-img-top primary-image"
-                  alt="主圖"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">
-                    {{tempProduct.title }}
-                    <span class="badge bg-primary ms-2"
-                      >{{tempProduct.category}}</span
-                    >
-                  </h5>
-                  <p class="card-text">商品描述：{{tempProduct.description}}</p>
-                  <p class="card-text">商品內容：{{tempProduct.content }}</p>
-                  <div class="d-flex">
-                    <p class="card-text me-2">{{tempProduct.price }}</p>
-                    <p class="card-text text-secondary">
-                      <del>{{tempProduct.origin_price }}</del>
-                    </p>
-                    元 / {{tempProduct.unit }}
-                  </div>
-                </div>
-              </div>
-              <template v-if="tempProduct.title">
-                <img class="images m-2" v-for="img in tempProduct?.imagesUrl"  :key="img" :src="img"/>
-              </template>
-            </template>
-            <p class="text-secondary" v-else>請選擇一個商品查看</p>
           </div>
         </div>
       </div>

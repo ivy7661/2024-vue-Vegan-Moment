@@ -1,71 +1,74 @@
 <template>
   <h2>產品列表</h2>
   <div class="container">
-        <div class="text-end mt-4">
-          <!-- 'new' 會傳到 status -->
-          <!-- 跟新增和編輯共用同一個方法openModal() -->
-          <button class="btn btn-primary" @click="openModal('new')">
-            建立新的產品
-          </button>
-        </div>
-        <table class="table mt-4">
-          <thead>
-            <tr>
-              <th width="120">分類</th>
-              <th>產品名稱</th>
-              <th width="120">原價</th>
-              <th width="120">售價</th>
-              <th width="100">是否啟用</th>
-              <th width="120">編輯</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item) in products" :key="item.id">
-              <td>{{ item.category }}</td>
-              <td>{{ item.title }}</td>
-              <td class="text-end">{{ item.origin_price }}</td>
-              <td class="text-end">{{ item.price }}</td>
-              <td>
-                <span v-if="item.is_enabled" class="text-success">啟用</span>
-                <span v-else>未啟用</span>
-              </td>
-              <td>
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-sm"
-                    @click="openModal('edit', item)"
-                  >
-                    編輯
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-outline-danger btn-sm"
-                    @click="openModal('delete', item)"
-                  >
-                    刪除
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- pagination -->
-        <Pagination-Component :pages="pages" :get-data="getData"></Pagination-Component>
-      </div>
-      <!-- Modal -->
-      <Product-Modal
-        :temp-product="tempProduct"
-        :update-product="updateProduct"
-        :is-New="isNew"
-        ref="pModal"
-      ></Product-Modal>
-      <!-- 刪除 -->
-      <Del-Modal
-        :temp-product="tempProduct"
-        :del-product="delProduct"
-        ref="delModal"
-      ></Del-Modal>
+    <div class="text-end mt-4">
+      <!-- 'new' 會傳到 status -->
+      <!-- 跟新增和編輯共用同一個方法openModal() -->
+      <button class="btn btn-primary" @click="openModal('new')">
+        建立新的產品
+      </button>
+    </div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th width="120">分類</th>
+          <th>產品名稱</th>
+          <th width="120">原價</th>
+          <th width="120">售價</th>
+          <th width="100">是否啟用</th>
+          <th width="120">編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in products" :key="item.id">
+          <td>{{ item.category }}</td>
+          <td>{{ item.title }}</td>
+          <td class="text-end">{{ item.origin_price }}</td>
+          <td class="text-end">{{ item.price }}</td>
+          <td>
+            <span v-if="item.is_enabled" class="text-success">啟用</span>
+            <span v-else>未啟用</span>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                @click="openModal('edit', item)"
+              >
+                編輯
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="openModal('delete', item)"
+              >
+                刪除
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- pagination -->
+    <Pagination-Component
+      :pages="pages"
+      :get-data="getData"
+    ></Pagination-Component>
+  </div>
+  <!-- Modal -->
+  <Product-Modal
+    :temp-product="tempProduct"
+    :update-product="updateProduct"
+    :is-New="isNew"
+    ref="pModal"
+  ></Product-Modal>
+  <!-- 刪除 -->
+  <Del-Modal
+    :temp-product="tempProduct"
+    :del-product="delProduct"
+    ref="delModal"
+  ></Del-Modal>
 </template>
 
 <script>

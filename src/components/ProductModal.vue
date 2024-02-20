@@ -1,11 +1,12 @@
 <template>
   <div
-  id="productModal"
-  ref="productModal"
-  class="modal fade"
-  tabindex="-1"
-  aria-labelledby="productModalLabel"
-  aria-hidden="true">
+    id="productModal"
+    ref="productModal"
+    class="modal fade"
+    tabindex="-1"
+    aria-labelledby="productModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-xl">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
@@ -42,11 +43,11 @@
                   :key="key"
                 >
                   <div class="mb-3">
-                    <label :for="image+key" class="form-label"
+                    <label :for="image + key" class="form-label"
                       >圖片網址</label
                     >
                     <input
-                      :id="image+key"
+                      :id="image + key"
                       v-model="editProduct.imagesUrl[key]"
                       type="text"
                       class="form-control"
@@ -57,7 +58,10 @@
                 </div>
 
                 <div
-                  v-if="!editProduct.imagesUrl.length || editProduct.imagesUrl[editProduct.imagesUrl.length - 1]"
+                  v-if="
+                    !editProduct.imagesUrl.length ||
+                    editProduct.imagesUrl[editProduct.imagesUrl.length - 1]
+                  "
                 >
                   <button
                     class="btn btn-outline-primary btn-sm d-block w-100"
@@ -86,7 +90,7 @@
             </div>
             <div class="col-sm-8">
               <pre>
-                {{editProduct}}
+                {{ editProduct }}
               </pre>
               <div class="mb-3">
                 <label for="title" class="form-label">標題</label>
@@ -196,11 +200,7 @@
           >
             取消
           </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            @click="updateProduct"
-          >
+          <button type="button" class="btn btn-primary" @click="updateProduct">
             確認
           </button>
         </div>
@@ -228,6 +228,7 @@ export default {
       this.modalProduct.hide()
     }
   },
+
   mounted () {
     this.modalProduct = new Modal(this.$refs.productModal)
   },
