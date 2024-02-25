@@ -1,11 +1,11 @@
 <template>
   <nav class="navbar sticky-top navbar-expand-lg bg-light-green py-1">
-    <div class="container">
+    <div class="container-fluid">
       <RouterLink to="/">
         <img
           src="../../../public/icons/Logo-Vegan-Moment.png"
           alt="logo"
-          class="d-inline-block navbar-logo"
+          class="d-inline-block navbar-logo ms-2"
         />
       </RouterLink>
 
@@ -41,38 +41,38 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <i class="bi bi-list fs-4" style="font-weight: bold"></i>
+          <i class="bi bi-list fs-3" style="font-weight: bold"></i>
         </button>
       </div>
       <!-- navbar 摺疊內容 -->
       <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarText">
         <ul class="navbar-nav mt-2 mt-lg-0">
-          <li class="nav-item mb-4 mb-lg-0">
-            <RouterLink to="/about" class="nav-link pt-3 mx-3 fs-5 d-inline-block"
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink to="/about" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
               >關於我們</RouterLink
             >
           </li>
-          <li class="nav-item mb-4 mb-lg-0">
-            <RouterLink to="/products" class="nav-link fs-5 pt-3 mx-3">線上訂餐</RouterLink>
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink to="/products" class="nav-link fs-5 pt-3 mx-2">線上訂餐</RouterLink>
           </li>
-          <li class="nav-item mb-4 mb-lg-0">
-            <RouterLink to="/blogs" class="nav-link fs-5 pt-3 mx-3 d-inline-block"
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink to="/blogs" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
               >專欄文章</RouterLink
             >
           </li>
-          <li class="nav-item mb-4 mb-lg-0">
-            <a href="#/#qa" class="nav-link fs-5 pt-3 mx-3 d-inline-block">常見問題</a>
+          <li class="nav-item mb-2 mb-lg-0">
+            <a href="#/#qa" class="nav-link fs-5 pt-3 mx-2 d-inline-block">常見問題</a>
           </li>
-          <li class="nav-item mb-4 mb-lg-0">
-            <RouterLink to="/location" class="nav-link fs-5 pt-3 mx-3 d-inline-block"
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink to="/location" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
               >門市資訊</RouterLink
             >
           </li>
         </ul>
       </div>
       <!-- 桌機版 cart、member icon -->
-      <div class="d-flex justify-content-lg-end">
-        <div class="d-none d-lg-block">
+      <div class="d-flex justify-content-lg-end d-none d-lg-block">
+        <div>
           <!-- <a
             role="button"
             class="navbar-brand position-relative"
@@ -80,7 +80,7 @@
             aria-controls="offcanvasRight"
           > -->
           <RouterLink to="/cart" class="navbar-brand">
-            <i class="bi bi-cart3 fs-2 mx-3"></i>
+            <i class="bi bi-cart3 fs-2 ms-4 me-2"></i>
           </RouterLink>
           <!-- <span
               v-if="cartsTotalNum"
@@ -90,7 +90,7 @@
             </span> -->
           <!-- </a> -->
           <RouterLink to="/adminLogin" class="navbar-brand">
-            <i class="bi bi-person-circle fs-2 mx-2"></i>
+            <i class="bi bi-person-circle fs-2"></i>
           </RouterLink>
         </div>
       </div>
@@ -141,21 +141,34 @@
     </div>
   </section> -->
 
-  <footer class="bg-light-green pt-3">
-    <div class="container py-4">
-      <div class="d-lg-flex justify-content-between align-items-center pb-6 pb-lg-4 border-bottom">
-        <div class="d-flex flex-row">
-          <a href="#">
-            <img
-              src="../../../public/icons/Logo-Vegan-Moment.png"
-              alt="logo"
-              class="mb-lg-6"
-              style="width: 120px"
-            />
-          </a>
+  <footer class="bg-light-green">
+    <div class="container">
+      <!-- mobile logo -->
+      <div class="d-flex justify-content-center d-lg-none">
+        <a href="#">
+          <img
+            src="../../../public/icons/Logo-Vegan-Moment.png"
+            alt="logo"
+            class="mt-3"
+            style="width: 120px"
+          />
+        </a>
+      </div>
+      <div class="d-lg-flex justify-content-between align-items-center border-bottom">
+        <div class="d-flex flex-row mt-0 mt-lg-5">
+          <div class="d-none d-lg-block">
+            <a href="#">
+              <img
+                src="../../../public/icons/Logo-Vegan-Moment.png"
+                alt="logo"
+                class="mt-3 mt-lg-0 mb-lg-6"
+                style="width: 120px"
+              />
+            </a>
+          </div>
           <!-- 選單 -->
           <div
-            class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start ms-5 mt-2"
+            class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start ms-5 mt-2 d-none d-lg-block"
           >
             <ul class="nav">
               <li class="footer-item">
@@ -178,7 +191,7 @@
           </div>
           <!-- 選2 -->
           <div
-            class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start mt-2"
+            class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-start mt-2 d-none d-lg-block"
           >
             <ul class="nav">
               <li class="footer-item">
@@ -203,17 +216,17 @@
 
         <div class="d-flex flex-column">
           <ul class="nav mb-3">
-            <li class="nav-item">
+            <li class="nav-item d-none d-lg-block">
               <a href="#" class="me-4">
                 <i class="bi bi-instagram fs-4"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-none d-lg-block">
               <a href="#" class="me-4">
                 <i class="bi bi-facebook fs-4"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item d-none d-lg-block">
               <a href="#">
                 <i class="bi bi-youtube fs-4"></i>
               </a>
@@ -235,7 +248,7 @@
           </ul>
         </div>
       </div>
-      <div class="d-lg-flex justify-content-between pt-6 py-lg-3 text-gray-600">
+      <div class="d-lg-flex justify-content-between py-2 py-lg-3 text-gray-600">
         <p class="mb-0 mb-lg-0">Copyright &copy; 2024 Vegan Moment. All Rights Reserved.</p>
         <p class="mb-0">本網站僅作為個人練習作品，非商業用途</p>
       </div>
