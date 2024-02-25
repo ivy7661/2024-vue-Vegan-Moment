@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
   {
     path: '/',
-    component: () => import('../views/front/FrontView.vue'),
+    component: () => import('../views/layout/FrontView.vue'),
     children: [
       {
         path: '/',
@@ -20,7 +20,7 @@ const routes = [
         props: (route) => {
           return {
             id: route.params.id
-          }
+          };
         }
       },
       {
@@ -30,19 +30,19 @@ const routes = [
     ]
   },
   {
-    path: '/login',
-    component: () => import('../views/LoginView.vue')
+    path: '/adminLogin',
+    component: () => import('../views/dashboard/AdminLogin.vue')
   },
   {
     path: '/admin',
-    component: () => import('../views/dashboard/DashboardView.vue'),
+    component: () => import('../views/layout/DashboardView.vue'),
     children: [
       {
         path: 'products',
         component: () => import('../views/dashboard/ProductsView.vue')
       },
       {
-        path: 'order',
+        path: 'orders',
         component: () => import('../views/dashboard/OrderView.vue')
       }
     ]
@@ -57,12 +57,12 @@ const routes = [
       name: 'Home'
     }
   }
-]
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'active',
   routes
-})
+});
 
-export default router
+export default router;

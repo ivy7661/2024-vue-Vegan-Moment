@@ -1,11 +1,12 @@
 <template>
   <div
-  id="delProductModal"
-  ref="delProductModal"
-  class="modal fade"
-  tabindex="-1"
-  aria-labelledby="delProductModalLabel"
-  aria-hidden="true">
+    id="delProductModal"
+    ref="delProductModal"
+    class="modal fade"
+    tabindex="-1"
+    aria-labelledby="delProductModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content border-0">
         <div class="modal-header bg-danger text-white">
@@ -25,16 +26,10 @@
           商品(刪除後將無法恢復)。
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-danger" @click="delProduct">
-            確認刪除
-          </button>
+          <button type="button" class="btn btn-danger" @click="delProduct">確認刪除</button>
         </div>
       </div>
     </div>
@@ -42,24 +37,24 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap'
+import { Modal } from 'bootstrap';
 export default {
   props: ['tempProduct', 'delProduct'],
-  data () {
+  data() {
     return {
       delModalProduct: null
-    }
+    };
   },
   methods: {
-    openDelModal () {
-      this.delModalProduct.show()
+    openDelModal() {
+      this.delModalProduct.show();
     },
-    closeDelModal () {
-      this.delModalProduct.hide()
+    closeDelModal() {
+      this.delModalProduct.hide();
     }
   },
-  mounted () {
-    this.delModalProduct = new Modal(this.$refs.delProductModal)
+  mounted() {
+    this.delModalProduct = new Modal(this.$refs.delProductModal);
   }
-}
+};
 </script>

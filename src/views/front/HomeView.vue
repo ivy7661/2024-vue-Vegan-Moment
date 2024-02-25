@@ -1,18 +1,14 @@
 <template>
   <div class="home">
     <h1>Hello, This is Home Page.</h1>
-    <hr>
+    <hr />
   </div>
 </template>
 
 <script>
-
 export default {
-  components: {
-
-  }
-}
+  components: {}
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

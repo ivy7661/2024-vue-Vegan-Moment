@@ -37,15 +37,9 @@
               </div>
               <h3 class="mb-3">多圖新增</h3>
               <div v-if="Array.isArray(editProduct.imagesUrl)">
-                <div
-                  class="mb-1"
-                  v-for="(image, key) in editProduct.imagesUrl"
-                  :key="key"
-                >
+                <div class="mb-1" v-for="(image, key) in editProduct.imagesUrl" :key="key">
                   <div class="mb-3">
-                    <label :for="image + key" class="form-label"
-                      >圖片網址</label
-                    >
+                    <label :for="image + key" class="form-label">圖片網址</label>
                     <input
                       :id="image + key"
                       v-model="editProduct.imagesUrl[key]"
@@ -64,7 +58,7 @@
                   "
                 >
                   <button
-                    class="btn btn-outline-primary btn-sm d-block w-100"
+                    class="btn btn-outline-secondary btn-sm d-block w-100"
                     @click="editProduct.imagesUrl.push('')"
                   >
                     新增圖片
@@ -81,7 +75,7 @@
               </div>
               <div v-else>
                 <button
-                  class="btn btn-outline-primary btn-sm d-block w-100"
+                  class="btn btn-outline-secondary btn-sm d-block w-100"
                   @click="createImages"
                 >
                   新增圖片
@@ -184,25 +178,17 @@
                     :true-value="1"
                     :false-value="0"
                   />
-                  <label class="form-check-label" for="is_enabled"
-                    >是否啟用</label
-                  >
+                  <label class="form-check-label" for="is_enabled">是否啟用</label>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-primary" @click="updateProduct">
-            確認
-          </button>
+          <button type="button" class="btn btn-secondary" @click="updateProduct">確認</button>
         </div>
       </div>
     </div>
@@ -210,32 +196,32 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap'
+import { Modal } from 'bootstrap';
 export default {
   // Airbnb風格下不能修改傳入的值(tempProduct)
   props: ['tempProduct', 'updateProduct', 'isNew'],
-  data () {
+  data() {
     return {
       modalProduct: null, // 用來裝新增、編輯的 modal
       editProduct: {}
-    }
+    };
   },
   methods: {
-    openModal () {
-      this.modalProduct.show() // 使用元件內的$refs
+    openModal() {
+      this.modalProduct.show(); // 使用元件內的$refs
     },
-    closeModal () {
-      this.modalProduct.hide()
+    closeModal() {
+      this.modalProduct.hide();
     }
   },
 
-  mounted () {
-    this.modalProduct = new Modal(this.$refs.productModal)
+  mounted() {
+    this.modalProduct = new Modal(this.$refs.productModal);
   },
   watch: {
-    tempProduct () {
-      this.editProduct = this.tempProduct
+    tempProduct() {
+      this.editProduct = this.tempProduct;
     }
   }
-}
+};
 </script>

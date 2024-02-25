@@ -1,0 +1,32 @@
+@import 'bootstrap/scss/functions';
+@import './helpers/_variables'; // 自定義
+@import 'bootstrap/scss/mixins';
+
+@import 'bootstrap/scss/bootstrap';
+
+@import './helpers/mixin';
+@import './helpers/base';
+
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'vue-loading-overlay/dist/css/index.css';
+
+body {
+  background-color: $white;
+}
+
+#app {
+  background-color: $white;
+}
+
+header {
+  nav {
+    a {
+      font-weight: bold;
+      color: #28a15a;
+
+      &.router-link-exact-active {
+        color: $primary;
+      }
+    }
+  }
+}
