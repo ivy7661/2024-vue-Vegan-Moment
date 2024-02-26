@@ -16,12 +16,12 @@ const routes = [
       },
       {
         path: 'products/:id',
-        component: () => import('../views/front/ProductDetail.vue'),
-        props: (route) => {
-          return {
-            id: route.params.id
-          };
-        }
+        component: () => import('../views/front/ProductDetail.vue')
+        // props: (route) => {
+        //   return {
+        //     id: route.params.id
+        //   };
+        // }
       },
       {
         path: 'cart',

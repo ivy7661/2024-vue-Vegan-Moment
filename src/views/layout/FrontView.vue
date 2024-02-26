@@ -98,7 +98,7 @@
   </nav>
 
   <!-- <CartOffcanvas ref="offcanvas"></CartOffcanvas> -->
-  <main>
+  <main class="mainView">
     <RouterView></RouterView>
   </main>
   <!--<section>
@@ -257,6 +257,9 @@
 </template>
 
 <style lang="scss" scoped>
+.mainView {
+  min-height: calc(100vh - 311px);
+}
 i {
   color: #698f39;
 }

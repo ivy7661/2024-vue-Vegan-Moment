@@ -13,13 +13,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in products" v-bind:key="item.id">
-              <td width="150">{{ item.title }}</td>
-              <td width="120">{{ item.origin_price }}</td>
-              <td width="120">{{ item.price }}</td>
+            <tr v-for="product in products" v-bind:key="product.id">
+              <td width="150">{{ product.title }}</td>
+              <td width="120">{{ product.origin_price }}</td>
+              <td width="120">{{ product.price }}</td>
               <td>
                 <div>
-                  <RouterLink class="btn btn-success me-2" :to="`/products/${item.id}`"
+                  <RouterLink class="btn btn-success me-2" :to="`/products/${product.id}`"
                     >查看</RouterLink
                   >
                 </div>
@@ -28,7 +28,7 @@
           </tbody>
         </table>
         <p>
-          目前有 <span>{{ Object.keys(products).length }}</span> 項產品
+          目前有 <span>{{ products.length }}</span> 項產品
         </p>
       </div>
     </div>
@@ -45,6 +45,9 @@ export default {
       tempProduct: {}
     };
   },
+  mounted() {
+    this.getProducts();
+  },
   methods: {
     getProducts() {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/products`;
@@ -58,12 +61,9 @@ export default {
           alert(err.response.data.message);
         });
     },
-    productInfo(item) {
-      this.tempProduct = item;
+    productInfo(product) {
+      this.tempProduct = product;
     }
-  },
-  mounted() {
-    this.getProducts();
   }
 };
 </script>
