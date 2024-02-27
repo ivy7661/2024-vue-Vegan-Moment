@@ -316,6 +316,7 @@ $accent-yellow: #eeae32;
 $accent-brown: #e7d8ca;
 $accent-green: #d7e7c1;
 $accent-red: #f5d7d7;
+$gray-3: #9a9ea3;
 // scss-docs-end theme-color-variables
 
 // scss-docs-start theme-colors-map
@@ -328,13 +329,14 @@ $theme-colors: (
   'danger': $danger,
   'light': $light,
   'dark': $dark,
-  'bg-yellow': $bg-yellow,
-  'bg-white': $bg-white,
+  'yellow-2': $bg-yellow,
+  'white-2': $bg-white,
   'black': $black,
   'accent-brown': $accent-brown,
   'light-green': $light-green,
   'bg-gray': $bg-gray,
-  'gray-600': $gray-600
+  'gray-600': $gray-600,
+  'gray-3': $gray-3
 ) !default;
 // scss-docs-end theme-colors-map
 

@@ -1,0 +1,21 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "category": "飲品",
+      "title": "綜合莓果果昔",
+      "num": 6,
+      "origin_price": 110,
+      "price": 90,
+      "info": "富含花青素、維他命C，營養低熱量",
+      "description": "藍莓、草莓製成的濃稠果昔。",
+      "ingredient": "藍莓、草莓、無糖優格、牛奶",
+      "allergy": "+",
+      "is_enabled": 1,
+      "imageUrl": "https://png.pngtree.com/png-vector/20221222/ourmid/pngtree-super-cute-cartoon-vector-bear-png-image_6504049.png",
+      "imagesUrl": [
+        "https://images.unsplash.com/photo-1505253149613-112d21d9f6a9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGNha2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
+      ]
+    }
+  ]
+}

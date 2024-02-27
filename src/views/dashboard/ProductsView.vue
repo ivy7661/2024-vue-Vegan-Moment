@@ -1,5 +1,5 @@
 <template>
-  <h2>產品列表</h2>
+  <h2>產品管理</h2>
   <div class="container">
     <div class="text-end mt-4">
       <!-- 'new' 會傳到 status -->
@@ -9,12 +9,12 @@
     <table class="table mt-4">
       <thead>
         <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="120">編輯</th>
+          <th width="90">分類</th>
+          <th width="120">產品名稱</th>
+          <th width="120" class="text-end">原價</th>
+          <th width="120" class="text-end">售價</th>
+          <th width="120" class="text-center">是否啟用</th>
+          <th width="120" class="text-center">編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -23,11 +23,11 @@
           <td>{{ item.title }}</td>
           <td class="text-end">{{ item.origin_price }}</td>
           <td class="text-end">{{ item.price }}</td>
-          <td>
+          <td class="text-center">
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
           </td>
-          <td>
+          <td class="text-center">
             <div class="btn-group">
               <button
                 type="button"

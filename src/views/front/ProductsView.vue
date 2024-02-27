@@ -6,7 +6,7 @@
         <table class="table table-hover mt-4">
           <thead>
             <tr>
-              <th width="150">產品名稱</th>
+              <th width="120">產品名稱</th>
               <th width="120">原價</th>
               <th width="120">售價</th>
               <th width="120">查看細節</th>
@@ -14,7 +14,7 @@
           </thead>
           <tbody>
             <tr v-for="product in products" v-bind:key="product.id">
-              <td width="150">{{ product.title }}</td>
+              <td width="120">{{ product.title }}</td>
               <td width="120">{{ product.origin_price }}</td>
               <td width="120">{{ product.price }}</td>
               <td>

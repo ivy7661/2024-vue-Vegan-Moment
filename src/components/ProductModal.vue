@@ -11,8 +11,8 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="productModalLabel" class="modal-title">
-            <span v-if="isNew">新增產品</span>
-            <span v-else>編輯產品</span>
+            <span v-if="isNew">新增餐點</span>
+            <span v-else>編輯餐點</span>
           </h5>
           <button
             type="button"
@@ -87,13 +87,13 @@
                 {{ editProduct }}
               </pre>
               <div class="mb-3">
-                <label for="title" class="form-label">標題</label>
+                <label for="title" class="form-label">餐點名稱</label>
                 <input
                   id="title"
                   v-model="editProduct.title"
                   type="text"
                   class="form-control"
-                  placeholder="請輸入標題"
+                  placeholder="請輸入餐點名稱"
                 />
               </div>
 
@@ -108,14 +108,16 @@
                     placeholder="請輸入分類"
                   />
                 </div>
+
                 <div class="mb-3 col-md-6">
-                  <label for="unit" class="form-label">單位</label>
+                  <label for="num" class="form-label">數量</label>
                   <input
-                    id="unit"
-                    v-model="editProduct.unit"
-                    type="text"
+                    id="num"
+                    v-model.number="editProduct.num"
+                    type="number"
+                    min="0"
                     class="form-control"
-                    placeholder="請輸入單位"
+                    placeholder="請輸入數量"
                   />
                 </div>
               </div>
@@ -144,30 +146,68 @@
                   />
                 </div>
               </div>
+              <div class="row">
+                <div class="mb-3 col-2">
+                  <label for="unit" class="form-label">單位</label>
+                  <input id="unit" v-model="editProduct.unit" type="text" class="form-control" />
+                </div>
+
+                <div class="mb-3 col-2">
+                  <label for="content" class="form-label">內容</label>
+                  <input
+                    id="content"
+                    v-model="editProduct.content"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+              </div>
               <hr />
 
               <div class="mb-3">
-                <label for="description" class="form-label">產品描述</label>
+                <label for="info" class="form-label">特色</label>
+                <input
+                  id="info"
+                  v-model="editProduct.info"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入特色"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">餐點描述</label>
                 <textarea
                   id="description"
                   v-model="editProduct.description"
                   type="text"
                   class="form-control"
-                  placeholder="請輸入產品描述"
+                  placeholder="請輸入餐點描述"
                 >
                 </textarea>
               </div>
+
               <div class="mb-3">
-                <label for="content" class="form-label">說明內容</label>
-                <textarea
-                  id="content"
-                  v-model="editProduct.content"
+                <label for="ingredient" class="form-label">餐點成分</label>
+                <input
+                  id="ingredient"
+                  v-model="editProduct.ingredient"
                   type="text"
                   class="form-control"
-                  placeholder="請輸入說明內容"
-                >
-                </textarea>
+                  placeholder="請輸入餐點成分"
+                />
               </div>
+
+              <div class="mb-3">
+                <label for="allergy" class="form-label">過敏資訊</label>
+                <input
+                  id="allergy"
+                  v-model="editProduct.allergy"
+                  type="text"
+                  class="form-control"
+                  placeholder="請輸入過敏資訊"
+                />
+              </div>
+
               <div class="mb-3">
                 <div class="form-check">
                   <input
