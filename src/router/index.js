@@ -39,11 +39,11 @@ const routes = [
     children: [
       {
         path: 'products',
-        component: () => import('../views/dashboard/ProductsView.vue')
+        component: () => import('../views/dashboard/ProductsAdmin.vue')
       },
       {
         path: 'orders',
-        component: () => import('../views/dashboard/OrderView.vue')
+        component: () => import('../views/dashboard/OrderAdmin.vue')
       }
     ]
   },

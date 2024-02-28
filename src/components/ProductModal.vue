@@ -187,17 +187,6 @@
               </div>
 
               <div class="mb-3">
-                <label for="ingredient" class="form-label">餐點成分</label>
-                <input
-                  id="ingredient"
-                  v-model="editProduct.ingredient"
-                  type="text"
-                  class="form-control"
-                  placeholder="請輸入餐點成分"
-                />
-              </div>
-
-              <div class="mb-3">
                 <label for="allergy" class="form-label">過敏資訊</label>
                 <input
                   id="allergy"

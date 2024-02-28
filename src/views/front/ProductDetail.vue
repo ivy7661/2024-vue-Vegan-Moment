@@ -62,8 +62,8 @@
         <div class="d-flex flex-row">
           <p class="mt-2 me-2">數量：</p>
           <select
-            class="form-select w-lg-50 mb-4"
-            v-model="productInfo.num"
+            class="form-select mb-4"
+            v-model="productQty"
             :disabled="loadingStatus === productInfo.id"
             style="max-width: 150px"
           >
@@ -160,21 +160,46 @@
 
 <script>
 import axios from 'axios';
+// import { mapState, mapActions } from 'pinia';
+// import loadingStore from '@/store/loadingStore.js';
+// import cartsStore from '@/store/cartsStore.js';
+// import productsStore from '@/store/productsStore.js';
+// import Toast from '@/mixins/toast.js';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default {
   data() {
     return {
       productId: '',
-      productInfo: {}
+      productInfo: {},
+      productQty: 1,
+      selectImg: ''
+
+      // isLoading: false
     };
   },
   mounted() {
-    this.productId = this.$route.params.id;
-    const url = `${VITE_API_URL}/api/${VITE_API_PATH}/product/${this.productId}`;
-    axios.get(url).then((res) => {
-      this.productInfo = res.data.product;
-    });
+    this.getProducts();
+  },
+  methods: {
+    getProducts() {
+      this.productId = this.$route.params.id;
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/product/${this.productId}`;
+      axios.get(url).then((res) => {
+        this.productInfo = res.data.product;
+      });
+    },
+    addToCart() {
+      const order = {
+        product_id: this.productId,
+        qty: 1
+      };
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/cart`;
+      axios.post(url, { data: order }).then((res) => {
+        console.log(res);
+        // this.productInfo = res.data.product;
+      });
+    }
   }
 };
 </script>
