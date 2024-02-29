@@ -75,9 +75,9 @@
             <!-- 購物車 btn -->
             <button
               type="button"
-              class="add-to-cart-btn btn btn-secondary fs-6 w-100"
+              class="btn btn-secondary fs-6 w-100"
               :disabled="loadingStatus === product.id"
-              @click="addToCart(product.id)"
+              @click="addToCart(product.id, cartQty)"
             >
               <span>加入購物車</span>
             </button>
@@ -91,13 +91,16 @@
 
 <script>
 import axios from 'axios';
+import { mapActions } from 'pinia';
+import cartStore from '../../stores/cartStore';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 export default {
   data() {
     return {
       products: [],
       tempProduct: {},
-      categories: ['主餐', '輕食', '果昔碗', '飲品']
+      categories: ['主餐', '輕食', '果昔碗', '飲品'],
+      cartQty: 1
     };
   },
   mounted() {
@@ -128,7 +131,8 @@ export default {
     },
     productInfo(product) {
       this.tempProduct = product;
-    }
+    },
+    ...mapActions(cartStore, ['addToCart'])
   }
 };
 </script>

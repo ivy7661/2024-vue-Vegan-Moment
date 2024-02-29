@@ -69,6 +69,7 @@
       </div>
       <!-- 桌機版 cart、member icon -->
       <div class="d-flex justify-content-lg-end d-none d-lg-block">
+        <!-- cart -->
         <div>
           <!-- <a
             role="button"
@@ -76,8 +77,14 @@
             @click.prevent="toggleOffcanvas()"
             aria-controls="offcanvasRight"
           > -->
-          <RouterLink to="/cart" class="navbar-brand">
+          <RouterLink to="/cart" class="navbar-brand position-relative">
             <i class="bi bi-cart3 fs-2 ms-4 me-2"></i>
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+            >
+              {{ this.carts?.length }}
+              <span class="visually-hidden">unread messages</span>
+            </span>
           </RouterLink>
           <!-- <span
               v-if="cartsTotalNum"
@@ -252,6 +259,26 @@
     </div>
   </footer>
 </template>
+
+<script>
+import { mapActions, mapState } from 'pinia';
+import cartStore from '../../stores/cartStore';
+
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(cartStore, ['carts'])
+  },
+  mounted() {
+    this.getCart();
+  },
+  methods: {
+    ...mapActions(cartStore, ['getCart'])
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 .mainView {

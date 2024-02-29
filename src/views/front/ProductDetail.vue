@@ -63,7 +63,7 @@
           <p class="mt-2 me-2">數量：</p>
           <select
             class="form-select mb-4"
-            v-model="productQty"
+            v-model="cartQty"
             :disabled="loadingStatus === productInfo.id"
             style="max-width: 150px"
           >
@@ -75,8 +75,9 @@
           type="button"
           class="btn btn-secondary mb-3 me-4 d-block w-100"
           :disabled="loadingStatus === productInfo.id"
-          @click="addToCart(productInfo.id, productInfoQty)"
+          @click="addToCart(productInfo.id, cartQty)"
         >
+          <!-- productInfoQty -->
           加入購物車
         </button>
         <!-- 收藏 -->
@@ -160,7 +161,8 @@
 
 <script>
 import axios from 'axios';
-// import { mapState, mapActions } from 'pinia';
+import { mapActions } from 'pinia';
+import cartStore from '../../stores/cartStore';
 // import loadingStore from '@/store/loadingStore.js';
 // import cartsStore from '@/store/cartsStore.js';
 // import productsStore from '@/store/productsStore.js';
@@ -172,7 +174,7 @@ export default {
     return {
       productId: '',
       productInfo: {},
-      productQty: 1,
+      cartQty: 1,
       selectImg: ''
 
       // isLoading: false
@@ -180,6 +182,7 @@ export default {
   },
   mounted() {
     this.getProducts();
+    this.cartQty = 1;
   },
   methods: {
     getProducts() {
@@ -189,17 +192,7 @@ export default {
         this.productInfo = res.data.product;
       });
     },
-    addToCart() {
-      const order = {
-        product_id: this.productId,
-        qty: 1
-      };
-      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/cart`;
-      axios.post(url, { data: order }).then((res) => {
-        console.log(res);
-        // this.productInfo = res.data.product;
-      });
-    }
+    ...mapActions(cartStore, ['addToCart'])
   }
 };
 </script>
