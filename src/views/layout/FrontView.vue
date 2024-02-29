@@ -171,7 +171,7 @@
               <li class="footer-item">
                 <a href="#" class="">
                   <RouterLink to="/about" class="footer-link mx-3 fs-6 px-1 mb-3 d-inline-block"
-                    >關於我們</RouterLink
+                    >品牌故事</RouterLink
                   >
                 </a>
               </li>
@@ -194,7 +194,7 @@
               <li class="footer-item">
                 <a href="#" class="">
                   <RouterLink to="/about" class="footer-link fs-6 px-1 mb-3 d-inline-block"
-                    >專欄文章</RouterLink
+                    >好文分享</RouterLink
                   >
                 </a>
               </li>
