@@ -17,10 +17,8 @@
         <li class="breadcrumb-item">
           <RouterLink to="/products" class="text-dark">線上訂餐</RouterLink>
         </li>
-        <!-- <li class="breadcrumb-item active" aria-current="page">線上訂餐</li> -->
       </ol>
     </nav>
-    <!-- main -->
     <!-- 類別 nav -->
     <div class="row d-flex justify-content-start">
       <div class="col-8">
@@ -48,81 +46,46 @@
     </div>
     <!-- 商品 -->
     <section>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5 my-1">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gx-4 gy-5 mt-1 mb-8">
         <div v-for="product in products" :key="product.id">
-          <div class="col card-hover">
-            <div class="position-relative hover-show-btn">
-              <div class="card-img">
-                <RouterLink :to="`/products/${product.id}`">
-                  <img
-                    :src="product.imageUrl"
-                    :alt="product.title"
-                    class="w-100 d-block rounded-3"
-                    height="240"
-                  />
-                </RouterLink>
-                <button
-                  type="button"
-                  class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
-                  :disabled="loadingStatus === product.id"
-                  @click="addToCart(product.id)"
-                >
-                  <i class="fas fa-spinner fa-pulse me-2" v-if="loadingStatus === product.id"></i>
-                  <span>加入購物車</span>
-                </button>
-              </div>
+          <div class="col">
+            <div class="card-img">
+              <RouterLink :to="`/products/${product.id}`">
+                <img
+                  :src="product.imageUrl"
+                  :alt="product.title"
+                  class="w-100 d-block rounded-3"
+                  height="240"
+                />
+              </RouterLink>
             </div>
-            <RouterLink :to="`/product/${product.id}`">
-              <div class="py-3 py-lg-4">
-                <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
-                <h5 class="text-primary d-flex align-items-center">
-                  NT${{ product.price }}
-                  <span class="fs-6 text-gray-dark ms-2"
-                    ><del>NT${{ product.origin_price }}</del></span
-                  >
-                </h5>
-              </div>
-            </RouterLink>
+
+            <div class="py-3 py-lg-2">
+              <RouterLink :to="`/products/${product.id}`">
+                <h4 class="fs-4 text-dark mb-2 mb-lg-1">{{ product.title }}</h4>
+              </RouterLink>
+              <h5 class="text-primary d-flex align-items-center">
+                NT${{ product.price }}
+                <span class="fs-6 text-gray-600 ms-2"
+                  ><del>NT${{ product.origin_price }}</del></span
+                >
+              </h5>
+            </div>
+
+            <!-- 購物車 btn -->
+            <button
+              type="button"
+              class="add-to-cart-btn btn btn-secondary fs-6 w-100"
+              :disabled="loadingStatus === product.id"
+              @click="addToCart(product.id)"
+            >
+              <span>加入購物車</span>
+            </button>
           </div>
         </div>
       </div>
       <ProductsPagination></ProductsPagination>
     </section>
-  </div>
-
-  <h2>產品列表</h2>
-  <div class="container">
-    <div class="row py-3">
-      <div class="col-md-6">
-        <table class="table table-hover mt-4">
-          <thead>
-            <tr>
-              <th width="120">產品名稱</th>
-              <th width="120">原價</th>
-              <th width="120">售價</th>
-              <th width="120">查看細節</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="product in products" v-bind:key="product.id">
-              <td width="120">{{ product.title }}</td>
-              <td width="120">{{ product.origin_price }}</td>
-              <td width="120">{{ product.price }}</td>
-              <td>
-                <div>
-                  <RouterLink class="btn btn-success me-2" :to="`/products/${product.id}`"
-                    >查看</RouterLink
-                  >
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          目前有 <span>{{ products.length }}</span> 項產品
-        </p>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -191,10 +154,10 @@ export default {
 //   border-bottom: 4px solid #698f39;
 // }
 
-.router-link.active {
-  color: #698f39;
-  border-bottom: 4px solid #698f39;
-}
+// .router-link.active {
+//   color: #698f39;
+//   border-bottom: 4px solid #698f39;
+// }
 
 .card-img {
   overflow: hidden;

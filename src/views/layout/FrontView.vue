@@ -49,7 +49,7 @@
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item mb-2 mb-lg-0">
             <RouterLink to="/about" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
-              >關於我們</RouterLink
+              >品牌故事</RouterLink
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
@@ -59,16 +59,11 @@
           </li>
           <li class="nav-item mb-2 mb-lg-0">
             <RouterLink to="/blogs" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
-              >專欄文章</RouterLink
+              >好文分享</RouterLink
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
             <a href="#/#qa" class="nav-link fs-5 pt-3 mx-2 d-inline-block">常見問題</a>
-          </li>
-          <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/location" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
-              >門市資訊</RouterLink
-            >
           </li>
         </ul>
       </div>

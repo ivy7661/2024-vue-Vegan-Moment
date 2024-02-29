@@ -9,8 +9,8 @@
             <ol class="breadcrumb mb-3">
               <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
               <li class="breadcrumb-item"><RouterLink to="/products">線上訂餐</RouterLink></li>
-              <li class="breadcrumb-item" aria-current="page">
-                <RouterLink to="/products">{{ productInfo.category }}</RouterLink>
+              <li class="breadcrumb-item">
+                {{ productInfo.category }}
               </li>
               <!-- <li class="breadcrumb-item active" aria-current="page">
                 {{ productInfo.selectCategories }}
