@@ -53,7 +53,9 @@
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/products" class="nav-link fs-5 pt-3 mx-2">線上訂餐</RouterLink>
+            <RouterLink to="/products" class="nav-link d-inline-block fs-5 pt-3 mx-2"
+              >線上訂餐</RouterLink
+            >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
             <RouterLink to="/blogs" class="nav-link fs-5 pt-3 mx-2 d-inline-block"

@@ -12,61 +12,42 @@
   <div class="container">
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-5 mt-3">
+      <ol class="breadcrumb mb-3 mt-3">
         <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
-        <li class="breadcrumb-item"><RouterLink to="/products">線上訂餐</RouterLink></li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/products" class="text-dark">線上訂餐</RouterLink>
+        </li>
         <!-- <li class="breadcrumb-item active" aria-current="page">線上訂餐</li> -->
       </ol>
     </nav>
     <!-- main -->
+    <!-- 類別 nav -->
+    <div class="row d-flex justify-content-start">
+      <div class="col-8">
+        <div class="d-flex flex-row">
+          <ul class="navbar-nav me-1">
+            <li class="nav-item">
+              <router-link :to="`/products`" class="nav-link d-inline-block fs-5 mx-2"
+                >全部餐點</router-link
+              >
+            </li>
+          </ul>
+          <ul class="navbar-nav d-flex justify-content-between">
+            <li class="nav-item">
+              <router-link
+                v-for="category in categories"
+                :key="category"
+                :to="`/products?category=${category}`"
+                class="nav-link d-inline-block fs-5 mx-2"
+                >{{ category }}</router-link
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <section class="row justify-content-center mb-10">
       <div class="col-12">
-        <!-- 類別 nav -->
-        <ul class="nav sticky-top bg-light">
-          <li class="nav-item">
-            <RouterLink :to="`/products`">全部</RouterLink>
-          </li>
-          <li class="nav-item active">
-            <RouterLink
-              v-for="category in categories"
-              :key="category"
-              :to="`/products?category=${category}`"
-              class="fs-6 fs-lg-5 text-dark px-1 mx-2"
-              >{{ category }}</RouterLink
-            >
-          </li>
-        </ul>
-        <!-- 產品 nav-tabs-->
-        <ul class="nav sticky-top bg-light pb-1 mb-4 nav-tab-top" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <a
-              class="nav-link active fs-6 fs-lg-5 text-dark px-1 mx-2"
-              id="all-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#all"
-              href="#"
-              role="tab"
-              aria-controls="all"
-              aria-selected="true"
-            >
-              全部商品
-            </a>
-          </li>
-          <li v-for="tab in categoriesTabs" class="nav-item" role="presentation" :key="tab">
-            <a
-              class="nav-link fs-6 fs-lg-5 text-dark px-1 mx-2"
-              :id="`${tab[1]}-tab`"
-              data-bs-toggle="tab"
-              :data-bs-target="`#${tab[1]}`"
-              href="#"
-              role="tab"
-              aria-controls="`${tab[1]}`"
-              aria-selected="false"
-            >
-              {{ tab[0] }}
-            </a>
-          </li>
-        </ul>
         <!-- 產品 nav-tabs-content-->
         <div class="tab-content" id="myTabContent">
           <!-- 全部商品 -->
@@ -198,6 +179,41 @@
   </div>
 
   <!-- 舊版 -->
+  <div class="col card-hover" v-for="product in products" v-bind:key="product.id">
+    <div class="position-relative hover-show-btn">
+      <div class="hover-img-mask">
+        <RouterLink :to="`/products/${product.id}`" class="hover-img-mask">
+          <img
+            :src="product.imageUrl"
+            :alt="product.title"
+            class="w-100 d-block rounded-3 object-fit-cover"
+            height="240"
+          />
+        </RouterLink>
+        <button
+          type="button"
+          class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
+          :disabled="loadingStatus === product.id"
+          @click="addToCart(product.id)"
+        >
+          <i class="fas fa-spinner fa-pulse me-2" v-if="loadingStatus === product.id"></i>
+          <span>加入購物車</span>
+        </button>
+      </div>
+    </div>
+    <RouterLink :to="`/product/${product.id}`">
+      <div class="py-3 py-lg-4">
+        <h4 class="fs-5 fs-lg-4 text-dark mb-2 mb-lg-3">{{ product.title }}</h4>
+        <h5 class="text-primary d-flex align-items-center">
+          NT${{ product.price }}
+          <span class="fs-6 text-gray-dark ms-2"
+            ><del>NT${{ product.origin_price }}</del></span
+          >
+        </h5>
+      </div>
+    </RouterLink>
+  </div>
+
   <h2>產品列表</h2>
   <div class="container">
     <div class="row py-3">
@@ -277,3 +293,30 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.nav-item .nav-link {
+  font-weight: 400;
+  border-bottom: 4px solid transparent;
+}
+
+.nav-item .nav-link:focus {
+  color: #698f39;
+  border-bottom: 4px solid #698f39;
+}
+
+.nav-item .router-link-exact-active {
+  color: #698f39;
+  border-bottom: 4px solid #698f39;
+}
+
+// .nav-item .nav-link.active {
+//   color: #698f39;
+//   border-bottom: 4px solid #698f39;
+// }
+
+.router-link.active {
+  color: #698f39;
+  border-bottom: 4px solid #698f39;
+}
+</style>
