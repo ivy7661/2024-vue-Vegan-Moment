@@ -176,7 +176,7 @@
           >
             <ul class="nav">
               <li class="footer-item">
-                <a href="#" class="">
+                <a href="#">
                   <RouterLink to="/about" class="footer-link mx-3 fs-6 px-1 mb-3 d-inline-block"
                     >品牌故事</RouterLink
                   >
@@ -199,7 +199,7 @@
           >
             <ul class="nav">
               <li class="footer-item">
-                <a href="#" class="">
+                <a href="#">
                   <RouterLink to="/about" class="footer-link fs-6 px-1 mb-3 d-inline-block"
                     >好文分享</RouterLink
                   >
