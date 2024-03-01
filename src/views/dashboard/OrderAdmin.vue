@@ -93,7 +93,7 @@ export default {
       if (status === 'edit') {
         this.tempOrder = { ...order };
         // this.$refs.orderModal.openModal();
-        // console.log(this.tempOrder);
+        console.log(this.tempOrder);
         const orderComponent = this.$refs.orderModal;
         orderComponent.openModal();
       } else if (status === 'delete') {
@@ -102,7 +102,7 @@ export default {
       }
     },
     updateOrder() {
-      const url = `${VITE_API_URL}/orders/${this.tempOrder.id}`;
+      const url = `${VITE_API_URL}/api/${VITE_API_URL}/admin/order/${this.tempOrder.id}`;
       axios
         .put(url, this.tempOrder)
         .then((res) => {

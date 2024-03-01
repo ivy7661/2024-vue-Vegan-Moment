@@ -1,7 +1,7 @@
 <template>
   <div
     id="modalOrder"
-    ref="modalOrder"
+    ref="modal"
     class="modal fade"
     tabindex="-1"
     aria-labelledby="orderModalLabel"
@@ -31,6 +31,28 @@
                   <input
                     id="orderId"
                     v-model="editOrder.id"
+                    type="text"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+
+                <div class="col-md-3">
+                  <label for="create_at" class="form-label">訂購日期</label>
+                  <input
+                    id="create_at"
+                    v-model="editOrder.create_at"
+                    type="text"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+
+                <div class="col-md-2">
+                  <label for="num" class="form-label">數量</label>
+                  <input
+                    id="num"
+                    v-model="editOrder.num"
                     type="text"
                     class="form-control"
                     readonly
@@ -119,7 +141,7 @@
                         <td>{{ item.id }}</td>
                         <td>{{ item.product.title }}</td>
                         <td class="text-end">{{ item.qty }}</td>
-                        <td class="text-end">{{ item.product.price * item.qty }}</td>
+                        <td class="text-end">{{ item.total }}</td>
                       </tr>
                     </tbody>
                     <tfoot>
@@ -156,18 +178,17 @@ export default {
       editOrder: {
         user: {}
       },
-      sum: null,
       modal: ''
     };
   },
   mixins: [modalMixin],
   methods: {
-    openModal() {
-      this.modalOrder.show();
-    },
-    closeModal() {
-      this.modalOrder.hide();
-    }
+    // openModal() {
+    //   this.modalOrder.show();
+    // },
+    // closeModal() {
+    //   this.modalOrder.hide();
+    // }
   },
   mounted() {
     // this.modalOrder = new Modal(this.$refs.modalOrder);
