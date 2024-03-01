@@ -1,7 +1,7 @@
 <template>
   <div
     id="delOrderModal"
-    ref="delOrderModal"
+    ref="modal"
     class="modal fade"
     tabindex="-1"
     aria-labelledby="delOrderModalLabel"
@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap';
+// import { Modal } from 'bootstrap';
+import modalMixin from '@/mixins/modalMixin';
 export default {
   props: ['tempOrder', 'delOrder'],
   data() {
@@ -45,16 +46,10 @@ export default {
       modalOrderDel: null
     };
   },
-  methods: {
-    openDelModal() {
-      this.modalOrderDel.show();
-    },
-    closeDelModal() {
-      this.modalOrderDel.hide();
-    }
-  },
+  mixins: [modalMixin],
+  methods: {},
   mounted() {
-    this.modalOrderDel = new Modal(this.$refs.delOrderModal);
+    // this.modalOrderDel = new Modal(this.$refs.delOrderModal);
   }
 };
 </script>

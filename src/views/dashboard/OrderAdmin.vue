@@ -45,22 +45,22 @@
     </table>
   </div>
   <Order-Modal ref="orderModal" :temp-order="tempOrder" @update-paid="updatePaid"></Order-Modal>
-  <!-- <Del-Order-Modal
+  <Del-Order-Modal
     ref="delOrderModal"
     :temp-order="tempOrder"
     :del-order="delOrder"
-  ></Del-Order-Modal> -->
+  ></Del-Order-Modal>
 </template>
 
 <script>
 import axios from 'axios';
 import OrderModal from '../../components/admin/OrderModal.vue';
-// import DelOrderModal from '../../components/admin/DelOrderModal.vue';
+import DelOrderModal from '../../components/admin/DelOrderModal.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 export default {
   components: {
-    OrderModal
-    // DelOrderModal
+    OrderModal,
+    DelOrderModal
   },
   data() {
     return {
@@ -83,7 +83,6 @@ export default {
         .then((res) => {
           // console.log(res);
           this.orders = res.data.orders;
-          // console.log(this.orders);
         })
         .catch(() => {
           alert('取得訂單資訊失敗');
@@ -92,13 +91,13 @@ export default {
     openModal(status, order) {
       if (status === 'edit') {
         this.tempOrder = { ...order };
-        // this.$refs.orderModal.openModal();
         console.log(this.tempOrder);
         const orderComponent = this.$refs.orderModal;
         orderComponent.openModal();
       } else if (status === 'delete') {
         this.tempOrder = { ...order };
-        this.$refs.delOrderModal.openDelModal();
+        const delOrder = this.$refs.delOrderModal;
+        delOrder.openModal();
       }
     },
     updatePaid(item) {
@@ -121,13 +120,16 @@ export default {
         });
     },
     delOrder() {
-      const url = `${VITE_API_URL}/orders/${this.tempOrder.id}`;
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/order/${this.tempOrder.id}`;
       axios
         .delete(url)
         .then((res) => {
           console.log(res.data);
-          this.$refs.delOrderModal.closeDelModal();
-          this.getOrders();
+          alert('刪除成功');
+          const delModal = this.$refs.delOrderModal;
+          delModal.hideModal();
+
+          this.getOrders(this.currentPage);
         })
         .catch(() => {
           alert('刪除失敗');
