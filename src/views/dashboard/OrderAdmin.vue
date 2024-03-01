@@ -92,10 +92,10 @@ export default {
     openModal(status, order) {
       if (status === 'edit') {
         this.tempOrder = { ...order };
-        this.$refs.orderModal.openModal();
-        console.log(this.tempOrder);
-        // const orderComponent = this.$refs.orderModal;
-        // orderComponent.openModal();
+        // this.$refs.orderModal.openModal();
+        // console.log(this.tempOrder);
+        const orderComponent = this.$refs.orderModal;
+        orderComponent.openModal();
       } else if (status === 'delete') {
         this.tempOrder = { ...order };
         this.$refs.delOrderModal.openDelModal();

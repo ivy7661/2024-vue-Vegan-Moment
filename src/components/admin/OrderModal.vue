@@ -146,8 +146,8 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap';
-// import modalMixin from '@/mixins/modalMixin';
+// import { Modal } from 'bootstrap';
+import modalMixin from '@/mixins/modalMixin';
 export default {
   props: ['tempOrder', 'updateOrder'],
   data() {
@@ -160,7 +160,7 @@ export default {
       modal: ''
     };
   },
-  // mixins: [modalMixin],
+  mixins: [modalMixin],
   methods: {
     openModal() {
       this.modalOrder.show();
@@ -170,7 +170,7 @@ export default {
     }
   },
   mounted() {
-    this.modalOrder = new Modal(this.$refs.modalOrder);
+    // this.modalOrder = new Modal(this.$refs.modalOrder);
   },
   watch: {
     tempOrder() {
