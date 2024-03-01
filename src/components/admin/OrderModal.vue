@@ -59,7 +59,7 @@
                   />
                 </div>
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <label class="form-check-label">帳款狀態</label>
                   <div class="form-check mt-2">
                     <label class="form-check-label" for="is_paid" style="font-size: 16px"
@@ -75,7 +75,7 @@
                       style="height: 18px; width: 18px"
                     />
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <div class="row mt-5">
@@ -160,7 +160,10 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             關閉
           </button>
-          <button type="button" class="btn btn-primary" @click="updateOrder">確認</button>
+          <!-- <button type="button" class="btn btn-primary" @click="updateOrder">確認</button> -->
+          <button type="button" class="btn btn-primary" @click="$emit('update-paid', tempOrder)">
+            修改付款狀態
+          </button>
         </div>
       </div>
     </div>
@@ -171,16 +174,18 @@
 // import { Modal } from 'bootstrap';
 import modalMixin from '@/mixins/modalMixin';
 export default {
-  props: ['tempOrder', 'updateOrder'],
+  props: ['tempOrder', 'updatePaid'],
   data() {
     return {
       modalOrder: null,
       editOrder: {
         user: {}
       },
-      modal: ''
+      modal: '',
+      isPaid: false
     };
   },
+  emits: ['update-paid'],
   mixins: [modalMixin],
   methods: {
     // openModal() {

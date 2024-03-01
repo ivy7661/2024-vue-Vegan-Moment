@@ -44,7 +44,7 @@
       </tbody>
     </table>
   </div>
-  <Order-Modal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></Order-Modal>
+  <Order-Modal ref="orderModal" :temp-order="tempOrder" @update-paid="updatePaid"></Order-Modal>
   <!-- <Del-Order-Modal
     ref="delOrderModal"
     :temp-order="tempOrder"
@@ -58,7 +58,6 @@ import OrderModal from '../../components/admin/OrderModal.vue';
 // import DelOrderModal from '../../components/admin/DelOrderModal.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 export default {
-  name: 'AdminOrdersView',
   components: {
     OrderModal
     // DelOrderModal
@@ -67,6 +66,7 @@ export default {
     return {
       title: '訂單管理',
       orders: [],
+      currentPage: 1,
       tempOrder: {
         user: {}
       }
@@ -101,18 +101,23 @@ export default {
         this.$refs.delOrderModal.openDelModal();
       }
     },
-    updateOrder() {
-      const url = `${VITE_API_URL}/api/${VITE_API_URL}/admin/order/${this.tempOrder.id}`;
+    updatePaid(item) {
+      const url = `${VITE_API_URL}/api/${VITE_API_URL}/admin/order/${item.id}`;
+      const paid = {
+        is_paid: item.is_paid
+      };
       axios
-        .put(url, this.tempOrder)
+        .put(url, { data: paid })
         .then((res) => {
           console.log(res.data);
           alert('新增/修改成功');
-          this.getOrders();
-          this.$refs.orderModal.closeModal();
+          const orderComponent = this.$refs.orderModal;
+          orderComponent.hideModal();
+
+          this.getOrders(this.currentPage);
         })
-        .catch(() => {
-          alert('更新訂單失敗');
+        .catch((err) => {
+          alert(err.response.data.message);
         });
     },
     delOrder() {
