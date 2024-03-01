@@ -45,23 +45,23 @@
     </table>
   </div>
   <Order-Modal ref="orderModal" :temp-order="tempOrder" :update-order="updateOrder"></Order-Modal>
-  <Del-Order-Modal
+  <!-- <Del-Order-Modal
     ref="delOrderModal"
     :temp-order="tempOrder"
     :del-order="delOrder"
-  ></Del-Order-Modal>
+  ></Del-Order-Modal> -->
 </template>
 
 <script>
 import axios from 'axios';
 import OrderModal from '../../components/admin/OrderModal.vue';
-import DelOrderModal from '../../components/admin/DelOrderModal.vue';
+// import DelOrderModal from '../../components/admin/DelOrderModal.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 export default {
   name: 'AdminOrdersView',
   components: {
-    OrderModal,
-    DelOrderModal
+    OrderModal
+    // DelOrderModal
   },
   data() {
     return {
