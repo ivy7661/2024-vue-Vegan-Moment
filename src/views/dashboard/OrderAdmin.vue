@@ -102,7 +102,7 @@ export default {
       }
     },
     updatePaid(item) {
-      const url = `${VITE_API_URL}/api/${VITE_API_URL}/admin/order/${item.id}`;
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/order/${item.id}`;
       const paid = {
         is_paid: item.is_paid
       };

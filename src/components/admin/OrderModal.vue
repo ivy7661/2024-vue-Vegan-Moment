@@ -59,23 +59,21 @@
                   />
                 </div>
 
-                <!-- <div class="col-md-4">
+                <div class="col-md-4">
                   <label class="form-check-label">帳款狀態</label>
-                  <div class="form-check mt-2">
-                    <label class="form-check-label" for="is_paid" style="font-size: 16px"
-                      >已付款</label
-                    >
+                  <div class="form-check">
                     <input
-                      id="is_paid"
-                      v-model="editOrder.is_paid"
                       class="form-check-input"
                       type="checkbox"
-                      :true-value="1"
-                      :false-value="0"
-                      style="height: 18px; width: 18px"
+                      id="flexCheckDefault"
+                      v-model="editOrder.is_paid"
                     />
+                    <label class="form-check-label" for="flexCheckDefault">
+                      <span v-if="editOrder.is_paid">已付款</span>
+                      <span v-else>未付款</span>
+                    </label>
                   </div>
-                </div> -->
+                </div>
               </div>
 
               <div class="row mt-5">
@@ -161,7 +159,7 @@
             關閉
           </button>
           <!-- <button type="button" class="btn btn-primary" @click="updateOrder">確認</button> -->
-          <button type="button" class="btn btn-primary" @click="$emit('update-paid', tempOrder)">
+          <button type="button" class="btn btn-primary" @click="$emit('update-paid', editOrder)">
             修改付款狀態
           </button>
         </div>
@@ -171,7 +169,6 @@
 </template>
 
 <script>
-// import { Modal } from 'bootstrap';
 import modalMixin from '@/mixins/modalMixin';
 export default {
   props: ['tempOrder', 'updatePaid'],
@@ -187,17 +184,8 @@ export default {
   },
   emits: ['update-paid'],
   mixins: [modalMixin],
-  methods: {
-    // openModal() {
-    //   this.modalOrder.show();
-    // },
-    // closeModal() {
-    //   this.modalOrder.hide();
-    // }
-  },
-  mounted() {
-    // this.modalOrder = new Modal(this.$refs.modalOrder);
-  },
+  methods: {},
+  mounted() {},
   watch: {
     tempOrder() {
       this.editOrder = this.tempOrder;
