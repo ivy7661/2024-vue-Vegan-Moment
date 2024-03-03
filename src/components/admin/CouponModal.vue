@@ -1,23 +1,12 @@
 <template>
-  <div
-    class="modal fade"
-    ref="modal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" ref="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-primary">
+        <div class="modal-header bg-dark">
           <h5 class="modal-title text-white" id="exampleModalLabel">
             {{ isNew ? '新增' : '編輯' }}優惠券
           </h5>
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <form>
@@ -90,7 +79,6 @@
 </template>
 
 <script>
-// import Modal from 'bootstrap/js/dist/modal';
 import modalMixin from '../../mixins/modalMixin';
 export default {
   props: ['coupon', 'isNew'],
@@ -111,9 +99,6 @@ export default {
     due_date() {
       this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
     }
-  },
-  mounted() {
-    // this.couponModal = new Modal(this.$refs.modal);
   }
 };
 </script>

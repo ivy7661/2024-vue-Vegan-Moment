@@ -227,17 +227,16 @@
 <script>
 import { Modal } from 'bootstrap';
 export default {
-  // Airbnb風格下不能修改傳入的值(tempProduct)
   props: ['tempProduct', 'updateProduct', 'isNew'],
   data() {
     return {
-      modalProduct: null, // 用來裝新增、編輯的 modal
+      modalProduct: null,
       editProduct: {}
     };
   },
   methods: {
     openModal() {
-      this.modalProduct.show(); // 使用元件內的$refs
+      this.modalProduct.show();
     },
     closeModal() {
       this.modalProduct.hide();
