@@ -6,8 +6,10 @@ import VueAxios from 'vue-axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import './assets/all.scss';
+import { currency } from './mixins/filters';
 
 import Loading from 'vue-loading-overlay';
+
 import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate';
 import * as AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
@@ -36,8 +38,9 @@ app.use(router);
 app.use(VueAxios, axios);
 
 app.component('VueLoading', Loading);
-app.component('VeeForm', Form);
-app.component('VeeField', Field);
+app.component('VForm', Form);
+app.component('VField', Field);
 app.component('ErrorMessage', ErrorMessage);
+app.config.globalProperties.$filters = { currency };
 
 app.mount('#app');

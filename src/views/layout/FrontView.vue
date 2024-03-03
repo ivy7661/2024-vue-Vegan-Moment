@@ -75,9 +75,12 @@
             role="button"
             class="navbar-brand position-relative"
             @click.prevent="toggleOffcanvas()"
-            aria-controls="offcanvasRight"
           > -->
-          <RouterLink to="/cart" class="navbar-brand position-relative">
+          <RouterLink
+            class="navbar-brand position-relative"
+            to=""
+            @click.prevent="toggleOffcanvas()"
+          >
             <i class="bi bi-cart3 fs-2 ms-4 me-2"></i>
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
@@ -100,8 +103,8 @@
       </div>
     </div>
   </nav>
-
-  <!-- <CartOffcanvas ref="offcanvas"></CartOffcanvas> -->
+  <!-- 購物車內容 -->
+  <CartOffcanvas ref="offcanvas"></CartOffcanvas>
   <main class="mainView">
     <RouterView></RouterView>
   </main>
@@ -261,12 +264,16 @@
 </template>
 
 <script>
+import CartOffcanvas from '@/components/CartOffcanvas.vue';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
 
 export default {
   data() {
     return {};
+  },
+  components: {
+    CartOffcanvas
   },
   computed: {
     ...mapState(cartStore, ['carts'])
@@ -275,7 +282,10 @@ export default {
     this.getCart();
   },
   methods: {
-    ...mapActions(cartStore, ['getCart'])
+    ...mapActions(cartStore, ['getCart']),
+    toggleOffcanvas() {
+      this.$refs.offcanvas.toggleTheOffcanvas();
+    }
   }
 };
 </script>
