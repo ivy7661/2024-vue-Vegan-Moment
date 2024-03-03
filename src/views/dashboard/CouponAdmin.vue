@@ -57,7 +57,7 @@
     @deleteCoupon="deleteCoupon"
   ></Del-Coupon-Modal>
 
-  <AdminPagination :pages="page" @change-page="getCoupons"></AdminPagination>
+  <!-- <AdminPagination :pages="page" @change-page="getCoupons"></AdminPagination> -->
 </template>
 
 <script>

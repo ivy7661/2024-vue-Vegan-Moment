@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="modal fade"
-    ref="modal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" ref="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header bg-danger">
@@ -32,7 +26,6 @@
 </template>
 
 <script>
-// import Modal from 'bootstrap/js/dist/modal';
 import modalMixin from '../../mixins/modalMixin';
 export default {
   props: ['coupon'],
@@ -41,9 +34,6 @@ export default {
       modal: ''
     };
   },
-  mixins: [modalMixin],
-  mounted() {
-    // this.deleteCouponModal = new Modal(this.$refs.modal);
-  }
+  mixins: [modalMixin]
 };
 </script>

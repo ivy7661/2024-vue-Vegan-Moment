@@ -16,7 +16,7 @@
                 type="text"
                 class="form-control"
                 id="code"
-                v-model="tempCoupon.title"
+                v-model="editCoupon.title"
                 placeholder="請輸入優惠券名稱"
               />
             </div>
@@ -26,7 +26,7 @@
                 type="text"
                 class="form-control"
                 id="code"
-                v-model="tempCoupon.code"
+                v-model="editCoupon.code"
                 placeholder="請輸入優惠碼"
               />
             </div>
@@ -38,7 +38,7 @@
                 max="100"
                 class="form-control"
                 id="percent"
-                v-model.number="tempCoupon.percent"
+                v-model.number="editCoupon.percent"
                 placeholder="請輸入折扣百分比（數字）"
               />
             </div>
@@ -59,7 +59,7 @@
                 id="is_enabled"
                 :true-value="1"
                 :false-value="0"
-                v-model="tempCoupon.is_enabled"
+                v-model="editCoupon.is_enabled"
               />
               <label for="is_enabled" class="form-check-label">是否啟用</label>
             </div>
@@ -85,19 +85,19 @@ export default {
   data() {
     return {
       modal: '',
-      tempCoupon: {},
+      editCoupon: {},
       due_date: ''
     };
   },
   mixins: [modalMixin],
   watch: {
     coupon() {
-      this.tempCoupon = this.coupon;
-      const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
+      this.editCoupon = this.coupon;
+      const dateAndTime = new Date(this.editCoupon.due_date * 1000).toISOString().split('T');
       [this.due_date] = dateAndTime;
     },
     due_date() {
-      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
+      this.editCoupon.due_date = Math.floor(new Date(this.due_date) / 1000);
     }
   }
 };

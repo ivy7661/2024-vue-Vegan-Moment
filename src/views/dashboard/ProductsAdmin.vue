@@ -2,8 +2,6 @@
   <h2>產品管理</h2>
   <div class="container">
     <div class="text-end mt-4">
-      <!-- 'new' 會傳到 status -->
-      <!-- 跟新增和編輯共用同一個方法openModal() -->
       <button class="btn btn-secondary" @click="openModal('new')">建立新的產品</button>
     </div>
     <table class="table mt-4">
