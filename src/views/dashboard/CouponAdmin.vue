@@ -1,4 +1,5 @@
 <template>
+  <h2 class="mt-2">優惠券管理</h2>
   <div class="container mt-20">
     <div class="text-end m-5">
       <button type="button" class="btn btn-secondary" @click="openModal('new')">新增優惠券</button>

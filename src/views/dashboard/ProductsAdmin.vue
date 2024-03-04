@@ -1,5 +1,5 @@
 <template>
-  <h2>產品管理</h2>
+  <h2 class="mt-2">產品管理</h2>
   <div class="container">
     <div class="text-end mt-4">
       <button class="btn btn-secondary" @click="openModal('new')">建立新的產品</button>

@@ -1,55 +1,56 @@
 <template>
-  <div class="row">
-    <h1 class="mt-3">{{ title }}</h1>
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th width="120">訂單編號</th>
-          <th width="120">會員名稱</th>
-          <th width="120">帳款狀態</th>
-          <th width="120">編輯訂單</th>
-          <th width="120">刪除訂單</th>
-        </tr>
-      </thead>
-      <tbody>
-        <template v-for="order in orders" :key="order.id">
-          <tr v-if="orders.length" :class="{ 'text-secondary': !order.is_paid }">
-            <td>{{ order.id }}</td>
-            <td>{{ order.user.name }}</td>
-            <td>
-              <span v-if="order.is_paid" class="text-success">已付款</span>
-              <span v-else>未付款</span>
-            </td>
-
-            <td>
-              <button
-                type="button"
-                class="btn btn-outline-secondary btn-sm"
-                @click="openModal('edit', order)"
-              >
-                編輯
-              </button>
-            </td>
-            <td>
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm"
-                @click="openModal('delete', order)"
-              >
-                刪除
-              </button>
-            </td>
+  <h2 class="mt-3">訂單管理</h2>
+  <div class="container">
+    <div class="row">
+      <table class="table mt-4">
+        <thead>
+          <tr>
+            <th width="120">訂單編號</th>
+            <th width="120">會員名稱</th>
+            <th width="120">帳款狀態</th>
+            <th width="120">編輯訂單</th>
+            <th width="120">刪除訂單</th>
           </tr>
-        </template>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <template v-for="order in orders" :key="order.id">
+            <tr v-if="orders.length" :class="{ 'text-secondary': !order.is_paid }">
+              <td>{{ order.id }}</td>
+              <td>{{ order.user.name }}</td>
+              <td>
+                <span v-if="order.is_paid" class="text-success">已付款</span>
+                <span v-else>未付款</span>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm"
+                  @click="openModal('edit', order)"
+                >
+                  編輯
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger btn-sm"
+                  @click="openModal('delete', order)"
+                >
+                  刪除
+                </button>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <Order-Modal ref="orderModal" :temp-order="tempOrder" @update-paid="updatePaid"></Order-Modal>
+    <Del-Order-Modal
+      ref="delOrderModal"
+      :temp-order="tempOrder"
+      :del-order="delOrder"
+    ></Del-Order-Modal>
   </div>
-  <Order-Modal ref="orderModal" :temp-order="tempOrder" @update-paid="updatePaid"></Order-Modal>
-  <Del-Order-Modal
-    ref="delOrderModal"
-    :temp-order="tempOrder"
-    :del-order="delOrder"
-  ></Del-Order-Modal>
 </template>
 
 <script>
@@ -64,7 +65,6 @@ export default {
   },
   data() {
     return {
-      title: '訂單管理',
       orders: [],
       currentPage: 1,
       tempOrder: {
