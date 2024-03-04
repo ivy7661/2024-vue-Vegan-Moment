@@ -12,8 +12,8 @@
     <main class="my-4">
       <!-- <VueLoading v-model:active="isLoading" /> -->
       <!-- 購物車有商品時 -->
-      <!-- v-if="cartsTotal.carts?.length" -->
-      <div>
+      <!-- v-if="carts?.length" -->
+      <div v-if="carts?.length">
         <div class="row justify-content-center mb-10">
           <div class="col-3 border-bottom border-5 border-primary">
             <div class="d-flex flex-column align-items-center">
@@ -268,11 +268,16 @@
         </div>
       </div>
       <!-- 購物車為空時 -->
-      <!-- <div v-else class="text-center">
-        <img src="@/assets/image/empty-cart.svg" alt="empty-cart" class="mb-6" />
-        <h3 class="mb-6">您的購物車目前是空的喔</h3>
-        <a href="#/products" class="btn btn-primary fs-lg-5 px-5 py-3 px-lg-6">現在就去逛逛</a>
-      </div> -->
+      <div v-else class="text-center">
+        <i class="bi bi-cart4 fs-1 text-primary"></i>
+        <h3 class="fs-5 mb-6 mt-3">目前購物車是空的喔! 再去選購吧~</h3>
+        <router-link
+          to=""
+          @click.prevent="toProducts()"
+          class="btn btn-secondary fs-lg-5 px-3 py-2 px-lg-6"
+          >前往訂餐</router-link
+        >
+      </div>
     </main>
   </div>
 </template>
@@ -336,6 +341,9 @@ export default {
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
       return phoneNumber.test(value) ? true : '需為正確的手機號碼格式';
+    },
+    toProducts() {
+      this.$router.push('/products');
     }
   }
 };
