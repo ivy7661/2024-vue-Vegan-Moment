@@ -178,7 +178,7 @@
           <section class="col-lg-5">
             <div class="card border-0 bg-light-green py-4 p-lg-2 ms-lg-4">
               <div class="card-body">
-                <v-form v-slot="{ errors }" @submit="onSubmit" ref="form">
+                <v-form v-slot="{ errors }" @submit="createOrder" ref="form">
                   <h2 class="h5 text-center mb-4">訂單連絡資訊</h2>
                   <div class="mb-4">
                     <label for="name" class="form-label"
@@ -298,8 +298,8 @@ export default {
         address: ''
       },
       message: '',
-      orderId: '',
-      coupon: ''
+      coupon: '',
+      orderId: ''
     };
   },
   mounted() {
@@ -344,6 +344,46 @@ export default {
     },
     toProducts() {
       this.$router.push('/products');
+    },
+    createOrder() {
+      if (this.carts.length) {
+        // this.loading();
+        const data = {
+          user: this.user,
+          message: this.message
+        };
+        this.$http
+          .post(`${VITE_API_URL}/api/${VITE_API_PATH}/order`, { data })
+          .then((res) => {
+            alert('送出成功');
+            // Toast.fire({
+            //   icon: 'success',
+            //   title: res.data.message,
+            //   width: 250
+            // });
+            // this.loading();
+            this.getCart();
+            this.$refs.form.resetForm();
+            this.orderId = res.data.orderId;
+            this.$router.push(`/checkout/${this.orderId}`);
+          })
+          .catch((err) => {
+            console.log(err);
+            alert('送出失敗');
+            // Toast.fire({
+            //   icon: 'error',
+            //   title: err.response.data.message,
+            //   width: 250
+            // });
+          });
+      } else {
+        alert('購物車是空的');
+        // Toast.fire({
+        //   icon: 'error',
+        //   title: '目前購物車沒有任何品項，無法送出訂單。',
+        //   width: 250
+        // });
+      }
     }
   }
 };
