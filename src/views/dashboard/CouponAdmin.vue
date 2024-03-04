@@ -28,7 +28,7 @@
               </td>
               <td>
                 <button
-                  class="btn btn-sm btn-outline-primary me-1"
+                  class="btn btn-sm btn-outline-secondary me-1"
                   @click="openModal('edit', coupon)"
                 >
                   編輯

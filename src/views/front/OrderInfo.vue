@@ -30,20 +30,24 @@
             <div class="d-flex flex-column align-items-center">
               <!-- step2 -->
               <div
-                class="rounded-circle bg-white text-white d-flex align-items-center justify-content-center mb-1"
+                class="rounded-circle bg-gray-3 text-light d-flex align-items-center justify-content-center mb-1"
                 style="width: 20px; height: 20px"
-              ></div>
-              <p class="text-gray mb-2 fw-bold">確認付款</p>
+              >
+                2
+              </div>
+              <p class="text-gray-3 mb-2 fw-bold">確認付款</p>
             </div>
           </div>
           <div class="col-3 border-bottom border-5 border-gray">
             <div class="d-flex flex-column align-items-center">
               <!-- step3 -->
               <div
-                class="rounded-circle bg-white text-white d-flex align-items-center justify-content-center mb-1"
+                class="rounded-circle bg-gray-3 text-light d-flex align-items-center justify-content-center mb-1"
                 style="width: 20px; height: 20px"
-              ></div>
-              <p class="text-gray mb-2 fw-bold">完成訂購</p>
+              >
+                3
+              </div>
+              <p class="text-gray-3 mb-2 fw-bold">完成訂購</p>
             </div>
           </div>
         </div>
@@ -163,6 +167,7 @@
               <p class="fs-6 mb-2">總計</p>
               <p class="fs-6 mb-2 fw-bold">NT${{ $filters.currency(order_total + deliveryFee) }}</p>
             </div>
+            <!-- 折扣 -->
             <div v-if="order_total !== final_total" class="d-flex justify-content-between mb-2">
               <p class="fs-6 mb-2 text-danger">折扣價</p>
               <p class="fs-6 mb-2 fw-bold text-danger">

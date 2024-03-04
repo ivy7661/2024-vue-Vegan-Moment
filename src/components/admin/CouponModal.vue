@@ -66,10 +66,12 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
-            取消
-          </button>
-          <button type="button" class="btn btn-primary" @click="$emit('updateCoupon', tempCoupon)">
+          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">取消</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            @click="$emit('updateCoupon', tempCoupon)"
+          >
             確認
           </button>
         </div>

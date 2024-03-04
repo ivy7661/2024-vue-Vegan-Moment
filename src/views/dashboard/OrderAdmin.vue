@@ -24,7 +24,7 @@
             <td>
               <button
                 type="button"
-                class="btn btn-outline-primary btn-sm"
+                class="btn btn-outline-secondary btn-sm"
                 @click="openModal('edit', order)"
               >
                 編輯

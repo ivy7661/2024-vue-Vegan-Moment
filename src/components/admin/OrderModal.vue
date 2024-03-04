@@ -159,7 +159,7 @@
             關閉
           </button>
           <!-- <button type="button" class="btn btn-primary" @click="updateOrder">確認</button> -->
-          <button type="button" class="btn btn-primary" @click="$emit('update-paid', editOrder)">
+          <button type="button" class="btn btn-secondary" @click="$emit('update-paid', editOrder)">
             修改付款狀態
           </button>
         </div>
