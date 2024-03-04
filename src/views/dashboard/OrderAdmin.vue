@@ -1,5 +1,5 @@
 <template>
-  <h2 class="mt-3">訂單管理</h2>
+  <h2 class="mt-2">訂單管理</h2>
   <div class="container">
     <div class="row">
       <table class="table mt-4">

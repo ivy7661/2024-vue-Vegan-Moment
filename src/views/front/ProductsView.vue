@@ -37,6 +37,8 @@
                 :key="category"
                 :to="`/products?category=${category}`"
                 class="nav-link d-inline-block fs-5 mx-2"
+                :class="{ tabActive: selected }"
+                @click="selectedClass(category)"
                 >{{ category }}</router-link
               >
             </li>
@@ -76,15 +78,15 @@
             <button
               type="button"
               class="btn btn-secondary fs-6 w-100"
-              :disabled="loadingStatus === product.id"
               @click="addToCart(product.id, cartQty)"
             >
+              <!-- :disabled="loadingStatus === product.id" -->
               <span>加入購物車</span>
             </button>
           </div>
         </div>
       </div>
-      <ProductsPagination></ProductsPagination>
+      <!-- <ProductsPagination></ProductsPagination> -->
     </section>
   </div>
 </template>
@@ -100,7 +102,8 @@ export default {
       products: [],
       tempProduct: {},
       categories: ['主餐', '輕食', '果昔碗', '飲品'],
-      cartQty: 1
+      cartQty: 1,
+      selected: false
     };
   },
   mounted() {
@@ -117,6 +120,7 @@ export default {
   methods: {
     getProducts() {
       const { category = '' } = this.$route.query;
+
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/products?category=${category}`;
 
       axios
@@ -132,7 +136,12 @@ export default {
     productInfo(product) {
       this.tempProduct = product;
     },
-    ...mapActions(cartStore, ['addToCart'])
+    ...mapActions(cartStore, ['addToCart']),
+    selectedClass(category) {
+      if (this.$route.query.category === category) {
+        this.selected = true;
+      }
+    }
   }
 };
 </script>
@@ -142,16 +151,20 @@ export default {
   font-weight: 400;
   border-bottom: 4px solid transparent;
 }
-
-.nav-item .nav-link:focus {
+.tabActive {
   color: #698f39;
   border-bottom: 4px solid #698f39;
 }
 
-.nav-item .router-link-exact-active {
-  color: #698f39;
-  border-bottom: 4px solid #698f39;
-}
+// .nav-item .nav-link:focus {
+//   color: #698f39;
+//   border-bottom: 4px solid #698f39;
+// }
+
+// .nav-item .router-link-exact-active {
+//   color: #698f39;
+//   border-bottom: 4px solid #698f39;
+// }
 
 // .nav-item .nav-link.active {
 //   color: #698f39;

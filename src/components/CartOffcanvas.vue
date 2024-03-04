@@ -33,10 +33,10 @@
                   <a
                     role="button"
                     class="btn p-0 me-3"
-                    :class="{ disabled: loadingStatus === cart.id }"
                     @click.prevent="delCartItem(cart.id)"
                     style="border-color: transparent"
                   >
+                    <!-- :class="{ disabled: loadingStatus === cart.id }" -->
                     <i class="bi bi-x-square fs-5 text-gray-600"></i>
                   </a>
                   <img
@@ -58,8 +58,8 @@
                         v-model="cart.qty"
                         class="form-select form-select-sm"
                         @change="changeCartQty(cart)"
-                        :disabled="loadingStatus === cart.id"
                       >
+                        <!-- :disabled="loadingStatus === cart.id" -->
                         <option v-for="i in 20" :key="i" :value="i">{{ i }}</option>
                       </select>
                     </div>
