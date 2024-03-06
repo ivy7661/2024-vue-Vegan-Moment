@@ -1,13 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="row vh-100">
-      <div class="col-2 bg-light-green py-5">
-        <div class="text-center mb-10">
-          <img
-            src="../../../public/icons/Logo-Vegan-Moment.png"
-            alt="logo"
-            class="img-fluid mb-6 px-2 logo"
-          />
+      <div class="col-2 bg-light-green pt-5">
+        <div class="text-center">
+          <img src="/images/Logo-Vegan-Moment.png" alt="logo" class="img-fluid mb-6 px-2 logo" />
         </div>
         <ul class="nav flex-column px-2">
           <li class="nav-item">
@@ -95,6 +91,6 @@ export default {
   font-weight: bold;
 }
 .logo {
-  width: 200px;
+  width: 150px;
 }
 </style>

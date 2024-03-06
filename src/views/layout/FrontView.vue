@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <RouterLink to="/">
         <img
-          src="../../../public/icons/Logo-Vegan-Moment.png"
+          src="/images/Logo-Vegan-Moment.png"
           alt="logo"
           class="d-inline-block navbar-logo ms-2"
         />
@@ -154,7 +154,7 @@
       <div class="d-flex justify-content-center d-lg-none">
         <a href="#">
           <img
-            src="../../../public/icons/Logo-Vegan-Moment.png"
+            src="../../../public/images/Logo-Vegan-Moment.png"
             alt="logo"
             class="mt-3"
             style="width: 120px"
@@ -166,7 +166,7 @@
           <div class="d-none d-lg-block">
             <a href="#">
               <img
-                src="../../../public/icons/Logo-Vegan-Moment.png"
+                src="/images/Logo-Vegan-Moment.png"
                 alt="logo"
                 class="mt-3 mt-lg-0 mb-lg-6"
                 style="width: 120px"

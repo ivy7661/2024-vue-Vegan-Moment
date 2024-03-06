@@ -210,6 +210,20 @@
                   <label class="form-check-label" for="is_enabled">是否啟用</label>
                 </div>
               </div>
+              <!-- 熱銷 -->
+              <div class="mb-3">
+                <div class="form-check">
+                  <input
+                    id="is_enabled"
+                    v-model="editProduct.is_hot"
+                    class="form-check-input"
+                    type="checkbox"
+                    :true-value="1"
+                    :false-value="0"
+                  />
+                  <label class="form-check-label" for="is_enabled">是否熱銷</label>
+                </div>
+              </div>
             </div>
           </div>
         </div>

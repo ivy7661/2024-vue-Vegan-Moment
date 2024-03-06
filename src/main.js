@@ -15,6 +15,9 @@ import * as AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import App from './App.vue';
 import router from './router';
 
@@ -33,6 +36,11 @@ setLocale('zh_TW');
 
 const app = createApp(App);
 
+app.use(
+  AOS.init({
+    duration: 900
+  })
+);
 app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);
