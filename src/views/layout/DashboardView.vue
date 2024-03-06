@@ -49,7 +49,7 @@ export default {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)adminToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
     axios.defaults.headers.common.Authorization = token;
-    // this.checkLogin();
+    this.checkLogin();
   },
   methods: {
     checkLogin() {
