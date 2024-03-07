@@ -36,7 +36,7 @@
     </div>
   </section>
   <!-- 熱門餐點 -->
-  <section class="py-8">
+  <section class="py-6">
     <div class="text-center">
       <h2 class="fs-3 fs-lg-2 fw-lg-bold mb-5">
         <i class="bi bi-feather text-primary"></i>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="text-center">
-      <a href="#/products" class="btn btn-secondary fs-lg-5 px-5 py-3 px-lg-6">更多餐點</a>
+      <router-link to="/products" class="btn btn-secondary fs-5 px-5 py-3">更多餐點</router-link>
     </div>
   </section>
 </template>

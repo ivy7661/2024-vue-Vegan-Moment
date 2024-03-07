@@ -49,6 +49,19 @@
     <!-- pagination -->
     <Pagination-Component :pages="pages" :get-data="getData"></Pagination-Component>
   </div>
+  <section class="mt-5">
+    <h3>產品圖片上傳</h3>
+    <!-- <form
+      action="/api/thisismycourse2/admin/upload"
+      enctype="multipart/form-data"
+      method="post"
+      @submit="uploadImg(index, $event)"
+    > -->
+    <input type="file" name="file-to-upload" @change="uploadImg(index, $event)" />
+    <input type="submit" value="Upload" />
+    <!-- </form> -->
+  </section>
+
   <!-- Modal -->
   <Product-Modal
     :temp-product="tempProduct"
@@ -162,7 +175,36 @@ export default {
     createImages() {
       this.tempProduct.imagesUrl = [];
       this.tempProduct.imagesUrl.push('');
+    },
+    uploadImg(index, event) {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append('file-to-upload', file);
+      axios
+        .post(`${VITE_API_URL}/api/${VITE_API_PATH}/admin/upload`, formData)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          alert(err);
+        });
     }
+
+    // uploadImage(index, event) {
+    //   const file = event.target.files[0];
+    //   const formData = new FormData();
+    //   formData.append('file-to-upload', file);
+    //   axios
+    //     .post(`${VITE_API_URL}/api/${VITE_API_PATH}/admin/upload`, formData)
+    //     .then((res) => {
+    //       index !== null
+    //         ? (this.temp.imagesUrl[index] = res.data.imageUrl)
+    //         : (this.temp.imageUrl = res.data.imageUrl);
+    //     })
+    //     .catch((err) => {
+    //       alert(err.response.data.message);
+    //     });
+    // }
   },
   // 區域註冊
   components: {

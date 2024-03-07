@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { mapActions } from 'pinia';
@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       cartQty: 1,
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
