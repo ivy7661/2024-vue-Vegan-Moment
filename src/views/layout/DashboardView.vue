@@ -16,6 +16,9 @@
             <RouterLink to="/admin/coupons" class="nav-link">優惠券管理</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink to="/admin/articles" class="nav-link">文章管理</RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink to="/" class="nav-link">回前台首頁</RouterLink>
           </li>
 

@@ -48,7 +48,7 @@
       <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarText">
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/about" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
+            <RouterLink to="/brandStory" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
               >品牌故事</RouterLink
             >
           </li>
@@ -58,12 +58,14 @@
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/blogs" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
-              >好文分享</RouterLink
+            <RouterLink to="/specialColumn" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+              >專欄文章</RouterLink
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <a href="#/#qa" class="nav-link fs-5 pt-3 mx-2 d-inline-block">常見問題</a>
+            <router-link to="/storeInfo" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+              >店鋪資訊</router-link
+            >
           </li>
         </ul>
       </div>
@@ -108,45 +110,33 @@
   <main class="mainView">
     <RouterView></RouterView>
   </main>
-  <!--<section>
+  <Returntop-Btn></Returntop-Btn>
+  <section>
     <div class="bg-subscribe">
-      <div class="container py-12">
+      <div class="container py-5">
         <div class="row">
           <div class="col-lg-4">
-            <v-form
-              v-slot="{ errors }"
-              @submit="subscribe"
+            <form
+              @submit.prevent="subscribe"
               ref="form"
               class="text-center text-lg-start px-5 px-lg-0"
             >
-              <label class="form-label"><h5>訂閱我們的文章，獲取最新消息！</h5></label>
+              <label class="form-label"><h5>訂閱我們的電子報，獲取最新消息！</h5></label>
               <div class="input-group mb-3">
-                <v-field
+                <input
                   type="email"
                   class="form-control"
-                  placeholder="請輸入您的信箱"
-                  name="信箱"
-                  :class="{ 'is-invalid': errors['信箱'] }"
-                  rules="email|required"
-                  aria-label="email"
-                  aria-describedby="button-addon2"
-                ></v-field>
-                <button
-                  class="btn btn-primary"
-                  type="submit"
-                  id="button-addon2"
-                  :disabled="errors['信箱']"
-                >
-                  立即訂閱
-                </button>
-                <error-message name="信箱" class="invalid-feedback"></error-message>
+                  placeholder="請輸入您的電子信箱"
+                  ref="email"
+                />
+                <button class="btn btn-secondary" type="submit" id="button-addon2">立即訂閱</button>
               </div>
-            </v-form>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 
   <footer class="bg-light-green">
     <div class="container">
@@ -180,7 +170,9 @@
             <ul class="nav">
               <li class="footer-item">
                 <a href="#">
-                  <RouterLink to="/about" class="footer-link mx-3 fs-6 px-1 mb-3 d-inline-block"
+                  <RouterLink
+                    to="/brandStory"
+                    class="footer-link mx-3 fs-6 px-1 mb-3 d-inline-block"
                     >品牌故事</RouterLink
                   >
                 </a>
@@ -203,8 +195,8 @@
             <ul class="nav">
               <li class="footer-item">
                 <a href="#">
-                  <RouterLink to="/about" class="footer-link fs-6 px-1 mb-3 d-inline-block"
-                    >好文分享</RouterLink
+                  <RouterLink to="/specialColumn" class="footer-link fs-6 px-1 mb-3 d-inline-block"
+                    >專欄文章</RouterLink
                   >
                 </a>
               </li>
@@ -212,8 +204,8 @@
             <ul class="nav mb-3">
               <li class="footer-item">
                 <a href="#" class="me-4">
-                  <RouterLink to="/products" class="footer-link fs-6 px-1 d-inline-block"
-                    >常見問題</RouterLink
+                  <RouterLink to="/storeInfo" class="footer-link fs-6 px-1 d-inline-block"
+                    >店鋪資訊</RouterLink
                   >
                 </a>
               </li>
@@ -257,7 +249,7 @@
       </div>
       <div class="d-lg-flex justify-content-between py-2 py-lg-3 text-gray-600">
         <p class="mb-0 mb-lg-0">Copyright &copy; 2024 Vegan Moment. All Rights Reserved.</p>
-        <p class="mb-0">本網站僅作為個人練習作品，非商業用途</p>
+        <p class="mb-0">本作品僅為專題使用，非從事商業用途</p>
       </div>
     </div>
   </footer>
@@ -267,13 +259,15 @@
 import CartOffcanvas from '@/components/CartOffcanvas.vue';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
+import ReturntopBtn from '../../components/front/ReturntopBtn.vue';
 
 export default {
   data() {
     return {};
   },
   components: {
-    CartOffcanvas
+    CartOffcanvas,
+    ReturntopBtn
   },
   computed: {
     ...mapState(cartStore, ['carts'])
@@ -285,6 +279,15 @@ export default {
     ...mapActions(cartStore, ['getCart']),
     toggleOffcanvas() {
       this.$refs.offcanvas.toggleTheOffcanvas();
+    },
+    subscribe() {
+      // Toast.fire({
+      //   icon: 'success',
+      //   title: '您已成功提交資訊。感謝您的訂閱！',
+      //   width: 450
+      // });
+      alert('送出成功');
+      this.$refs.email.value = '';
     }
   }
 };
@@ -321,15 +324,19 @@ i {
 }
 
 .bg-subscribe {
-  // background-image: url('@/assets/image/bg-subscribe-s.png');
-  background-position: top;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Background%2Frose_wood.jpg?alt=media&token=c37ba829-f5c3-4e96-a6eb-1ce2cc400445');
+  background-position: 20% 70%;
   background-size: cover;
-  background-color: rgba(221, 222, 220, 0.57);
   background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   // @include mobile() {
   //   background-image: url('@/assets/image/bg-subscribe.jpg');
   //   background-position: center;
   //   background-attachment: fixed;
   // }
 }
+// .subscribe {
+//   height: 150px;
+// }
 </style>

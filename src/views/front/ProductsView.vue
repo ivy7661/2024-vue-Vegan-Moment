@@ -11,7 +11,7 @@
   </section> -->
   <div class="container">
     <!-- breadcrumb -->
-    <nav aria-label="breadcrumb">
+    <nav>
       <ol class="breadcrumb mb-3 mt-3">
         <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
         <li class="breadcrumb-item">

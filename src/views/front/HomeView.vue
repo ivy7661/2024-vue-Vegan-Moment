@@ -18,12 +18,12 @@
     </div>
   </section>
   <!-- 關於我們 -->
-  <section class="py-6">
+  <section class="py-6 bg-about">
     <div class="container">
       <div class="d-flex flex-column justify-content-center text-center">
         <div data-aos="fade-up">
           <h2>新鮮、創意、專業</h2>
-          <h5 class="text-primary mb-5">ABOUT VEGAN MOMENT</h5>
+          <h5 class="text-dark mb-5">ABOUT VEGAN MOMENT</h5>
         </div>
         <div data-aos="fade-up">
           <h5 class="mb-4">堅持品質、用心烹飪的歐式蔬食早午餐</h5>
@@ -94,13 +94,24 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .home-banner {
   height: 480px;
-  background-image: url(../../../public/images/bg-banner.jpg);
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Background%2Fbg_banner_clear.jpg?alt=media&token=049238a5-01da-41ff-afbd-cca606453fdf);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+}
+.bg-about {
+  // height: 600px;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Background%2Fbg_leaf_clear.jpg?alt=media&token=e577373a-cb93-466b-9ee8-163574dd0e54);
+  background-size: 90%;
+  background-position: 40% 30%;
+  background-repeat: no-repeat;
+  @include mobile() {
+    background-size: 120%;
+    background-position: 50% 120%;
+  }
 }
 </style>

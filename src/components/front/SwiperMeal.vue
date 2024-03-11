@@ -140,6 +140,12 @@ export default {
 .slider-box {
   position: relative;
 }
+.swiper-button-next,
+.swiper-button-prev {
+  @include mobile() {
+    display: none;
+  }
+}
 .swiper-button-prev {
   background: url(../../../public/icons/previous_arrow.png) center center no-repeat;
   background-size: 45px 45px;

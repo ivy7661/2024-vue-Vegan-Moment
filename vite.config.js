@@ -28,5 +28,8 @@ export default defineConfig({
         additionalData: '@import "@/assets/helpers/mixin.scss";'
       }
     }
+  },
+  optimizeDeps: {
+    include: ['jquery']
   }
 });
