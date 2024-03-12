@@ -5,7 +5,7 @@ export default {
     openModal() {
       this.modal.show();
     },
-    hideModal() {
+    closeModal() {
       this.modal.hide();
     }
   },

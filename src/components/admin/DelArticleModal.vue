@@ -1,5 +1,5 @@
 <template>
-  <div id="delArticleModal" ref="delArticleModal" class="modal fade" tabindex="-1">
+  <div id="delArticleModal" ref="modal" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content border-0">
         <div class="modal-header bg-danger text-white">
@@ -17,7 +17,9 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-danger" @click="delArticle">確認刪除</button>
+          <button type="button" class="btn btn-danger" @click="$emit('delArticle')">
+            確認刪除
+          </button>
         </div>
       </div>
     </div>
@@ -25,8 +27,7 @@
 </template>
 
 <script>
-// import modalMixin from '../../mixins/modalMixin';
-import { Modal } from 'bootstrap';
+import modalMixin from '../../mixins/modalMixin';
 export default {
   props: ['tempArticle', 'delArticle'],
   data() {
@@ -34,17 +35,6 @@ export default {
       delModalArticle: null
     };
   },
-  // mixins: [modalMixin],
-  methods: {
-    openDelModal() {
-      this.delModalArticle.show();
-    },
-    closeDelModal() {
-      this.delModalArticle.hide();
-    }
-  },
-  mounted() {
-    this.delModalArticle = new Modal(this.$refs.delArticleModal);
-  }
+  mixins: [modalMixin]
 };
 </script>

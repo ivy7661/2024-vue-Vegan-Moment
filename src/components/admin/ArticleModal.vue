@@ -1,5 +1,5 @@
 <template>
-  <div id="articleModal" ref="articleModal" class="modal fade" tabindex="-1">
+  <div id="articleModal" ref="modal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-xl">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
@@ -69,19 +69,20 @@
                   />
                 </div>
               </div>
+              <hr />
               <!-- 標籤 -->
               <h6 class="mb-3">文章標籤</h6>
-              <p>標籤：{{ this.editArticle.tag }}</p>
+              <!-- <p>標籤：{{ this.editArticle.tag }}</p> -->
 
               <div v-if="Array.isArray(editArticle.tag)">
                 <div class="mb-1" v-for="(aTag, key) in editArticle.tag" :key="key">
                   <div class="mb-3">
-                    <label :for="aTag + key" class="form-label">標籤</label>
+                    <label :for="aTag + key" class="form-label">{{ `標籤 ${key + 1}` }}</label>
                     <input
                       :id="aTag + key"
                       v-model="editArticle.tag[key]"
                       type="text"
-                      class="form-control"
+                      class="form-control w-25"
                       placeholder="請輸入標籤名稱"
                     />
                   </div>
@@ -89,7 +90,7 @@
 
                 <div v-if="!editArticle.tag.length || editArticle.tag[editArticle.tag.length - 1]">
                   <button
-                    class="btn btn-outline-secondary btn-sm d-block w-50"
+                    class="btn btn-outline-secondary btn-sm d-block"
                     @click="editArticle.tag.push('')"
                   >
                     新增標籤
@@ -97,7 +98,7 @@
                 </div>
                 <div v-else>
                   <button
-                    class="btn btn-outline-danger btn-sm d-block w-100"
+                    class="btn btn-outline-danger btn-sm d-block"
                     @click="editArticle.tag.pop()"
                   >
                     刪除標籤
@@ -142,7 +143,13 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-secondary" @click="updateArticle">確認</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            @click="$emit('updateArticle', editArticle)"
+          >
+            確認
+          </button>
         </div>
       </div>
     </div>
@@ -150,8 +157,7 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap';
-// import modalMixin from '../mixins/modalMixin';
+import modalMixin from '../../mixins/modalMixin';
 
 export default {
   props: ['tempArticle', 'updateArticle', 'isNew'],
@@ -162,28 +168,19 @@ export default {
       create_at: ''
     };
   },
-  // mixins: [modalMixin],
+  mixins: [modalMixin],
   methods: {
     createArticles() {
       this.editArticle.tag = [];
       this.editArticle.tag.push('');
-    },
-    openModal() {
-      this.modalArticle.show();
-    },
-    closeModal() {
-      this.modalArticle.hide();
     }
   },
-  mounted() {
-    this.modalArticle = new Modal(this.$refs.articleModal);
-  },
+  mounted() {},
   watch: {
     tempArticle() {
       this.editArticle = this.tempArticle;
       // 顯示在input：YYYY-MM-DD
       [this.create_at] = new Date(this.editArticle.create_at * 1000).toISOString().split('T');
-      console.log(this.create_at);
     },
     create_at() {
       // 轉為10碼
