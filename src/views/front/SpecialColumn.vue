@@ -1,34 +1,46 @@
 <template>
-  <div class="container```jsx``` d-flex justify-content-center bg-white-2 container-post">
-    <div>
-      <h2 class="text-primary text-center my-5">好文分享</h2>
-      <div class="row mb-5">
-        <div class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center">
-          <div class="card border-0">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Images%2Fplate_vegetables.jpg?alt=media&token=7d6adcac-d08a-4e3a-afad-7a2e0fe6b77c"
-              class="card-img-top"
-              alt=""
-            />
-            <div class="card-body">
-              <h5 class="text-primary">吃素如何營養均衡</h5>
-              <p class="text-black-70">健康知識</p>
-              <p class="text-black">
-                紅酒、白酒都是葡萄做為原料而製成，根據不同葡萄品種、產區、釀造方法等，有極廣泛的風味......
-              </p>
-              <p class="text-end">
-                <a href=""
-                  >繼續閱讀
-                  <img
-                    src="https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Icons%2FArrows%2Fright_arrow_green.png?alt=media&token=ad11f9f6-32e5-4601-bd7d-d64b312ac282"
-                    alt="Slider"
-                    class="mb-1"
-                    width="25"
-                    height="25"
-                  />
-                </a>
+  <div class="container d-flex flex-column justify-content-center container-post">
+    <nav>
+      <ol class="breadcrumb mb-1 mt-3">
+        <li class="breadcrumb-item"><RouterLink to="/" class="fs-6">首頁</RouterLink></li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/articles" class="text-dark fs-6">專欄文章</RouterLink>
+        </li>
+      </ol>
+    </nav>
+    <div class="row mb-5">
+      <div
+        class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center gy-5"
+        v-for="article in articles"
+        :key="article.id"
+      >
+        <div class="card border-0 bg-white-2">
+          <img :src="article.image" class="card-img-top mw-100" alt="" />
+          <div class="card-body">
+            <h5 class="text-primary">{{ article.title }}</h5>
+            <div class="d-flex flex-row">
+              <p class="me-2" v-for="aTag in article.tag" :key="aTag">
+                <span class="material-icons fs-5 me-1"> sell </span>
+                <span class="text-black-70 fs-6">
+                  {{ aTag }}
+                </span>
               </p>
             </div>
+            <p class="text-black shortContent">
+              {{ article.description }}
+            </p>
+            <p class="text-end">
+              <a href=""
+                >繼續閱讀
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Icons%2FArrows%2Fright_arrow_green.png?alt=media&token=ad11f9f6-32e5-4601-bd7d-d64b312ac282"
+                  alt="Slider"
+                  class="mb-1"
+                  width="25"
+                  height="25"
+                />
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -37,10 +49,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
+
 export default {
   name: 'HomePosts',
   data() {
-    return {};
+    return {
+      articles: [],
+      tempArticle: {}
+    };
+  },
+  mounted() {
+    this.getArticles();
+  },
+  methods: {
+    getArticles() {
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/articles`;
+      axios
+        .get(url)
+        .then((res) => {
+          this.articles = res.data.articles;
+          console.log(this.articles);
+        })
+        .catch((err) => {
+          alert(err.response.data.message);
+        });
+    }
   }
 };
 </script>
@@ -52,20 +87,24 @@ a {
 }
 .card {
   background-color: transparent;
-  max-width: 416px;
+  max-width: 350px;
+  height: 480px;
+  border-radius: 24px;
 }
 .card-img-top {
+  display: block;
   border-radius: 24px;
+  max-height: 240px;
 }
 .container-post {
   position: relative;
 }
-.deco {
-  position: absolute;
-  max-width: 728px;
-  max-height: 120px;
-  top: -40px;
-  left: 0;
+
+.shortContent {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
 }
 @media (max-width: 375px) {
   .card {
