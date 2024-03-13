@@ -14,8 +14,10 @@ import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate';
 import * as AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
-
+// map
 import * as VueGoogleMaps from 'vue3-google-map';
+import { LMap, LTileLayer, LMarker } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -47,6 +49,7 @@ app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);
 
+// map
 app.use(VueGoogleMaps, {
   load: {
     // key: 'process.env.VITE_MAP_KEY',
@@ -54,6 +57,9 @@ app.use(VueGoogleMaps, {
   },
   installComponents: true
 });
+app.component('l-map', LMap);
+app.component('l-tile-layer', LTileLayer);
+app.component('l-marker', LMarker);
 
 app.component('VueLoading', Loading);
 app.component('VForm', Form);
