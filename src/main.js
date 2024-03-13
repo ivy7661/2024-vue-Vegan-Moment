@@ -49,8 +49,8 @@ app.use(VueAxios, axios);
 
 app.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBLmNf-TuB_bpae0roR3SSEJy40ssJR5eI',
-    libraries: 'places'
+    // key: 'process.env.VITE_MAP_KEY',
+    libraries: ['places']
   },
   installComponents: true
 });

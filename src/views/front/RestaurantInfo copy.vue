@@ -20,9 +20,22 @@
         <div class="col-lg-6" data-aos="fade-down">
           <div class="mb-4 mb-lg-0">
             <!-- 地圖 -->
-            <GoogleMap :api-key="mapKey" class="google-map" :center="position" :zoom="15" ref="map">
+            <GoogleMap
+              :api-key="mapKey"
+              style="width: 100%; height: 500px"
+              :center="center"
+              :zoom="15"
+              ref="map"
+            >
               <!-- 圖釘 -->
-              <CustomMarker :options="{ position: position }" :clickable="true" />
+              <AdvancedMarker
+                :options="{ position: center }"
+                :clickable="true"
+                @click="showInfoWindow()"
+              />
+              <InfoWindow :position="infoWindowPosition" :opened="infoWindowOpened">
+                {{ infoWindowText }}
+              </InfoWindow>
             </GoogleMap>
           </div>
         </div>
@@ -44,19 +57,38 @@
 </template>
 
 <script>
-import { GoogleMap, Marker as CustomMarker } from 'vue3-google-map';
+import { GoogleMap, AdvancedMarker, InfoWindow } from 'vue3-google-map';
 const { VITE_MAP_KEY } = import.meta.env;
 
 export default {
-  components: { GoogleMap, CustomMarker },
+  components: { GoogleMap, AdvancedMarker, InfoWindow },
   data() {
     return {
       mapKey: `${VITE_MAP_KEY}`,
-      position: { lat: 25.03422872192988, lng: 121.56441014790107 }
+      center: {
+        // lat:緯度, lng:經度
+        lat: 25.0342,
+        lng: 121.56441
+      },
+      // 25.03422872192988, 121.56441014790107
+      position: { lat: 25.03422872192988, lng: 121.56441014790107 },
+      infoWindowOpened: false,
+      infoWindowPosition: { lat: 0, lng: 0 },
+      infoWindowText: ''
+      // place: {
+      //   position: { lat: 25.03422872192988, lng: 121.56441014790107 },
+      //   name: 'Vegan'
+      // }
     };
   },
   mounted() {},
-  methods: {}
+  methods: {
+    showInfoWindow() {
+      this.infoWindowPosition = this.position;
+      this.infoWindowText = 'VeganMoment';
+      this.infoWindowOpened = true;
+    }
+  }
 };
 </script>
 
