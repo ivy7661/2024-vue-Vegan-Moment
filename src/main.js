@@ -6,7 +6,7 @@ import VueAxios from 'vue-axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import './assets/all.scss';
-import { currency } from './mixins/filters';
+import { currency, date } from './mixins/filters';
 
 import Loading from 'vue-loading-overlay';
 
@@ -14,6 +14,8 @@ import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate';
 import * as AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
+
+import * as VueGoogleMaps from 'vue3-google-map';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -45,10 +47,18 @@ app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);
 
+app.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBLmNf-TuB_bpae0roR3SSEJy40ssJR5eI',
+    libraries: 'places'
+  },
+  installComponents: true
+});
+
 app.component('VueLoading', Loading);
 app.component('VForm', Form);
 app.component('VField', Field);
 app.component('ErrorMessage', ErrorMessage);
-app.config.globalProperties.$filters = { currency };
+app.config.globalProperties.$filters = { currency, date };
 
 app.mount('#app');

@@ -63,7 +63,7 @@
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <router-link to="/storeInfo" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+            <router-link to="/restaurantInfo" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
               >店鋪資訊</router-link
             >
           </li>
@@ -204,7 +204,7 @@
             <ul class="nav mb-3">
               <li class="footer-item">
                 <a href="#" class="me-4">
-                  <RouterLink to="/storeInfo" class="footer-link fs-6 px-1 d-inline-block"
+                  <RouterLink to="/restaurantInfo" class="footer-link fs-6 px-1 d-inline-block"
                     >店鋪資訊</RouterLink
                   >
                 </a>

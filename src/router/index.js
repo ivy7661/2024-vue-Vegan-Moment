@@ -40,8 +40,12 @@ const routes = [
         component: () => import('../views/front/SpecialColumn.vue')
       },
       {
-        path: 'storeInfo',
-        component: () => import('../views/front/StoreInfo.vue')
+        path: 'specialColumn/:id',
+        component: () => import('../views/front/ColumnArticle.vue')
+      },
+      {
+        path: 'restaurantInfo',
+        component: () => import('../views/front/RestaurantInfo.vue')
       }
     ]
   },

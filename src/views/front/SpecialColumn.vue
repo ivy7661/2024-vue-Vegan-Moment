@@ -17,11 +17,11 @@
         <div class="card border-0 bg-white-2">
           <img :src="article.image" class="card-img-top mw-100" alt="" />
           <div class="card-body">
-            <h5 class="text-primary">{{ article.title }}</h5>
+            <h5 class="text-primary mb-2">{{ article.title }}</h5>
             <div class="d-flex flex-row">
               <p class="me-2" v-for="aTag in article.tag" :key="aTag">
-                <span class="material-icons fs-5 me-1"> sell </span>
-                <span class="text-black-70 fs-6">
+                <span class="material-icons fs-6 me-1 text-gray-600"> sell </span>
+                <span class="text-gray-600 fs-6 me-1">
                   {{ aTag }}
                 </span>
               </p>
@@ -30,7 +30,7 @@
               {{ article.description }}
             </p>
             <p class="text-end">
-              <a href=""
+              <router-link :to="`/specialColumn/${article.id}`"
                 >繼續閱讀
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Icons%2FArrows%2Fright_arrow_green.png?alt=media&token=ad11f9f6-32e5-4601-bd7d-d64b312ac282"
@@ -39,7 +39,7 @@
                   width="25"
                   height="25"
                 />
-              </a>
+              </router-link>
             </p>
           </div>
         </div>
@@ -88,7 +88,7 @@ a {
 .card {
   background-color: transparent;
   max-width: 350px;
-  height: 480px;
+  height: 500px;
   border-radius: 24px;
 }
 .card-img-top {
