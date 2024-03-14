@@ -22,6 +22,7 @@ import 'aos/dist/aos.css';
 
 import App from './App.vue';
 import router from './router';
+const { VITE_MAP_KEY } = import.meta.env;
 
 /**
  * vee-validate 設定
@@ -50,7 +51,7 @@ app.use(VueAxios, axios);
 // map
 app.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBLmNf-TuB_bpae0roR3SSEJy40ssJR5eI',
+    key: `${VITE_MAP_KEY}`,
     libraries: ['places']
   },
   installComponents: true

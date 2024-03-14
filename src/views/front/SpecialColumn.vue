@@ -14,7 +14,7 @@
         v-for="article in articles"
         :key="article.id"
       >
-        <div class="card border-0 bg-white-2">
+        <div class="card border-0 bg-white-2" data-aos="fade-up">
           <img :src="article.image" class="card-img-top mw-100" alt="" />
           <div class="card-body">
             <h5 class="text-primary mb-2">{{ article.title }}</h5>

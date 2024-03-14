@@ -1,11 +1,5 @@
 <template>
   <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-5">
-        <li class="breadcrumb-item"><RouterLink to="/" class="green">首頁</RouterLink></li>
-        <li class="breadcrumb-item active">門市資訊</li>
-      </ol>
-    </nav>
     <section>
       <div class="row justify-content-center my-4 my-lg-17">
         <div class="col-lg-6" data-aos="fade-down">
