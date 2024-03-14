@@ -20,11 +20,14 @@
         <div class="col-lg-6" data-aos="fade-down">
           <div class="mb-4 mb-lg-0">
             <!-- 地圖 -->
-            <!-- <l-map style="height: 400px" :zoom="zoom" :center="center">
-              <l-tile-layer :url="url"></l-tile-layer>
-              <l-marker :lat-lng="markerLatLng"></l-marker>
-            </l-map> -->
-            <div id="map" style="height: 400px"></div>
+            <GoogleMap :api-key="mapKey" class="google-map" :center="position" :zoom="15" ref="map">
+              <!-- 圖釘 -->
+              <CustomMarker :options="{ position: position }" :clickable="true">
+                <InfoWindow :opened="false">
+                  <div>Vegan Moment<MyComponent /></div>
+                </InfoWindow>
+              </CustomMarker>
+            </GoogleMap>
           </div>
         </div>
         <div class="col-lg-4" data-aos="fade-down">
@@ -45,34 +48,27 @@
 </template>
 
 <script>
-import L from 'leaflet';
+import { GoogleMap, Marker as CustomMarker, InfoWindow } from 'vue3-google-map';
+const { VITE_MAP_KEY } = import.meta.env;
 
 export default {
-  components: {},
+  components: { GoogleMap, CustomMarker, InfoWindow },
   data() {
     return {
-      openStreetMap: {}
+      mapKey: `${VITE_MAP_KEY}`,
+      position: { lat: 25.03422872192988, lng: 121.56441014790107 }
     };
   },
-  mounted() {
-    this.openStreetMap = L.map('map', {
-      center: [25.042474, 121.513729],
-      // 可以嘗試改變 zoom 的數值
-      // 筆者嘗試後覺得 18 的縮放比例是較適當的查詢範圍
-      zoom: 18
-    });
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 20
-    }).addTo(this.openStreetMap);
-  },
+  mounted() {},
   methods: {}
 };
 </script>
 
 <style lang="scss" scoped>
+.google-map {
+  width: 600px;
+  height: 400px;
+}
 // .banner {
 //   @include banner(
 //     'https://storage.googleapis.com/vue-course-api.appspot.com/gracewang/1679671003712.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Nv0XuazW5tpB67B0i%2FVRAowXBN8Oq3XR3StIyAGUzvq6sS0dbxoIjyGbiiZGuYi%2BrANxnXTgtnAEaqnvd4Fqz2Dux4QbV1alaipNs7BFHXit%2BeSeku4uWIpWAVoo8%2BK3o68Tjvdd2W8LPSUDj2HuL%2B5VbG7JY8Q%2B6DM8K5wgciTIHAKOPsOR8nyCvb%2BiCNzz5znKmg%2BLk3d3OStcQ90nV0GRYjY5D2xSggGLQCiFWfM2XAdakdE6T7eKKClozUimLpmeRvQ5S31uX1XwtVzmrXNC2zBNXI7yNN%2Fy%2BBrg6%2BCUhUZaWfyE7Dhyf3ArepX%2F0S8FZPE%2FL142VH6uMruRCg%3D%3D',

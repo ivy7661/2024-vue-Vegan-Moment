@@ -22,7 +22,7 @@
             <!-- 地圖 -->
             <GoogleMap :api-key="mapKey" class="google-map" :center="position" :zoom="15" ref="map">
               <!-- 圖釘 -->
-              <CustomMarker :options="{ position: position }" :clickable="true" />
+              <CustomMarker :options="{ position: position }" label="HI" :clickable="true" />
             </GoogleMap>
           </div>
         </div>

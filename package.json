@@ -14,6 +14,7 @@
     "serve": "node server.js"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.79",
     "@vee-validate/i18n": "^4.12.5",
     "@vee-validate/rules": "^4.12.5",
     "aos": "^2.3.4",
