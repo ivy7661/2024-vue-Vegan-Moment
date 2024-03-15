@@ -36,7 +36,7 @@
         <ul class="nav sticky-top bg-light pb-1 mb-4 nav-tab-top" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <a
-              class="nav-link active fs-5 text-dark px-1 mx-2"
+              class="nav-link active fs-5 px-1 mx-2"
               id="all-tab"
               data-bs-toggle="tab"
               data-bs-target="#all"
@@ -48,7 +48,7 @@
           </li>
           <li v-for="tab in categories" class="nav-item" role="presentation" :key="tab">
             <a
-              class="nav-link fs-5 text-dark px-1 mx-2"
+              class="nav-link fs-5 px-1 mx-2"
               :id="`${tab[1]}-tab`"
               data-bs-toggle="tab"
               :data-bs-target="`#${tab[1]}`"
@@ -240,17 +240,6 @@ export default {
     ...mapActions(cartStore, ['addToCart']),
     productInfo(product) {
       this.tempProduct = product;
-    },
-    changeClass(category) {
-      setTimeout(() => {
-        this.selectedClass(category);
-      }, 1000);
-    },
-    selectedClass(category) {
-      if (this.$route.query.category === category) {
-        this.selected = true;
-        console.log(this.selected);
-      }
     }
   }
 };
@@ -267,42 +256,16 @@ export default {
   border-color: transparent;
 }
 .nav-link {
+  color: black;
   border-bottom: 4px solid transparent;
   &:hover {
     border-color: transparent;
   }
 }
 .nav-link.active {
+  color: #698f39;
   border-bottom: 4px solid #698f39;
 }
-// .nav-item .nav-link {
-//   font-weight: 400;
-//   border-bottom: 4px solid transparent;
-// }
-// .tabActive {
-//   color: #698f39;
-//   border-bottom: 4px solid #698f39;
-// }
-
-// .nav-item .nav-link:focus {
-//   color: #698f39;
-//   border-bottom: 4px solid #698f39;
-// }
-
-// .nav-item .router-link-exact-active {
-//   color: #698f39;
-//   border-bottom: 4px solid #698f39;
-// }
-
-// .nav-item .nav-link.active {
-//   color: #698f39;
-//   border-bottom: 4px solid #698f39;
-// }
-
-// .router-link.active {
-//   color: #698f39;
-//   border-bottom: 4px solid #698f39;
-// }
 
 .card-img {
   overflow: hidden;
