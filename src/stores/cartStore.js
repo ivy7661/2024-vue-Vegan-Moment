@@ -50,7 +50,6 @@ export default defineStore('cartStore', {
         product_id: cart.product_id,
         qty: cart.qty
       };
-      // status.loadingStatus = cart.id;
       axios
         .put(`${VITE_API_URL}/api/${VITE_API_PATH}/cart/${cart.id}`, { data })
         .then((res) => {
@@ -63,23 +62,28 @@ export default defineStore('cartStore', {
         });
     },
     alertDelAll() {
-      Swal.fire({
-        title: '請問您確認要清空購物車嗎？',
-        text: '刪除後將無法恢復',
-        icon: 'warning',
-        // customClass: {
-        //   confirmButton: 'btn btn-danger ms-2',
-        //   cancelButton: 'btn btn-outline-danger'
-        // },
-        // buttonsStyling: false,
-        confirmButtonText: '確認刪除',
-        showCancelButton: true,
-        cancelButtonText: '取消'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.removeCartsAll();
-        }
+      const bsClassBtn = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-danger ms-2',
+          cancelButton: 'btn btn-outline-danger'
+        },
+        buttonsStyling: false
       });
+      bsClassBtn
+        .fire({
+          title: '請問您確認要清空購物車嗎？',
+          text: '刪除後將無法恢復',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: '確認刪除',
+          cancelButtonText: '取消',
+          reverseButtons: true
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.removeCartsAll();
+          }
+        });
     },
     confirmRemove() {},
     removeCartsAll() {
@@ -90,35 +94,18 @@ export default defineStore('cartStore', {
           this.getCart();
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     delCartItem(id) {
-      // status.loadingStatus = id;
       axios
         .delete(`${VITE_API_URL}/api/${VITE_API_PATH}/cart/${id}`)
         .then((res) => {
-          // status.loadingStatus = '';
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: res.data.message,
-          //   width: 250
-          // });
-          alert('刪除成功');
+          Alert.toastTop(res.data.message, 'success');
           this.getCart();
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     }
   }
