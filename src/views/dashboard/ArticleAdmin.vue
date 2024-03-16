@@ -67,6 +67,7 @@
 
 <script>
 import axios from 'axios';
+import Alert from '@/mixins/swal.js';
 // import PaginationComponent from '../../components/PaginationComponent.vue';
 import ArticleModal from '../../components/admin/ArticleModal.vue';
 import DelArticleModal from '../../components/admin/DelArticleModal.vue';
@@ -121,12 +122,12 @@ export default {
 
       axios[http](url, { data: this.tempArticle })
         .then((res) => {
-          alert(res.data.message);
+          Alert.toastTop(res.data.message, 'success');
           this.getData();
           this.$refs.articleModal.closeModal();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     openModal(status, article) {
@@ -158,18 +159,18 @@ export default {
       axios
         .delete(url)
         .then((res) => {
-          alert(res.data.message);
+          Alert.toastTop(res.data.message, 'success');
           this.$refs.delModal.closeModal();
           this.getData();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
-    },
-    createImages() {
-      this.tempArticle.imagesUrl = [];
-      this.tempArticle.imagesUrl.push('');
     }
+    // createImages() {
+    //   this.tempArticle.imagesUrl = [];
+    //   this.tempArticle.imagesUrl.push('');
+    // }
   }
 };
 </script>

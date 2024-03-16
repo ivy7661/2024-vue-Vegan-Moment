@@ -1,6 +1,10 @@
 <template>
-  <!-- <VueLoading v-model:active="isLoading" /> -->
   <div class="container">
+    <VueLoading v-model:active="isLoading" :is-full-page="fullPage">
+      <template #default>
+        <VeganLoading />
+      </template>
+    </VueLoading>
     <div class="row justify-content-center py-4 py-lg-0">
       <section class="col-lg-5">
         <!-- breadcrumb -->
@@ -18,7 +22,7 @@
             </ol>
           </nav>
         </div>
-        <div class="mb-5">
+        <div class="mb-5 vl-parent" ref="load">
           <img
             v-if="!selectImg"
             :src="productInfo.imageUrl"
@@ -79,6 +83,7 @@
         >
           <!-- productInfoQty -->
           加入購物車
+          <i class="ms-1 fa-solid fa-spinner fa-spin" v-if="loadingStatus"></i>
         </button>
         <!-- 收藏 -->
         <button
@@ -160,10 +165,13 @@
 </template>
 
 <script>
+import VueLoading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { h } from 'vue';
+import VeganLoading from '../../components/icons/VeganLoading.vue';
 import axios from 'axios';
-import { mapActions } from 'pinia';
+import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
-// import loadingStore from '@/store/loadingStore.js';
 // import cartsStore from '@/store/cartsStore.js';
 // import productsStore from '@/store/productsStore.js';
 // import Toast from '@/mixins/toast.js';
@@ -176,19 +184,47 @@ export default {
       productInfo: {},
       cartQty: 1,
       selectImg: ''
-
-      // isLoading: false
     };
+  },
+  components: {
+    VueLoading,
+    VeganLoading
   },
   mounted() {
     this.getProducts();
     this.cartQty = 1;
   },
+  computed: {
+    ...mapState(cartStore, ['loadingStatus'])
+  },
   methods: {
     getProducts() {
+      const loader = this.$loading.show(
+        {
+          props: { spinner: VeganLoading },
+          // Pass props by their camelCased names
+          container: this.$refs.loadingContainer,
+          canCancel: true,
+          color: '#000000',
+          loader: 'spinner',
+          width: 64,
+          height: 64,
+          opacity: 0.5,
+          zIndex: 999
+        },
+        {
+          // Pass slots by their names
+          default: h('WineGlassLoader')
+        }
+      );
+      // const loader = this.$loading.show({
+      //   container: this.fullPage ? null : this.$refs.load,
+      //   canCancel: false
+      // });
       this.productId = this.$route.params.id;
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/product/${this.productId}`;
       axios.get(url).then((res) => {
+        loader.hide();
         this.productInfo = res.data.product;
       });
     },
@@ -196,3 +232,5 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped></style>

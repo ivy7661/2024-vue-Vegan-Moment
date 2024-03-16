@@ -8,13 +8,14 @@ import 'bootstrap';
 import './assets/all.scss';
 import { currency, date } from './mixins/filters';
 
-import Loading from 'vue-loading-overlay';
+import { LoadingPlugin, Loading } from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
 import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate';
 import * as AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
-// map
+
 import * as VueGoogleMaps from 'vue3-google-map';
 
 import AOS from 'aos';
@@ -47,6 +48,11 @@ app.use(
 app.use(createPinia());
 app.use(router);
 app.use(VueAxios, axios);
+
+app.use(LoadingPlugin, {
+  color: '#698f39',
+  isLoading: true
+});
 
 // map
 app.use(VueGoogleMaps, {

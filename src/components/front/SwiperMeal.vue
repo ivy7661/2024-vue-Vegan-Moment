@@ -53,19 +53,15 @@
 
 <script>
 import { Navigation, Autoplay } from 'swiper/modules';
-
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { mapActions } from 'pinia';
-import axios from 'axios';
+import { mapState, mapActions } from 'pinia';
 
-// import productsStore from '@/store/productsStore.js';
+import productStore from '@/stores/productStore.js';
 import cartStore from '@/stores/cartStore.js';
 // import loadingStore from '@/store/loadingStore.js';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
-
-const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default {
   data() {
@@ -99,8 +95,7 @@ export default {
             spaceBetween: 16
           }
         }
-      },
-      products: []
+      }
     };
   },
   components: {
@@ -110,28 +105,12 @@ export default {
   mounted() {
     this.getProducts();
   },
-  methods: {
-    getProducts() {
-      // const { category = '' } = this.$route.query;
-
-      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/products`;
-
-      axios
-        .get(url)
-        .then((res) => {
-          this.products = res.data.products;
-          console.log(this.products);
-        })
-        .catch((err) => {
-          alert(err.response.data.message);
-        });
-    },
-    // ...mapActions(productsStore, ['getProducts']),
-    ...mapActions(cartStore, ['addToCart'])
-  },
   computed: {
-    // ...mapState(productsStore, ['products'])
-    // ...mapState(loadingStore, ['loadingStatus'])
+    ...mapState(productStore, ['products'])
+  },
+  methods: {
+    ...mapActions(productStore, ['getProducts']),
+    ...mapActions(cartStore, ['addToCart'])
   }
 };
 </script>

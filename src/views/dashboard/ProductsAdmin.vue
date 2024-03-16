@@ -63,6 +63,7 @@
 
 <script>
 import axios from 'axios';
+import Alert from '@/mixins/swal.js';
 import PaginationComponent from '../../components/PaginationComponent.vue';
 import ProductModal from '../../components/ProductModal.vue';
 import DelModal from '../../components/DelModal.vue';
@@ -97,7 +98,7 @@ export default {
           this.pages = response.data.pagination;
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
 
@@ -111,8 +112,8 @@ export default {
       }
 
       axios[http](url, { data: this.tempProduct })
-        .then((response) => {
-          alert(response.data.message);
+        .then((res) => {
+          Alert.toastTop(res.data.message, 'success');
           this.getData();
           // this.modalProduct.hide();
           this.$refs.pModal.closeModal();
@@ -120,17 +121,15 @@ export default {
           // this.tempProduct = {};
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
-    // 從這個方法，跳到 ref="pModal"，再去呼叫子元件的openModal()
     openModal(status, item) {
       if (status === 'new') {
         this.tempProduct = {
           imagesUrl: []
         };
         this.isNew = true;
-        // this.modalProduct.show();
         this.$refs.pModal.openModal();
       } else if (status === 'edit') {
         this.tempProduct = { ...item };
@@ -138,11 +137,9 @@ export default {
           this.tempProduct.imagesUrl = [];
         }
         this.isNew = false;
-        // this.modalProduct.show();
         this.$refs.pModal.openModal();
       } else if (status === 'delete') {
         this.tempProduct = { ...item };
-        // this.delModalProduct.show();
         this.$refs.delModal.openDelModal();
       }
     },
@@ -152,35 +149,18 @@ export default {
 
       axios
         .delete(url)
-        .then((response) => {
-          alert(response.data.message);
-          // this.delModalProduct.hide();
+        .then((res) => {
+          Alert.toastTop(res.data.message, 'success');
           this.$refs.delModal.closeDelModal();
           this.getData();
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
-    },
-    createImages() {
-      this.tempProduct.imagesUrl = [];
-      this.tempProduct.imagesUrl.push('');
     }
-
-    // uploadImage(index, event) {
-    //   const file = event.target.files[0];
-    //   const formData = new FormData();
-    //   formData.append('file-to-upload', file);
-    //   axios
-    //     .post(`${VITE_API_URL}/api/${VITE_API_PATH}/admin/upload`, formData)
-    //     .then((res) => {
-    //       index !== null
-    //         ? (this.temp.imagesUrl[index] = res.data.imageUrl)
-    //         : (this.temp.imageUrl = res.data.imageUrl);
-    //     })
-    //     .catch((err) => {
-    //       alert(err.response.data.message);
-    //     });
+    // createImages() {
+    //   this.tempProduct.imagesUrl = [];
+    //   this.tempProduct.imagesUrl.push('');
     // }
   },
   // 區域註冊

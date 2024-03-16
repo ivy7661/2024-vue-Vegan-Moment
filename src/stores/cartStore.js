@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import Swal from 'sweetalert2';
+import Alert from '@/mixins/swal.js';
 import axios from 'axios';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
@@ -8,7 +10,8 @@ export default defineStore('cartStore', {
     order_total: 0,
     final_total: 0,
     total: 0,
-    deliveryFee: 0
+    deliveryFee: 0,
+    loadingStatus: false
   }),
   actions: {
     getCart() {
@@ -22,22 +25,23 @@ export default defineStore('cartStore', {
           this.total = res.data.data.total;
           this.order_total = res.data.data.total;
           this.deliveryFee = parseInt(this.order_total) >= 300 ? 0 : 60;
-
-          console.log('piniaCart', res);
         })
         .catch((err) => {
-          alert(err.res.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     addToCart(id, cartQty) {
+      this.loadingStatus = true;
+
       const order = {
         product_id: id,
         qty: cartQty
       };
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/cart`;
       axios.post(url, { data: order }).then((res) => {
-        console.log(res);
-        alert('加入購物車成功');
+        this.loadingStatus = false;
+
+        Alert.toastTop(res.data.message, 'success');
         this.getCart();
       });
     },
@@ -50,29 +54,39 @@ export default defineStore('cartStore', {
       axios
         .put(`${VITE_API_URL}/api/${VITE_API_PATH}/cart/${cart.id}`, { data })
         .then((res) => {
-          alert('修改成功');
-          // status.loadingStatus = '';
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: res.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(res.data.message, 'success');
+
           this.getCart();
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message);
         });
     },
+    alertDelAll() {
+      Swal.fire({
+        title: '請問您確認要清空購物車嗎？',
+        text: '刪除後將無法恢復',
+        icon: 'warning',
+        // customClass: {
+        //   confirmButton: 'btn btn-danger ms-2',
+        //   cancelButton: 'btn btn-outline-danger'
+        // },
+        // buttonsStyling: false,
+        confirmButtonText: '確認刪除',
+        showCancelButton: true,
+        cancelButtonText: '取消'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.removeCartsAll();
+        }
+      });
+    },
+    confirmRemove() {},
     removeCartsAll() {
       axios
         .delete(`${VITE_API_URL}/api/${VITE_API_PATH}/carts`)
         .then(() => {
-          alert('已清空購物車');
+          Alert.toastTop('已清空購物車', 'success');
           this.getCart();
         })
         .catch((err) => {

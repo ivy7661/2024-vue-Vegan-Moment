@@ -65,7 +65,7 @@
 import CouponModal from '@/components/admin/CouponModal.vue';
 import DelCouponModal from '@/components/admin/DelCouponModal.vue';
 // import AdminPagination from '@/components/admin/AdminPagination.vue';
-// import Toast from '@/mixins/toast.js';
+import Alert from '@/mixins/swal.js';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default {
@@ -95,16 +95,12 @@ export default {
       this.$http
         .get(`${VITE_API_URL}/api/${VITE_API_PATH}/admin/coupons?page=${page}`)
         .then((res) => {
+          console.log(res);
           this.coupons = res.data.coupons;
           this.page = res.data.pagination;
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     openModal(status, coupon) {
@@ -133,42 +129,24 @@ export default {
       }
       this.$http[method](url, { data: this.tempCoupon })
         .then((res) => {
-          this.$refs.couponModal.hideModal();
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: res.data.message,
-          //   width: 250
-          // });
+          this.$refs.couponModal.closeModal();
+          Alert.toastTop(res.data.message, 'success');
           this.getCoupons();
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     deleteCoupon() {
       this.$http
         .delete(`${VITE_API_URL}/api/${VITE_API_PATH}/admin/coupon/${this.tempCoupon.id}`)
         .then((res) => {
-          this.$refs.delModal.hideModal();
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: res.data.message,
-          //   width: 250
-          // });
+          this.$refs.delModal.closeModal();
+          Alert.toastTop(res.data.message, 'success');
           this.getCoupons();
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     }
   }

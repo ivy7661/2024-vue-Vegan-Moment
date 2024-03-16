@@ -55,6 +55,7 @@
 
 <script>
 import axios from 'axios';
+import Alert from '@/mixins/swal.js';
 import OrderModal from '../../components/admin/OrderModal.vue';
 import DelOrderModal from '../../components/admin/DelOrderModal.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
@@ -84,8 +85,8 @@ export default {
           // console.log(res);
           this.orders = res.data.orders;
         })
-        .catch(() => {
-          alert('取得訂單資訊失敗');
+        .catch((err) => {
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     openModal(status, order) {
@@ -108,15 +109,13 @@ export default {
       axios
         .put(url, { data: paid })
         .then((res) => {
-          console.log(res.data);
-          alert('新增/修改成功');
+          Alert.toastTop(res.data.message, 'success');
           const orderComponent = this.$refs.orderModal;
-          orderComponent.hideModal();
-
+          orderComponent.closeModal();
           this.getOrders(this.currentPage);
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message);
         });
     },
     delOrder() {
@@ -124,15 +123,15 @@ export default {
       axios
         .delete(url)
         .then((res) => {
-          console.log(res.data);
-          alert('刪除成功');
+          Alert.toastTop(res.data.message, 'success');
           const delModal = this.$refs.delOrderModal;
-          delModal.hideModal();
+          delModal.closeModal();
 
           this.getOrders(this.currentPage);
         })
-        .catch(() => {
-          alert('刪除失敗');
+        .catch((err) => {
+          console.log(err);
+          Alert.toastTop(err.response.data.message, 'error');
         });
     }
   }

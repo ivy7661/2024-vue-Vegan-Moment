@@ -33,7 +33,7 @@
               href="#"
               role="tab"
             >
-              全部商品
+              全部餐點
             </a>
           </li>
           <li v-for="tab in categories" class="nav-item" role="presentation" :key="tab">
@@ -141,48 +141,6 @@
         </div>
       </div>
     </section>
-    <!-- 舊的商品 -->
-    <!-- <section>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gx-4 gy-5 mt-1 mb-8">
-        <div v-for="product in products" :key="product.id">
-          <div class="col">
-            <div class="card-img">
-              <RouterLink :to="`/products/${product.id}`">
-                <img
-                  :src="product.imageUrl"
-                  :alt="product.title"
-                  class="w-100 d-block rounded-3"
-                  height="240"
-                />
-              </RouterLink>
-            </div>
-
-            <div class="py-3 py-lg-2">
-              <RouterLink :to="`/products/${product.id}`">
-                <h4 class="fs-4 text-dark mb-2 mb-lg-1">{{ product.title }}</h4>
-              </RouterLink>
-              <h5 class="text-primary d-flex align-items-center">
-                NT${{ product.price }}
-                <span class="fs-6 text-gray-600 ms-2"
-                  ><del>NT${{ product.origin_price }}</del></span
-                >
-              </h5>
-            </div>
-
-            購物車 btn
-            <button
-              type="button"
-              class="btn btn-secondary fs-6 w-100"
-              @click="addToCart(product.id, cartQty)"
-            >
-              :disabled="loadingStatus === product.id"
-              <span>加入購物車</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <ProductsPagination></ProductsPagination>
-    </section> -->
   </div>
 </template>
 
@@ -196,6 +154,7 @@ export default {
       tempProduct: {},
       categories: ['主餐', '輕食', '果昔碗', '飲品'],
       cartQty: 1
+      // cartLoading: false
     };
   },
   mounted() {
@@ -210,7 +169,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(productStore, ['products', 'displayedProducts'])
+    ...mapState(productStore, ['products', 'displayedProducts']),
+    ...mapState(cartStore, ['cartLoading'])
   },
   methods: {
     ...mapActions(productStore, ['getProducts']),

@@ -19,7 +19,7 @@
           <button
             type="button"
             class="btn btn-sm btn-outline-danger mb-2 fs-7"
-            @click="removeCartsAll"
+            @click="alertDelAll"
           >
             清空購物車
           </button>
@@ -121,7 +121,13 @@ export default {
     ...mapState(cartStore, ['carts', 'order_total', 'deliveryFee'])
   },
   methods: {
-    ...mapActions(cartStore, ['getCart', 'changeCartQty', 'removeCartsAll', 'delCartItem']),
+    ...mapActions(cartStore, [
+      'getCart',
+      'changeCartQty',
+      'alertDelAll',
+      'removeCartsAll',
+      'delCartItem'
+    ]),
     toggleTheOffcanvas() {
       this.cartOffcanvas.toggle();
     },

@@ -14,7 +14,7 @@
         v-for="article in articles"
         :key="article.id"
       >
-        <div class="card border-0 bg-white-2" data-aos="fade-up">
+        <div ref="load" class="card border-0 bg-white-2 vl-parent" data-aos="fade-up">
           <img :src="article.image" class="card-img-top mw-100" alt="" />
           <div class="card-body">
             <h5 class="text-primary mb-2">{{ article.title }}</h5>
@@ -26,9 +26,7 @@
                 </span>
               </p>
             </div>
-            <p class="text-black shortContent">
-              {{ article.description }}
-            </p>
+            <p class="text-black shortContent" v-html="article.description"></p>
             <p class="text-end">
               <router-link :to="`/specialColumn/${article.id}`"
                 >繼續閱讀
@@ -65,12 +63,16 @@ export default {
   },
   methods: {
     getArticles() {
+      const loader = this.$loading.show({
+        container: this.fullPage ? null : this.$refs.load,
+        canCancel: false
+      });
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/articles`;
       axios
         .get(url)
         .then((res) => {
+          loader.hide();
           this.articles = res.data.articles;
-          console.log(this.articles);
         })
         .catch((err) => {
           alert(err.response.data.message);

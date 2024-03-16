@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-// import loadingStore from '@/store/loadingStore.js';
-// import Toast from '@/mixins/toast.js';
+import loadingStore from './loadingStore';
+import Alert from '@/mixins/swal.js';
 
-// const status = loadingStore();
+const status = loadingStore();
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default defineStore('productsStore', {
@@ -16,21 +16,16 @@ export default defineStore('productsStore', {
   }),
   actions: {
     getProducts(page = 1) {
-      // status.isLoading = true;
+      status.isLoading = true;
       axios
         .get(`${VITE_API_URL}/api/${VITE_API_PATH}/products/all`)
         .then((res) => {
-          // status.isLoading = false;
+          status.isLoading = false;
           this.products = res.data.products;
           this.updatePagination(page);
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     updatePagination(page) {
@@ -47,12 +42,12 @@ export default defineStore('productsStore', {
 
       axios
         .get(url)
-        .then((response) => {
-          // console.log(response.data);
-          this.products = response.data.products;
+        .then((res) => {
+          this.products = res.data.products;
+          Alert.toastTop(res.data.message, 'success');
         })
         .catch((err) => {
-          alert(err.response.data.message);
+          Alert.toastTop(err.response.data.message, 'error');
         });
     }
   }
