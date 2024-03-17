@@ -88,11 +88,11 @@ export default {
 // .banner-plan {
 //   @include banner-plan();
 // }
-.store {
-  background-image: url(@/assets/image/store.png);
-  height: 175px;
-  width: 100%;
-  background-size: cover;
-  background-position: center 0px;
-}
+// .store {
+//   background-image: url(@/assets/image/store.png);
+//   height: 175px;
+//   width: 100%;
+//   background-size: cover;
+//   background-position: center 0px;
+// }
 </style>
