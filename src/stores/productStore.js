@@ -16,7 +16,7 @@ export default defineStore('productsStore', {
   }),
   actions: {
     getProducts(page = 1) {
-      status.isLoading = true;
+      // status.isLoading = true;
       axios
         .get(`${VITE_API_URL}/api/${VITE_API_PATH}/products/all`)
         .then((res) => {

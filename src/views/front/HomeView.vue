@@ -97,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 .home-banner {
   height: 480px;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/vegan-moment.appspot.com/o/Background%2Fbg_banner_clear.jpg?alt=media&token=049238a5-01da-41ff-afbd-cca606453fdf);
+  background-image: url(../../../public/images/bg_banner_clear.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
