@@ -2,7 +2,7 @@
   <div class="container">
     <VueLoading v-model:active="isLoading" :is-full-page="fullPage">
       <template #default>
-        <VeganLoading />
+        <VeganLoader />
       </template>
     </VueLoading>
     <div class="row justify-content-center py-4 py-lg-0">
@@ -167,14 +167,11 @@
 <script>
 import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
-import { h } from 'vue';
-import VeganLoading from '../../components/icons/VeganLoading.vue';
+import VeganLoader from '../../components/icons/VeganLoader.vue';
+
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
-// import cartsStore from '@/store/cartsStore.js';
-// import productsStore from '@/store/productsStore.js';
-// import Toast from '@/mixins/toast.js';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default {
@@ -183,12 +180,14 @@ export default {
       productId: '',
       productInfo: {},
       cartQty: 1,
-      selectImg: ''
+      selectImg: '',
+      fullPage: true,
+      isLoading: false
     };
   },
   components: {
     VueLoading,
-    VeganLoading
+    VeganLoader
   },
   mounted() {
     this.getProducts();
@@ -199,32 +198,11 @@ export default {
   },
   methods: {
     getProducts() {
-      const loader = this.$loading.show(
-        {
-          props: { spinner: VeganLoading },
-          // Pass props by their camelCased names
-          container: this.$refs.loadingContainer,
-          canCancel: true,
-          color: '#000000',
-          loader: 'spinner',
-          width: 64,
-          height: 64,
-          opacity: 0.5,
-          zIndex: 999
-        },
-        {
-          // Pass slots by their names
-          default: h('WineGlassLoader')
-        }
-      );
-      // const loader = this.$loading.show({
-      //   container: this.fullPage ? null : this.$refs.load,
-      //   canCancel: false
-      // });
+      this.isLoading = true;
       this.productId = this.$route.params.id;
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/product/${this.productId}`;
       axios.get(url).then((res) => {
-        loader.hide();
+        this.isLoading = false;
         this.productInfo = res.data.product;
       });
     },

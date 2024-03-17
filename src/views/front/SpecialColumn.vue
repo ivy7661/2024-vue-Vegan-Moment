@@ -1,5 +1,10 @@
 <template>
   <div class="container d-flex flex-column justify-content-center container-post">
+    <VueLoading :active="isLoading" :is-full-page="fullPage">
+      <template #default>
+        <VeganLoader />
+      </template>
+    </VueLoading>
     <nav>
       <ol class="breadcrumb mb-1 mt-3">
         <li class="breadcrumb-item"><RouterLink to="/" class="fs-6">首頁</RouterLink></li>
@@ -48,30 +53,31 @@
 
 <script>
 import axios from 'axios';
+import VueLoading from 'vue-loading-overlay';
+import VeganLoader from '../../components/icons/VeganLoader.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default {
-  name: 'HomePosts',
   data() {
     return {
       articles: [],
-      tempArticle: {}
+      tempArticle: {},
+      fullPage: true,
+      isLoading: false
     };
   },
+  components: { VeganLoader, VueLoading },
   mounted() {
     this.getArticles();
   },
   methods: {
     getArticles() {
-      const loader = this.$loading.show({
-        container: this.fullPage ? null : this.$refs.load,
-        canCancel: false
-      });
+      this.isLoading = true;
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/articles`;
       axios
         .get(url)
         .then((res) => {
-          loader.hide();
+          this.isLoading = false;
           this.articles = res.data.articles;
         })
         .catch((err) => {

@@ -40,7 +40,6 @@ export default defineStore('cartStore', {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/cart`;
       axios.post(url, { data: order }).then((res) => {
         this.loadingStatus = false;
-
         Alert.toastTop(res.data.message, 'success');
         this.getCart();
       });
@@ -85,7 +84,6 @@ export default defineStore('cartStore', {
           }
         });
     },
-    confirmRemove() {},
     removeCartsAll() {
       axios
         .delete(`${VITE_API_URL}/api/${VITE_API_PATH}/carts`)

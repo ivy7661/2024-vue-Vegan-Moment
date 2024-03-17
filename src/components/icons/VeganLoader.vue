@@ -1,11 +1,5 @@
 <template>
-  <img
-    src="../../../public/images/vegan_loading_removebg.png"
-    class="image_rotate"
-    width="200px"
-    height="200px"
-    alt="cocktail"
-  />
+  <img src="/images/vegan_loading_removebg.png" class="image_rotate" alt="cocktail" width="200" />
 </template>
 
 <script>
