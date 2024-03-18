@@ -10,74 +10,8 @@
       </RouterLink>
 
       <div class="d-flex align-items-center">
-        <!-- 手機 cart、member icon-->
+        <!-- 手機 icon-->
         <div class="d-lg-none">
-          <!-- <a
-            role="button"
-            class="navbar-brand position-relative"
-            @click.prevent="toggleOffcanvas()"
-            aria-controls="offcanvasRight"
-          >
-            <i class="bi bi-cart3"></i>
-            <span
-              v-if="cartsTotalNum"
-              class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white"
-              style="top: 6px"
-              >{{ cartsTotalNum }}
-            </span>
-          </a> -->
-          <RouterLink to="/adminLogin" class="navbar-brand">
-            <i class="bi bi-person-circle fs-1"></i>
-          </RouterLink>
-        </div>
-
-        <!--漢堡-->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <i class="bi bi-list fs-3" style="font-weight: bold"></i>
-        </button>
-      </div>
-      <!-- navbar 摺疊內容 -->
-      <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarText">
-        <ul class="navbar-nav mt-2 mt-lg-0">
-          <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/brandStory" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
-              >品牌故事</RouterLink
-            >
-          </li>
-          <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/products" class="nav-link d-inline-block fs-5 pt-3 mx-2"
-              >線上訂餐</RouterLink
-            >
-          </li>
-          <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink to="/specialColumn" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
-              >專欄文章</RouterLink
-            >
-          </li>
-          <li class="nav-item mb-2 mb-lg-0">
-            <router-link to="/restaurantInfo" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
-              >店鋪資訊</router-link
-            >
-          </li>
-        </ul>
-      </div>
-      <!-- 桌機版 cart、member icon -->
-      <div class="d-flex justify-content-lg-end d-none d-lg-block">
-        <!-- cart -->
-        <div>
-          <!-- <a
-            role="button"
-            class="navbar-brand position-relative"
-            @click.prevent="toggleOffcanvas()"
-          > -->
           <RouterLink
             class="navbar-brand position-relative"
             to=""
@@ -90,14 +24,59 @@
               {{ this.carts?.length }}
             </span>
           </RouterLink>
-          <!-- <span
-              v-if="cartsTotalNum"
-              class="position-absolute start-100 translate-middle badge rounded-pill bg-primary text-white"
-              style="top: 6px"
-              >{{ cartsTotalNum }}
-            </span> -->
-          <!-- </a> -->
         </div>
+
+        <!--漢堡-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+        >
+          <i class="bi bi-list fs-3" style="font-weight: bold"></i>
+        </button>
+      </div>
+      <!-- navbar 摺疊內容 -->
+      <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarText">
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink data-toggle to="/brandStory" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
+              >品牌故事</RouterLink
+            >
+          </li>
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink data-toggle to="/products" class="nav-link d-inline-block fs-5 pt-3 mx-2"
+              >線上訂餐</RouterLink
+            >
+          </li>
+          <li class="nav-item mb-2 mb-lg-0">
+            <RouterLink
+              data-toggle
+              to="/specialColumn"
+              class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+              >專欄文章</RouterLink
+            >
+          </li>
+          <li class="nav-item mb-2 mb-lg-0">
+            <router-link
+              data-toggle
+              to="/restaurantInfo"
+              class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+              >店鋪資訊</router-link
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- 桌機版 icon -->
+      <div class="d-flex justify-content-lg-end d-none d-lg-block">
+        <RouterLink class="navbar-brand position-relative" to="" @click.prevent="toggleOffcanvas()">
+          <i class="bi bi-cart3 fs-2 ms-4 me-2"></i>
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
+          >
+            {{ this.carts?.length }}
+          </span>
+        </RouterLink>
       </div>
     </div>
   </nav>
@@ -252,6 +231,7 @@
 </template>
 
 <script>
+import Collapse from 'bootstrap/js/dist/collapse';
 import CartOffcanvas from '@/components/front/CartOffcanvas.vue';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
@@ -270,6 +250,7 @@ export default {
     ...mapState(cartStore, ['carts'])
   },
   mounted() {
+    this.collapse();
     this.getCart();
   },
   methods: {
@@ -280,7 +261,19 @@ export default {
     subscribe() {
       Alert.toastTop('訂閱成功!', 'success');
       this.$refs.email.value = '';
-      // }
+    },
+    collapse() {
+      const dataToggle = document.querySelectorAll('[data-toggle]');
+      const menuToggle = document.getElementById('navbarText');
+      const bsCollapse = new Collapse(menuToggle, {
+        toggle: false
+      });
+
+      dataToggle.forEach((item) => {
+        item.addEventListener('click', () => {
+          bsCollapse.toggle();
+        });
+      });
     }
   }
 };

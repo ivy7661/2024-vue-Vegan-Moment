@@ -7,7 +7,14 @@
         class="d-flex flex-column justify-content-center align-items-center mt-8"
         data-aos="fade-up"
       >
-        <h1 class="fs-2 fw-lg-bold text-center mb-4">創新料理，源自對美味的堅持</h1>
+        <h1 class="fs-2 fw-lg-bold text-center mb-4 d-none d-lg-block">
+          創新料理，源自對美味的堅持
+        </h1>
+        <h1 class="fs-3 fw-lg-bold text-center mb-4 d-lg-none">
+          創新料理，
+          <br />
+          源自對美味的堅持
+        </h1>
         <h3 class="fs-5 text-center text-gray-600 mb-3 mb-lg-8">
           享受餐桌上的美好時光，就在Vegan Moment
         </h3>
@@ -18,7 +25,7 @@
     </div>
   </section>
   <!-- 關於我們 -->
-  <section class="py-6 bg-about">
+  <section class="pt-6 pb-2 bg-about">
     <div class="container">
       <div class="d-flex flex-column justify-content-center text-center">
         <div data-aos="fade-up">
@@ -97,11 +104,15 @@ export default {
 <style lang="scss" scoped>
 .home-banner {
   height: 480px;
-  background-image: url(../../../public/images/bg_banner_clear.jpg);
+  background-image: url(/images/bg_banner_clear.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  @include mobile() {
+    height: 600px;
+    background-position: 38% 50%;
+  }
 }
 .bg-about {
   // height: 600px;
