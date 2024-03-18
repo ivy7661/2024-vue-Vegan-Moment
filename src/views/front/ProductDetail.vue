@@ -107,56 +107,58 @@
         </div>
       </section>
 
-      <!-- <section class="col-lg-10 py-8 pt-lg-15">
+      <section class="col-lg-10 py-8 pt-lg-15">
         <div class="text-center text-lg-start">
           <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-6 mb-lg-10">
             相關餐點
           </h2>
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 gy-5">
-          <template v-for="item in productInfos" :key="item.id">
+          <template v-for="item in products" :key="item.id">
             <div
-              v-if="
-                item.selectCategories === productInfo.selectCategories && item.title !== productInfo.title
-              "
               class="col"
+              v-if="item.category === productInfo.category && item.title !== productInfo.title"
             >
-              <div class="position-relative hover-show-btn">
-                <div class="hover-img-mask">
-                  <RouterLink :to="`/productInfo/${item.id}`" class="hover-img-mask">
+              <div class="col">
+                <div class="card-img">
+                  <RouterLink :to="`/products/${item.id}`">
                     <img
                       :src="item.imageUrl"
                       :alt="item.title"
-                      class="w-100 d-block rounded-3 object-fit-cover"
+                      class="w-100 d-block rounded-3"
                       height="240"
                     />
                   </RouterLink>
-                  <button
-                    type="button"
-                    class="add-to-cart-btn btn btn-primary position-absolute bottom-0 start-50 translate-middle py-3 fs-5"
-                    :disabled="loadingStatus === item.id"
-                    @click="addToCart(item.id)"
-                  >
-                    <i class="fas fa-spinner fa-pulse me-2" v-if="loadingStatus === item.id"></i>
-                    <span>加入購物車</span>
-                  </button>
                 </div>
-              </div>
-              <RouterLink :to="`/productInfo/${item.id}`">
-                <div class="py-3 py-lg-4">
-                  <h4 class="fs-5 text-center text-dark mb-2 mb-lg-3">{{ item.title }}</h4>
-                  <h5 class="text-primary d-flex align-items-center justify-content-center">
-                    NT${{ $filters.toThousands(item.price) }}
-                    <span class="fs-6 text-gray-dark ms-2"
-                      ><del>NT${{ $filters.toThousands(item.origin_price) }}</del></span
+
+                <div class="py-3 py-lg-2">
+                  <RouterLink :to="`/products/${item.id}`">
+                    <h4 class="fs-4 text-dark mb-2 mb-lg-1">{{ item.title }}</h4>
+                  </RouterLink>
+                  <h5 class="text-primary d-flex align-items-center">
+                    NT${{ item.price }}
+                    <span class="fs-6 text-gray-600 ms-2"
+                      ><del>NT${{ item.origin_price }}</del></span
                     >
                   </h5>
                 </div>
-              </RouterLink>
+                <!-- 購物車 btn -->
+                <button
+                  type="button"
+                  class="btn btn-secondary fs-6 w-100"
+                  @click="addToCart(item.id, cartQty)"
+                  :disabled="loadingProductId === item.id"
+                >
+                  <!--  -->
+                  <span>加入購物車</span>
+                  <i class="fas fa-spinner fa-pulse ms-2" v-if="loadingProductId === item.id"></i>
+                  <!--  -->
+                </button>
+              </div>
             </div>
           </template>
         </div>
-      </section> -->
+      </section>
     </div>
   </div>
 </template>
@@ -165,9 +167,11 @@
 import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import VeganLoader from '../../components/icons/VeganLoader.vue';
+import loadingStore from '../../stores/loadingStore';
 
 import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
+import productStore from '../../stores/productStore';
 import cartStore from '../../stores/cartStore';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
@@ -187,19 +191,33 @@ export default {
     VeganLoader
   },
   mounted() {
-    this.getProducts();
+    this.getProduct();
     this.cartQty = 1;
+    this.getProducts();
   },
   computed: {
-    ...mapState(cartStore, ['loadingStatus'])
+    ...mapState(productStore, ['products']),
+    ...mapState(cartStore, ['loadingStatus']),
+    ...mapState(loadingStore, ['loadingProductId'])
+  },
+  watch: {
+    '$route.params': {
+      immediate: true,
+      handler() {
+        if (this.$route.params.id) {
+          this.getProduct();
+        }
+      }
+    }
   },
   methods: {
+    ...mapActions(productStore, ['getProducts']),
     ...mapActions(cartStore, ['addToCart']),
     buyNow(id, Qty) {
       this.addToCart(id, Qty);
       this.$router.push('/orderInfo');
     },
-    getProducts() {
+    getProduct() {
       this.isLoading = true;
       this.productId = this.$route.params.id;
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/product/${this.productId}`;

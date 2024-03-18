@@ -31,6 +31,20 @@
       ]
     },
     {
+      "id": 1,
+      "category": "主餐",
+      "title": "番茄香草歐姆蛋",
+      "num": 6,
+      "origin_price": 119,
+      "price": 89,
+      "info": "地中海風格",
+      "description": "偏甜的番茄搭配油煎新鮮鼠尾草，地中海風格的美味",
+      "allergy": "+",
+      "is_enabled": 1,
+      "imageUrl": "",
+      "imagesUrl": [""]
+    },
+    {
       "id": 2,
       "category": "主餐",
       "title": "茄汁紅醬義大利麵",
@@ -39,6 +53,20 @@
       "price": 180,
       "info": "擁有豐富的茄紅素等高抗氧化物，美味又健康",
       "description": "以大番茄為基底調製而成的紅醬，補充滿滿茄紅素",
+      "allergy": "",
+      "is_enabled": 1,
+      "imageUrl": "",
+      "imagesUrl": [""]
+    },
+    {
+      "id": 2,
+      "category": "主餐",
+      "title": "羅勒青醬義大利麵",
+      "num": 6,
+      "origin_price": 220,
+      "price": 180,
+      "info": "含有豐富的維生素K、具強力抗氧化作用的維生素E",
+      "description": "低GI義大利麵加上橄欖油及九層塔為青醬基底，搭配大蒜製成",
       "allergy": "",
       "is_enabled": 1,
       "imageUrl": "",

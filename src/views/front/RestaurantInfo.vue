@@ -18,7 +18,7 @@
       </ol>
     </nav>
     <section>
-      <div class="row justify-content-center my-4 my-lg-4">
+      <div class="row justify-content-center my-4 my-lg-5">
         <div class="col-lg-7" data-aos="fade-down" data-aos-once="true">
           <div class="mb-4 mb-lg-0">
             <!-- 地圖 -->
