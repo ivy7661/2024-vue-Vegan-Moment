@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar sticky-top navbar-expand-lg bg-light-green py-1">
-    <div class="container-fluid">
+    <div class="container">
       <RouterLink to="/">
         <img
           src="/images/Logo-Vegan-Moment.png"
@@ -88,7 +88,6 @@
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
             >
               {{ this.carts?.length }}
-              <span class="visually-hidden">unread messages</span>
             </span>
           </RouterLink>
           <!-- <span
@@ -98,9 +97,6 @@
               >{{ cartsTotalNum }}
             </span> -->
           <!-- </a> -->
-          <RouterLink to="/adminLogin" class="navbar-brand">
-            <i class="bi bi-person-circle fs-2"></i>
-          </RouterLink>
         </div>
       </div>
     </div>
