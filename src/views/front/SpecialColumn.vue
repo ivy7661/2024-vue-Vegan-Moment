@@ -1,4 +1,13 @@
 <template>
+  <section class="mb-3 banner" style="height: 250px">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-9 col-md-7 col-lg-5">
+          <h1 class="banner-text fs-3">專欄文章</h1>
+        </div>
+      </div>
+    </div>
+  </section>
   <div class="container d-flex flex-column justify-content-center container-post">
     <VueLoading :active="isLoading" :is-full-page="fullPage">
       <template #default>
@@ -6,7 +15,7 @@
       </template>
     </VueLoading>
     <nav>
-      <ol class="breadcrumb mb-1 mt-3">
+      <ol class="breadcrumb mb-1">
         <li class="breadcrumb-item"><RouterLink to="/" class="fs-6">首頁</RouterLink></li>
         <li class="breadcrumb-item">
           <RouterLink to="/articles" class="text-dark fs-6">專欄文章</RouterLink>
@@ -15,11 +24,16 @@
     </nav>
     <div class="row mb-5">
       <div
-        class="col-12 col-lg-4 mb-3 mb-lg-0 d-flex justify-content-center gy-5"
+        class="col-12 col-lg-4 mb-lg-0 d-flex justify-content-center gy-5"
         v-for="article in articles"
         :key="article.id"
       >
-        <div ref="load" class="card border-0 bg-white-2 vl-parent" data-aos="fade-up">
+        <div
+          ref="load"
+          class="card border-0 bg-white-2 vl-parent"
+          data-aos="fade-up"
+          data-aos-once="true"
+        >
           <img :src="article.image" class="card-img-top mw-100" alt="" />
           <div class="card-body">
             <h5 class="text-primary mb-2">{{ article.title }}</h5>
@@ -89,6 +103,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.banner {
+  @include banner('/images/articles.jpg', 10% 40%);
+  @include mobile() {
+    @include banner('/images/articles.jpg', center);
+  }
+}
+.banner-text {
+  @include banner-text();
+}
 p,
 a {
   font-size: 14px;

@@ -1,18 +1,18 @@
 <template>
   <!-- banner -->
-  <!-- <section class="mb-5 banner" style="height: 380px">
+  <section class="mb-3 banner" style="height: 250px">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-sm-9 col-md-7 col-lg-5">
-          <h1 class="banner-plan fs-3">線上訂餐</h1>
+          <h1 class="banner-text fs-3">線上訂餐</h1>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
   <div class="container">
     <!-- breadcrumb -->
     <nav>
-      <ol class="breadcrumb mb-3 mt-3">
+      <ol class="breadcrumb mb-3">
         <li class="breadcrumb-item"><RouterLink to="/" class="fs-6">首頁</RouterLink></li>
         <li class="breadcrumb-item">
           <RouterLink to="/products" class="text-dark fs-6">線上訂餐</RouterLink>
@@ -196,6 +196,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.banner {
+  @include banner('/images/table_glass.jpg', center);
+  @include mobile() {
+    @include banner('/images/table_glass_s.jpg', 20% 50%);
+  }
+}
+.banner-text {
+  @include banner-text();
+}
+
 .nav-tab-top {
   top: 80px;
   @include mobile() {

@@ -1,16 +1,16 @@
 <template>
-  <!-- <section class="mb-5 banner" style="height: 380px">
+  <section class="mb-3 banner" style="height: 250px">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-sm-9 col-md-7 col-lg-5">
-          <h1 class="banner-plan fs-3 fs-lg-2">門市資訊</h1>
+          <h1 class="banner-text fs-3">店鋪資訊</h1>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
   <div class="container">
     <nav>
-      <ol class="breadcrumb mb-1 mt-3">
+      <ol class="breadcrumb mb-1">
         <li class="breadcrumb-item"><RouterLink to="/" class="fs-6">首頁</RouterLink></li>
         <li class="breadcrumb-item">
           <RouterLink to="" class="text-dark fs-6">店鋪資訊</RouterLink>
@@ -18,8 +18,8 @@
       </ol>
     </nav>
     <section>
-      <div class="row justify-content-center my-4 my-lg-8">
-        <div class="col-lg-7" data-aos="fade-down">
+      <div class="row justify-content-center my-4 my-lg-4">
+        <div class="col-lg-7" data-aos="fade-down" data-aos-once="true">
           <div class="mb-4 mb-lg-0">
             <!-- 地圖 -->
             <GoogleMap :api-key="mapKey" class="google-map" :center="position" :zoom="15" ref="map">
@@ -32,7 +32,7 @@
             </GoogleMap>
           </div>
         </div>
-        <div class="col-lg-4 ms-lg-4" data-aos="fade-up">
+        <div class="col-lg-4 ms-lg-4" data-aos="fade-up" data-aos-once="true">
           <div class="d-flex justify-content-center align-items-center h-100">
             <div class="wrap-info">
               <div class="text-center text-lg-start">
@@ -77,6 +77,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.banner {
+  @include banner('/images/restaurant_water.jpg', center);
+  @include mobile() {
+    @include banner('/images/restaurant_water_s.jpg', 100% 100%);
+  }
+}
+.banner-text {
+  @include banner-text();
+}
 .google-map {
   width: 100%;
   height: 400px;
