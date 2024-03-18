@@ -47,7 +47,7 @@
       </tbody>
     </table>
     <!-- pagination -->
-    <Pagination-Component :pages="pages" :get-data="getData"></Pagination-Component>
+    <Pagination-Component :pages="pages" @change-page="getData"></Pagination-Component>
   </div>
 
   <!-- Modal -->
@@ -92,10 +92,10 @@ export default {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/products?page=${page}`;
       axios
         .get(url)
-        .then((response) => {
-          console.log(response);
-          this.products = response.data.products;
-          this.pages = response.data.pagination;
+        .then((res) => {
+          console.log(res);
+          this.products = res.data.products;
+          this.pages = res.data.pagination;
         })
         .catch((err) => {
           Alert.toastTop(err.response.data.message, 'error');
@@ -146,7 +146,6 @@ export default {
 
     delProduct() {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/product/${this.tempProduct.id}`;
-
       axios
         .delete(url)
         .then((res) => {

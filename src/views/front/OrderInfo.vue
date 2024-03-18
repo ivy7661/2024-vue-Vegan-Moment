@@ -60,11 +60,7 @@
                   <span class="material-icons fs-6 me-2"> arrow_back_ios </span>繼續購物
                 </p>
               </RouterLink>
-              <button
-                type="button"
-                class="btn btn-sm btn-outline-danger fs-7"
-                @click="removeCartsAll"
-              >
+              <button type="button" class="btn btn-sm btn-outline-danger fs-7" @click="alertDelAll">
                 清空購物車
               </button>
             </div>
@@ -285,6 +281,7 @@
 <script>
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
+import Alert from '@/mixins/swal.js';
 
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
@@ -309,7 +306,13 @@ export default {
     ...mapState(cartStore, ['carts', 'order_total', 'deliveryFee', 'final_total'])
   },
   methods: {
-    ...mapActions(cartStore, ['getCart', 'removeCartsAll', 'delCartItem', 'changeCartQty']),
+    ...mapActions(cartStore, [
+      'getCart',
+      'removeCartsAll',
+      'delCartItem',
+      'changeCartQty',
+      'alertDelAll'
+    ]),
     getCoupon() {
       this.coupon = 'vegan032024';
       this.getCart();
@@ -321,21 +324,11 @@ export default {
       this.$http
         .post(`${VITE_API_URL}/api/${VITE_API_PATH}/coupon`, { data })
         .then((res) => {
-          alert('get coupon');
-          // Toast.fire({
-          //   icon: 'success',
-          //   title: res.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(res.data.message, 'success');
           this.getCart();
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     isPhone(value) {
@@ -347,7 +340,6 @@ export default {
     },
     createOrder() {
       if (this.carts.length) {
-        // this.loading();
         const data = {
           user: this.user,
           message: this.message
@@ -355,34 +347,17 @@ export default {
         this.$http
           .post(`${VITE_API_URL}/api/${VITE_API_PATH}/order`, { data })
           .then((res) => {
-            alert('送出成功');
-            // Toast.fire({
-            //   icon: 'success',
-            //   title: res.data.message,
-            //   width: 250
-            // });
-            // this.loading();
+            Alert.toastTop(res.data.message, 'success');
             this.getCart();
             this.$refs.form.resetForm();
             this.orderId = res.data.orderId;
             this.$router.push(`/checkout/${this.orderId}`);
           })
           .catch((err) => {
-            console.log(err);
-            alert('送出失敗');
-            // Toast.fire({
-            //   icon: 'error',
-            //   title: err.response.data.message,
-            //   width: 250
-            // });
+            Alert.toastTop(err.response.data.message, 'error');
           });
       } else {
-        alert('購物車是空的');
-        // Toast.fire({
-        //   icon: 'error',
-        //   title: '目前購物車沒有任何品項，無法送出訂單。',
-        //   width: 250
-        // });
+        Alert.toastTop('目前購物車中無任何餐點，無法送出訂單', 'error');
       }
     }
   }

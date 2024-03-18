@@ -141,6 +141,8 @@
         </div>
       </div>
     </section>
+    <!-- pagination -->
+    <Product-Pagination></Product-Pagination>
   </div>
 </template>
 
@@ -148,6 +150,7 @@
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import productStore from '../../stores/productStore';
+import ProductPagination from '../../components/front/ProductPagination.vue';
 export default {
   data() {
     return {
@@ -156,6 +159,9 @@ export default {
       cartQty: 1
       // cartLoading: false
     };
+  },
+  components: {
+    ProductPagination
   },
   mounted() {
     this.getProducts();
@@ -185,9 +191,9 @@ export default {
 <style lang="scss" scoped>
 .nav-tab-top {
   top: 80px;
-  // @include mobile() {
-  //   top: 80px;
-  // }
+  @include mobile() {
+    top: 67px;
+  }
 }
 .nav-link:focus {
   border-color: transparent;

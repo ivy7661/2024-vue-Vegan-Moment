@@ -47,7 +47,7 @@
       </tbody>
     </table>
     <!-- pagination -->
-    <!-- <Pagination-Component :pages="pages" :get-data="getData"></Pagination-Component> -->
+    <Pagination-Component :pages="pages" @change-page="getData"></Pagination-Component>
   </div>
 
   <!-- Modal -->
@@ -68,7 +68,7 @@
 <script>
 import axios from 'axios';
 import Alert from '@/mixins/swal.js';
-// import PaginationComponent from '../../components/PaginationComponent.vue';
+import PaginationComponent from '../../components/PaginationComponent.vue';
 import ArticleModal from '../../components/admin/ArticleModal.vue';
 import DelArticleModal from '../../components/admin/DelArticleModal.vue';
 
@@ -88,7 +88,7 @@ export default {
     };
   },
   components: {
-    // PaginationComponent,
+    PaginationComponent,
     ArticleModal,
     DelArticleModal
   },
@@ -104,7 +104,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.articles = res.data.articles;
-          // this.pages = res.data.pagination;
+          this.pages = res.data.pagination;
         })
         .catch((err) => {
           alert(err.response.data.message);

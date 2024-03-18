@@ -44,6 +44,9 @@
         </tbody>
       </table>
     </div>
+    <!-- pagination -->
+    <Pagination-Component :pages="pages" @change-page="getOrders"></Pagination-Component>
+
     <Order-Modal ref="orderModal" :temp-order="tempOrder" @update-paid="updatePaid"></Order-Modal>
     <Del-Order-Modal
       ref="delOrderModal"
@@ -58,11 +61,13 @@ import axios from 'axios';
 import Alert from '@/mixins/swal.js';
 import OrderModal from '../../components/admin/OrderModal.vue';
 import DelOrderModal from '../../components/admin/DelOrderModal.vue';
+import PaginationComponent from '../../components/PaginationComponent.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 export default {
   components: {
     OrderModal,
-    DelOrderModal
+    DelOrderModal,
+    PaginationComponent
   },
   data() {
     return {
@@ -70,20 +75,21 @@ export default {
       currentPage: 1,
       tempOrder: {
         user: {}
-      }
+      },
+      pages: {}
     };
   },
   mounted() {
     this.getOrders();
   },
   methods: {
-    getOrders() {
-      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/orders`;
+    getOrders(page = 1) {
+      const url = `${VITE_API_URL}/api/${VITE_API_PATH}/admin/orders?page=${page}`;
       axios
         .get(url)
         .then((res) => {
-          // console.log(res);
           this.orders = res.data.orders;
+          this.pages = res.data.pagination;
         })
         .catch((err) => {
           Alert.toastTop(err.response.data.message, 'error');

@@ -1,6 +1,5 @@
 import Swal from 'sweetalert2';
-// import Toast from '@/mixins/swal.js';
-// Swal.mixin
+
 export default {
   toastTop(title, icon) {
     return Swal.fire({
@@ -11,7 +10,7 @@ export default {
       showConfirmButton: false,
       timerProgressBar: true,
       timer: 1500,
-      width: 250
+      width: 280
     });
   }
 };

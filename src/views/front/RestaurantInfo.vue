@@ -32,23 +32,27 @@
             </GoogleMap>
           </div>
         </div>
-        <div class="col-lg-4" data-aos="fade-up">
+        <div class="col-lg-4 ms-lg-4" data-aos="fade-up">
           <div class="d-flex justify-content-center align-items-center h-100">
-            <div class="text-center text-lg-start">
-              <h6>地址：</h6>
-              <p>台北市信義區信義路五段7號102樓</p>
-              <h6>電話：</h6>
-              <p>(02)234-5678</p>
-              <h6>營業時間：</h6>
-              <p>週二～週日 7:00~14:00</p>
-              <h6>訂位資訊：</h6>
-              <ol>
-                <li>訂位保留10分鐘。</li>
-                <li>可提前1個月訂位，如10/1起可訂10/1~11/30的位子。</li>
-                <li>
-                  為寵物友善餐廳，我們歡迎您攜帶寵物一起來用餐，煩請您可在訂位時先行告知會攜帶寵物，我們將可提前為您安排舒適位置
-                </li>
-              </ol>
+            <div class="wrap-info">
+              <div class="text-center text-lg-start">
+                <h6>地址：</h6>
+                <p>台北市信義區信義路五段7號102樓</p>
+                <h6>電話：</h6>
+                <p>(02)234-5678</p>
+                <h6>營業時間：</h6>
+                <p>週二～週日 7:00~14:00</p>
+                <h6>訂位資訊：</h6>
+              </div>
+              <div>
+                <ol class="text-start">
+                  <li>訂位保留10分鐘。</li>
+                  <li>可提前1個月訂位，如10/1起可訂10/1~11/30的位子。</li>
+                  <li>
+                    為寵物友善餐廳，我們歡迎您攜帶寵物一起來用餐，煩請您可在訂位時先行告知會攜帶寵物，我們將可提前為您安排舒適位置
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
         </div>
@@ -74,7 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 .google-map {
-  width: 600px;
+  width: 100%;
   height: 400px;
 }
 

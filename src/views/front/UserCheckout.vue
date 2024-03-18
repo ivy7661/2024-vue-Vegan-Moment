@@ -169,10 +169,7 @@
 </template>
 
 <script>
-// import { mapState } from 'pinia';
-// import loadingStore from '@/store/loadingStore.js';
-// import Toast from '@/mixins/toast.js';
-// import { toThousands } from '@/mixins/filters';
+import Alert from '@/mixins/swal.js';
 
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
@@ -184,7 +181,6 @@ export default {
     };
   },
   methods: {
-    // ...mapActions(loadingStore, ['loading']),
     getOrder() {
       const { orderId } = this.$route.params;
       this.$http
@@ -197,12 +193,7 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     },
     payOrder(id) {
@@ -211,28 +202,16 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.getOrder();
-            // Toast.fire({
-            //   icon: 'success',
-            //   title: '已完成付款。',
-            //   width: 250
-            // });
+            Alert.toastTop('已完成付款', 'success');
           }
         })
         .catch((err) => {
-          console.log(err);
-          // Toast.fire({
-          //   icon: 'error',
-          //   title: err.response.data.message,
-          //   width: 250
-          // });
+          Alert.toastTop(err.response.data.message, 'error');
         });
     }
   },
-  computed: {
-    // ...mapState(loadingStore, ['isLoading'])
-  },
+  computed: {},
   mounted() {
-    // this.loading();
     this.getOrder();
   }
 };

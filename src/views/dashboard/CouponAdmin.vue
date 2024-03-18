@@ -43,6 +43,8 @@
         </table>
       </div>
     </div>
+    <!-- pagination -->
+    <Pagination-Component :pages="pages" @change-page="getCoupons"></Pagination-Component>
   </div>
   <!-- Modal -->
   <Coupon-Modal
@@ -57,14 +59,12 @@
     :coupon="tempCoupon"
     @deleteCoupon="deleteCoupon"
   ></Del-Coupon-Modal>
-
-  <!-- <AdminPagination :pages="page" @change-page="getCoupons"></AdminPagination> -->
 </template>
 
 <script>
 import CouponModal from '@/components/admin/CouponModal.vue';
 import DelCouponModal from '@/components/admin/DelCouponModal.vue';
-// import AdminPagination from '@/components/admin/AdminPagination.vue';
+import PaginationComponent from '../../components/PaginationComponent.vue';
 import Alert from '@/mixins/swal.js';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
@@ -79,13 +79,13 @@ export default {
         code: ''
       },
       isNew: true,
-      page: {}
+      pages: {}
     };
   },
   components: {
     CouponModal,
-    DelCouponModal
-    // AdminPagination
+    DelCouponModal,
+    PaginationComponent
   },
   mounted() {
     this.getCoupons();
@@ -97,7 +97,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.coupons = res.data.coupons;
-          this.page = res.data.pagination;
+          this.pages = res.data.pagination;
         })
         .catch((err) => {
           Alert.toastTop(err.response.data.message, 'error');

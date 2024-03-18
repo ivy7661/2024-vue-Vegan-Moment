@@ -260,6 +260,7 @@ import CartOffcanvas from '@/components/CartOffcanvas.vue';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import ReturntopBtn from '../../components/front/ReturntopBtn.vue';
+import Alert from '@/mixins/swal.js';
 
 export default {
   data() {
@@ -281,19 +282,18 @@ export default {
       this.$refs.offcanvas.toggleTheOffcanvas();
     },
     subscribe() {
-      // Toast.fire({
-      //   icon: 'success',
-      //   title: '您已成功提交資訊。感謝您的訂閱！',
-      //   width: 450
-      // });
-      alert('送出成功');
+      Alert.toastTop('訂閱成功!', 'success');
       this.$refs.email.value = '';
+      // }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.navbar {
+  z-index: 1021;
+}
 .mainView {
   min-height: calc(100vh - 311px);
 }
