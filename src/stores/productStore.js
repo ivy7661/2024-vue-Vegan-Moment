@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import loadingStore from './loadingStore';
 import Alert from '@/mixins/swal.js';
 
-const status = loadingStore();
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
 export default defineStore('productStore', {
@@ -19,7 +17,6 @@ export default defineStore('productStore', {
       axios
         .get(`${VITE_API_URL}/api/${VITE_API_PATH}/products/all`)
         .then((res) => {
-          status.isLoading = false;
           this.products = res.data.products;
           this.updatePagination(page);
         })

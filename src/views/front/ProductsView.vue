@@ -85,15 +85,19 @@
                       type="button"
                       class="btn btn-secondary fs-6 w-100"
                       @click="addToCart(product.id, cartQty)"
+                      :disabled="loadingProductId === product.id"
                     >
-                      <!-- :disabled="loadingStatus === product.id" -->
                       <span>加入購物車</span>
+                      <i
+                        class="fas fa-spinner fa-pulse ms-2"
+                        v-if="loadingProductId === product.id"
+                      ></i>
                     </button>
                   </div>
                 </div>
               </template>
             </div>
-            <ProductsPagination></ProductsPagination>
+            <Product-Pagination @change-page="getProducts"></Product-Pagination>
           </div>
           <!-- 超飽足果昔盆、輕食冷盤、湯品、裸食甜點、果昔飲品 -->
           <div v-for="tab in categories" :key="tab" class="tab-pane fade" :id="tab" role="tabpanel">
@@ -129,9 +133,13 @@
                       type="button"
                       class="btn btn-secondary fs-6 w-100"
                       @click="addToCart(product.id, cartQty)"
+                      :disabled="loadingProductId === product.id"
                     >
-                      <!-- :disabled="loadingStatus === product.id" -->
                       <span>加入購物車</span>
+                      <i
+                        class="fas fa-spinner fa-pulse ms-2"
+                        v-if="loadingProductId === product.id"
+                      ></i>
                     </button>
                   </div>
                 </div>
@@ -142,7 +150,7 @@
       </div>
     </section>
     <!-- pagination -->
-    <Product-Pagination></Product-Pagination>
+    <Product-Pagination @change-page="getProducts"></Product-Pagination>
   </div>
 </template>
 
@@ -150,6 +158,7 @@
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import productStore from '../../stores/productStore';
+import loadingStore from '../../stores/loadingStore';
 import ProductPagination from '../../components/front/ProductPagination.vue';
 export default {
   data() {
@@ -157,7 +166,6 @@ export default {
       tempProduct: {},
       categories: ['主餐', '輕食', '果昔碗', '飲品'],
       cartQty: 1
-      // cartLoading: false
     };
   },
   components: {
@@ -176,7 +184,8 @@ export default {
   },
   computed: {
     ...mapState(productStore, ['products', 'displayedProducts']),
-    ...mapState(cartStore, ['cartLoading'])
+    ...mapState(cartStore, ['cartLoading']),
+    ...mapState(loadingStore, ['loadingProductId'])
   },
   methods: {
     ...mapActions(productStore, ['getProducts']),

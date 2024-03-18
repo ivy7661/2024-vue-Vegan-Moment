@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
+import loadingStore from './loadingStore';
 import Swal from 'sweetalert2';
 import Alert from '@/mixins/swal.js';
 import axios from 'axios';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
+const status = loadingStore();
 
 export default defineStore('cartStore', {
   state: () => ({
@@ -32,6 +34,7 @@ export default defineStore('cartStore', {
     },
     addToCart(id, cartQty) {
       this.loadingStatus = true;
+      status.loadingProductId = id;
 
       const order = {
         product_id: id,
@@ -40,6 +43,7 @@ export default defineStore('cartStore', {
       const url = `${VITE_API_URL}/api/${VITE_API_PATH}/cart`;
       axios.post(url, { data: order }).then((res) => {
         this.loadingStatus = false;
+        status.loadingProductId = '';
         Alert.toastTop(res.data.message, 'success');
         this.getCart();
       });

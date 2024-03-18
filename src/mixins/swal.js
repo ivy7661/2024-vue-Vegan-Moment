@@ -8,7 +8,6 @@ export default {
       toast: true,
       position: 'top',
       showConfirmButton: false,
-      timerProgressBar: true,
       timer: 1500,
       width: 280
     });

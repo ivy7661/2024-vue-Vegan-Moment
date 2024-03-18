@@ -78,21 +78,20 @@
         <button
           type="button"
           class="btn btn-secondary mb-3 me-4 d-block w-100"
-          :disabled="loadingStatus === productInfo.id"
+          :disabled="loadingStatus"
           @click="addToCart(productInfo.id, cartQty)"
         >
-          <!-- productInfoQty -->
           加入購物車
           <i class="ms-1 fa-solid fa-spinner fa-spin" v-if="loadingStatus"></i>
         </button>
-        <!-- 收藏 -->
+        <!-- 立即購買 -->
         <button
           type="button"
           class="btn btn-outline-secondary mb-4 d-block w-100"
           :disabled="loadingStatus === productInfo.id"
           @click="addToCart(productInfo.id, productInfoQty)"
         >
-          收藏餐點
+          立即購買
         </button>
         <!-- style="width: 250px" -->
 

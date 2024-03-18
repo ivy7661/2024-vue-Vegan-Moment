@@ -2,7 +2,7 @@
   <nav>
     <ul class="pagination justify-content-center">
       <li class="page-item" :class="{ disabled: currentPage <= 1 }">
-        <a class="page-link" href="#" @click.prevent="getProducts(currentPage - 1)">
+        <a class="page-link" href="#" @click.prevent="$emit('change-page', currentPage - 1)">
           <span>&laquo;</span>
         </a>
       </li>
@@ -10,13 +10,13 @@
         <a
           class="page-link"
           href="#"
-          @click.prevent="getProducts(page)"
+          @click.prevent="$emit('change-page', page)"
           :class="{ active: currentPage === page }"
           >{{ page }}</a
         >
       </li>
       <li class="page-item" :class="{ disabled: currentPage >= totalPages }">
-        <a class="page-link" href="#" @click.prevent="getProducts(currentPage + 1)">
+        <a class="page-link" href="#" @click.prevent="$emit('change-page', currentPage + 1)">
           <span>&raquo;</span>
         </a>
       </li>
