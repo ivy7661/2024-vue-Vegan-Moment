@@ -64,9 +64,9 @@
 <script>
 import axios from 'axios';
 import Alert from '@/mixins/swal.js';
-import PaginationComponent from '../../components/PaginationComponent.vue';
-import ProductModal from '../../components/ProductModal.vue';
-import DelModal from '../../components/DelModal.vue';
+import PaginationComponent from '../../components/admin/PaginationComponent.vue';
+import ProductModal from '../../components/admin/ProductModal.vue';
+import DelModal from '../../components/admin/DelModal.vue';
 
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 
@@ -170,3 +170,4 @@ export default {
   }
 };
 </script>
+../../components/admin/PaginationComponent.vue

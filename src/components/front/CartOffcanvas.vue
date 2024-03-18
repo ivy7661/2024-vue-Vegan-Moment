@@ -5,7 +5,6 @@
     tabindex="-1"
     id="offcanvas"
     ref="offcanvas"
-    aria-labelledby="offcanvasLabel"
   >
     <div class="offcanvas-header">
       <h5 id="offcanvasLabel">
@@ -105,7 +104,7 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import cartStore from '../stores/cartStore';
+import cartStore from '@/stores/cartStore';
 import Offcanvas from 'bootstrap/js/src/offcanvas';
 
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;

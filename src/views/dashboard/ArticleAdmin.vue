@@ -68,7 +68,7 @@
 <script>
 import axios from 'axios';
 import Alert from '@/mixins/swal.js';
-import PaginationComponent from '../../components/PaginationComponent.vue';
+import PaginationComponent from '../../components/admin/PaginationComponent.vue';
 import ArticleModal from '../../components/admin/ArticleModal.vue';
 import DelArticleModal from '../../components/admin/DelArticleModal.vue';
 

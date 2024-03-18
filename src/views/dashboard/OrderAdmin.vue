@@ -61,7 +61,7 @@ import axios from 'axios';
 import Alert from '@/mixins/swal.js';
 import OrderModal from '../../components/admin/OrderModal.vue';
 import DelOrderModal from '../../components/admin/DelOrderModal.vue';
-import PaginationComponent from '../../components/PaginationComponent.vue';
+import PaginationComponent from '../../components/admin/PaginationComponent.vue';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 export default {
   components: {

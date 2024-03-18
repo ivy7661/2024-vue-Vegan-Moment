@@ -64,7 +64,7 @@
 <script>
 import CouponModal from '@/components/admin/CouponModal.vue';
 import DelCouponModal from '@/components/admin/DelCouponModal.vue';
-import PaginationComponent from '../../components/PaginationComponent.vue';
+import PaginationComponent from '../../components/admin/PaginationComponent.vue';
 import Alert from '@/mixins/swal.js';
 const { VITE_API_URL, VITE_API_PATH } = import.meta.env;
 

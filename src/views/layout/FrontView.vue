@@ -256,7 +256,7 @@
 </template>
 
 <script>
-import CartOffcanvas from '@/components/CartOffcanvas.vue';
+import CartOffcanvas from '@/components/front/CartOffcanvas.vue';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import ReturntopBtn from '../../components/front/ReturntopBtn.vue';

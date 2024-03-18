@@ -99,7 +99,7 @@
             </div>
             <Product-Pagination @change-page="getProducts"></Product-Pagination>
           </div>
-          <!-- 超飽足果昔盆、輕食冷盤、湯品、裸食甜點、果昔飲品 -->
+          <!-- 各分類 -->
           <div v-for="tab in categories" :key="tab" class="tab-pane fade" :id="tab" role="tabpanel">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gy-5">
               <template v-for="product in products" :key="product.id">

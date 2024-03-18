@@ -1,5 +1,4 @@
 <template>
-  <VueLoading v-model:active="isLoading" :is-full-page="fullPage" />
   <!-- <section class="mb-5 banner" style="height: 380px">
     <div class="container">
       <div class="row justify-content-center">
@@ -9,7 +8,7 @@
       </div>
     </div>
   </section> -->
-  <div class="container" ref="load">
+  <div class="container">
     <nav>
       <ol class="breadcrumb mb-5 mt-3">
         <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
@@ -97,30 +96,3 @@
     </section>
   </div>
 </template>
-
-<script>
-import VueLoading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/css/index.css';
-import { mapState, mapActions } from 'pinia';
-import loadingStore from '@/stores/loadingStore.js';
-
-export default {
-  data() {
-    return {
-      isLoading: false
-    };
-  },
-  components: {
-    VueLoading
-  },
-  mounted() {
-    this.loading();
-  },
-  computed: {
-    ...mapState(loadingStore, ['isLoading'])
-  },
-  methods: {
-    ...mapActions(loadingStore, ['loading'])
-  }
-};
-</script>
