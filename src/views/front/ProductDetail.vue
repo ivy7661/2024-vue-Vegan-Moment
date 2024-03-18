@@ -107,9 +107,10 @@
         </div>
       </section>
 
-      <section class="col-lg-10 py-8 pt-lg-15">
+      <section class="col-lg-10 py-8 pt-lg-0">
         <div class="text-center text-lg-start">
-          <h2 class="block-title position-relative fs-3 fs-lg-2 fw-lg-bold mb-6 mb-lg-10">
+          <h2 class="position-relative fs-3 fs-lg-2 fw-lg-bold mb-3 mb-lg-4">
+            <i class="bi bi-feather text-primary"></i>
             相關餐點
           </h2>
         </div>
@@ -149,10 +150,8 @@
                   @click="addToCart(item.id, cartQty)"
                   :disabled="loadingProductId === item.id"
                 >
-                  <!--  -->
                   <span>加入購物車</span>
                   <i class="fas fa-spinner fa-pulse ms-2" v-if="loadingProductId === item.id"></i>
-                  <!--  -->
                 </button>
               </div>
             </div>
