@@ -149,8 +149,6 @@
         </div>
       </div>
     </section>
-    <!-- pagination -->
-    <Product-Pagination @change-page="getProducts"></Product-Pagination>
   </div>
 </template>
 

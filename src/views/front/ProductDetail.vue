@@ -77,7 +77,7 @@
         <!-- 加入購物車 -->
         <button
           type="button"
-          class="btn btn-secondary mb-3 me-4 d-block w-100"
+          class="btn btn-outline-secondary mb-3 me-4 d-block w-100"
           :disabled="loadingStatus"
           @click="addToCart(productInfo.id, cartQty)"
         >
@@ -87,13 +87,11 @@
         <!-- 立即購買 -->
         <button
           type="button"
-          class="btn btn-outline-secondary mb-4 d-block w-100"
-          :disabled="loadingStatus === productInfo.id"
-          @click="addToCart(productInfo.id, productInfoQty)"
+          class="btn btn-secondary mb-3 me-4 d-block w-100"
+          @click="buyNow(productInfo.id, cartQty)"
         >
           立即購買
         </button>
-        <!-- style="width: 250px" -->
 
         <div class="mb-4">
           <p class="fs-6 fw-bold text-primary">商品介紹</p>
@@ -196,6 +194,11 @@ export default {
     ...mapState(cartStore, ['loadingStatus'])
   },
   methods: {
+    ...mapActions(cartStore, ['addToCart']),
+    buyNow(id, Qty) {
+      this.addToCart(id, Qty);
+      this.$router.push('/orderInfo');
+    },
     getProducts() {
       this.isLoading = true;
       this.productId = this.$route.params.id;
@@ -204,8 +207,7 @@ export default {
         this.isLoading = false;
         this.productInfo = res.data.product;
       });
-    },
-    ...mapActions(cartStore, ['addToCart'])
+    }
   }
 };
 </script>
