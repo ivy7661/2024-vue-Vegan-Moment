@@ -1,16 +1,7 @@
 <template>
-  <!-- <section class="mb-5 banner" style="height: 380px">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-9 col-md-7 col-lg-5">
-          <h1 class="banner-plan fs-3 fs-lg-2">關於我們</h1>
-        </div>
-      </div>
-    </div>
-  </section> -->
   <div class="container">
     <nav>
-      <ol class="breadcrumb mb-5 mt-3">
+      <ol class="breadcrumb my-3">
         <li class="breadcrumb-item"><RouterLink to="/">首頁</RouterLink></li>
         <li class="breadcrumb-item">
           <RouterLink to="/brandStory" class="text-dark">品牌故事</RouterLink>
