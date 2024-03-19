@@ -3,7 +3,7 @@
     <div class="row vh-100">
       <div class="col-2 bg-light-green pt-5">
         <div class="text-center">
-          <img src="/images/Logo-Vegan-Moment.png" alt="logo" class="img-fluid mb-6 px-2 logo" />
+          <img src="/images/Logo_Vegan_Moment.png" alt="logo" class="img-fluid mb-6 px-2 logo" />
         </div>
         <ul class="nav flex-column px-2">
           <li class="nav-item">
