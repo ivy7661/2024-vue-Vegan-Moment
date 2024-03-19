@@ -10,7 +10,7 @@
       </RouterLink>
 
       <div class="d-flex align-items-center">
-        <!-- 手機 icon-->
+        <!-- 手機  icon-->
         <div class="d-lg-none">
           <RouterLink
             class="navbar-brand position-relative"
@@ -25,7 +25,6 @@
             </span>
           </RouterLink>
         </div>
-
         <!--漢堡-->
         <button
           class="navbar-toggler"
@@ -40,34 +39,28 @@
       <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarText">
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink data-toggle to="/brandStory" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
+            <RouterLink to="/brandStory" class="nav-link pt-3 mx-2 fs-5 d-inline-block"
               >品牌故事</RouterLink
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink data-toggle to="/products" class="nav-link d-inline-block fs-5 pt-3 mx-2"
+            <RouterLink to="/products" class="nav-link d-inline-block fs-5 pt-3 mx-2"
               >線上訂餐</RouterLink
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <RouterLink
-              data-toggle
-              to="/specialColumn"
-              class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+            <RouterLink to="/specialColumn" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
               >專欄文章</RouterLink
             >
           </li>
           <li class="nav-item mb-2 mb-lg-0">
-            <router-link
-              data-toggle
-              to="/restaurantInfo"
-              class="nav-link fs-5 pt-3 mx-2 d-inline-block"
+            <router-link to="/restaurantInfo" class="nav-link fs-5 pt-3 mx-2 d-inline-block"
               >店鋪資訊</router-link
             >
           </li>
         </ul>
       </div>
-      <!-- 桌機版 icon -->
+      <!-- 桌機版  icon -->
       <div class="d-flex justify-content-lg-end d-none d-lg-block">
         <RouterLink class="navbar-brand position-relative" to="" @click.prevent="toggleOffcanvas()">
           <i class="bi bi-cart3 fs-2 ms-4 me-2"></i>
@@ -118,12 +111,7 @@
       <!-- mobile logo -->
       <div class="d-flex justify-content-center d-lg-none">
         <a href="#">
-          <img
-            src="../../../public/images/Logo-Vegan-Moment.png"
-            alt="logo"
-            class="mt-3"
-            style="width: 120px"
-          />
+          <img src="/images/Logo-Vegan-Moment.png" alt="logo" class="mt-3" style="width: 120px" />
         </a>
       </div>
       <div class="d-lg-flex justify-content-between align-items-center border-bottom">
@@ -231,7 +219,6 @@
 </template>
 
 <script>
-import Collapse from 'bootstrap/js/dist/collapse';
 import CartOffcanvas from '@/components/front/CartOffcanvas.vue';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
@@ -250,8 +237,8 @@ export default {
     ...mapState(cartStore, ['carts'])
   },
   mounted() {
-    this.collapse();
     this.getCart();
+    this.navbarCollapse();
   },
   methods: {
     ...mapActions(cartStore, ['getCart']),
@@ -262,16 +249,12 @@ export default {
       Alert.toastTop('訂閱成功!', 'success');
       this.$refs.email.value = '';
     },
-    collapse() {
-      const dataToggle = document.querySelectorAll('[data-toggle]');
-      const menuToggle = document.getElementById('navbarText');
-      const bsCollapse = new Collapse(menuToggle, {
-        toggle: false
-      });
-
-      dataToggle.forEach((item) => {
+    navbarCollapse() {
+      const navLink = document.querySelectorAll('.nav-link');
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      navLink.forEach((item) => {
         item.addEventListener('click', () => {
-          bsCollapse.toggle();
+          navbarCollapse.classList.remove('show');
         });
       });
     }
@@ -319,13 +302,5 @@ i {
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  // @include mobile() {
-  //   background-image: url('@/assets/image/bg-subscribe.jpg');
-  //   background-position: center;
-  //   background-attachment: fixed;
-  // }
 }
-// .subscribe {
-//   height: 150px;
-// }
 </style>
