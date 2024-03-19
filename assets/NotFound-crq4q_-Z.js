@@ -1,0 +1,1 @@
+import{_ as o,o as t,b as n,F as s,d as e}from"./index-8XiAlZLe.js";const c={},a=e("h1",null,"404",-1),r=e("p",null,"無此頁面",-1);function _(l,d){return t(),n(s,null,[a,r],64)}const f=o(c,[["render",_]]);export{f as default};

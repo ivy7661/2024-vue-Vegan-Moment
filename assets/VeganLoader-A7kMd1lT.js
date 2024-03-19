@@ -1,0 +1,1 @@
+import{_ as e,o as t,b as o}from"./index-8XiAlZLe.js";const a="/HW-Vue-week6/images/vegan_loading_removebg.png",s={props:{width:{type:Number,default:24},height:{type:Number,default:24}}},r={src:a,class:"image_rotate",alt:"cocktail",width:"200"};function c(_,n,p,d,i,m){return t(),o("img",r)}const l=e(s,[["render",c],["__scopeId","data-v-3d91d29f"]]);export{l as V};
