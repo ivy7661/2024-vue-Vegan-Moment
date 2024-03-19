@@ -41,7 +41,7 @@
             <div class="col-10">
               <div class="text-center">
                 <img
-                  src="../../../public/images/Logo-Vegan-Moment.png"
+                  src="../../../public/images/Logo_Vegan_Moment.png"
                   alt="logo"
                   class="logo mb-3"
                 />
