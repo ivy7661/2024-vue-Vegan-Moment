@@ -23,11 +23,14 @@
                 <button
                   type="button"
                   class="add-to-cart-btn btn btn-secondary position-absolute bottom-0 start-50 translate-middle py-2 fs-5"
-                  :disabled="loadingStatus === product.id"
+                  :disabled="loadingProductId === product.id"
                   @click="addToCart(product.id, cartQty)"
                 >
-                  <i class="fas fa-spinner fa-pulse" v-if="loadingStatus === product.id"></i>
-                  <span v-else>加入購物車</span>
+                  <span>加入購物車</span>
+                  <i
+                    class="fas fa-spinner fa-pulse ms-2"
+                    v-if="loadingProductId === product.id"
+                  ></i>
                 </button>
               </div>
             </div>
@@ -58,7 +61,7 @@ import { mapState, mapActions } from 'pinia';
 
 import productStore from '@/stores/productStore.js';
 import cartStore from '@/stores/cartStore.js';
-// import loadingStore from '@/store/loadingStore.js';
+import loadingStore from '../../stores/loadingStore';
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -106,7 +109,8 @@ export default {
     this.getProducts();
   },
   computed: {
-    ...mapState(productStore, ['products'])
+    ...mapState(productStore, ['products']),
+    ...mapState(loadingStore, ['loadingProductId'])
   },
   methods: {
     ...mapActions(productStore, ['getProducts']),
