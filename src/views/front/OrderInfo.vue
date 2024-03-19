@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nav class="mt-2">
+    <nav class="my-3">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/" class="text-primary">首頁</RouterLink></li>
         <li class="breadcrumb-item">
@@ -12,9 +12,8 @@
     <main class="my-4">
       <!-- <VueLoading v-model:active="isLoading" /> -->
       <!-- 購物車有商品時 -->
-      <!-- v-if="carts?.length" -->
       <div v-if="carts?.length">
-        <div class="row justify-content-center mb-10">
+        <div class="row justify-content-center mb-4 mb-lg-10">
           <div class="col-3 border-bottom border-5 border-primary">
             <div class="d-flex flex-column align-items-center">
               <div
@@ -171,7 +170,7 @@
               </p>
             </div>
           </section>
-          <section class="col-lg-5">
+          <section class="col-lg-5 mb-3 mb-lg-0">
             <div class="card border-0 bg-light-green py-4 p-lg-2 ms-lg-4">
               <div class="card-body">
                 <v-form v-slot="{ errors }" @submit="createOrder" ref="form">

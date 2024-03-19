@@ -5,7 +5,7 @@
         <VeganLoader />
       </template>
     </VueLoading>
-    <div class="row justify-content-center py-4 py-lg-0">
+    <div class="row justify-content-center py-lg-0">
       <section class="col-lg-5">
         <!-- breadcrumb -->
         <div class="my-4">

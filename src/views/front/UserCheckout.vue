@@ -9,9 +9,8 @@
         <li class="breadcrumb-item">填寫訂單資訊</li>
       </ol>
     </nav>
-    <main class="my-4">
-      <!-- <VueLoading v-model:active="isLoading" /> -->
-      <div class="row justify-content-center mb-10">
+    <main class="my-4 my-lg-4">
+      <div class="row justify-content-center mb-4 mb-lg-10">
         <div class="col-3 border-bottom border-5 border-primary">
           <div class="d-flex flex-column align-items-center">
             <div
@@ -34,7 +33,6 @@
             <p class="text-primary mb-2 fw-bold">確認付款</p>
           </div>
         </div>
-        <!-- v-if="!order.is_paid" -->
         <div v-if="!order.is_paid" class="col-3 border-bottom border-5 border-gray">
           <div class="d-flex flex-column align-items-center">
             <div
