@@ -144,8 +144,8 @@
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td colspan="3" class="text-end">總計</td>
-                        <td class="text-end">{{ editOrder.total }}</td>
+                        <td colspan="3" class="text-end">總計(已扣除優惠金額)</td>
+                        <td class="text-end">{{ $filters.currency(editOrder.total) }}</td>
                       </tr>
                     </tfoot>
                   </table>
@@ -158,7 +158,7 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             關閉
           </button>
-          <!-- <button type="button" class="btn btn-primary" @click="updateOrder">確認</button> -->
+
           <button type="button" class="btn btn-secondary" @click="$emit('update-paid', editOrder)">
             修改付款狀態
           </button>
