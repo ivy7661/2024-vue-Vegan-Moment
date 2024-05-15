@@ -1,21 +1,7 @@
 <template>
-  <img src="/images/vegan_loading_removebg.png" class="image_rotate" alt="cocktail" width="200" />
+  <img src="/images/vegan_loading_removebg.png" class="image_rotate" alt="loading" width="200" />
 </template>
 
-<script>
-export default {
-  props: {
-    width: {
-      type: Number,
-      default: 24
-    },
-    height: {
-      type: Number,
-      default: 24
-    }
-  }
-};
-</script>
 <style lang="scss" scoped>
 .image_rotate {
   animation: rotation 2s infinite linear;

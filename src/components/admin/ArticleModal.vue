@@ -25,9 +25,6 @@
               </div>
             </div>
             <div class="col-sm-8">
-              <pre>
-                {{ editArticle }}
-              </pre>
               <div class="row">
                 <div class="col-6 mb-3">
                   <label for="title" class="form-label">文章標題</label>
