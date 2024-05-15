@@ -1,0 +1,1 @@
+import{_ as e,o,c as a}from"./index-cdNWno5T.js";const t="/2024-vue-Vegan-Moment/images/vegan_loading_removebg.png",n={},c={src:t,class:"image_rotate",alt:"loading",width:"200"};function s(_,r){return o(),a("img",c)}const i=e(n,[["render",s],["__scopeId","data-v-db2970d7"]]);export{i as V};
