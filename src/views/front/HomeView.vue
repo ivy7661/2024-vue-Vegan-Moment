@@ -104,7 +104,7 @@ export default {
 <style lang="scss" scoped>
 .home-banner {
   height: 480px;
-  background-image: url(/images/bg_banner_clear.jpg);
+  background-image: url(https://i.meee.com.tw/5PfxPaM.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
